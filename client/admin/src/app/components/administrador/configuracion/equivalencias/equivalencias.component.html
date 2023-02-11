@@ -1,0 +1,105 @@
+<app-navegacion></app-navegacion>
+<div style="padding-top: 10%; width: 100%;  text-align: center;">
+
+    <h2>Configuracion</h2>
+
+</div>
+
+<hr>
+
+<div class="container text center">
+
+    <div class="row">
+
+        <div class="col-2" style="border-width: 50px;">
+
+            <div class="row">
+                <button (click)="goUsuarios()" type="button" class="btn btn-primary">usuarios</button>
+            </div>
+            <div class="row" style="height: 50px;"></div>
+            <div class="row">
+                <button type="button" class="btn btn-primary">gestion de equivalencias</button>
+            </div>
+            <div class="row" style="height: 50px;"></div>
+            <div class="row">
+                <button (click)="regresar()" type="button" class="btn btn-danger">Regresar</button>
+            </div>
+
+        </div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row" style="text-align: center;">
+                        <h4>Derecho penal 1</h4>
+                        <h6>Licenciatura en ciencias jurídicas y sociales</h6>
+                        <h6>Centro Universitario de Occidente (CUNOC)</h6>
+
+                    </div>
+                    <div class="row">
+                        <p>Listado de asignaturas equivalentes: </p>
+                    </div>
+                    <div class="row">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option selected>Centro Universitario</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option selected>Carrera</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td style="width: 50%;">Historia</td>
+                                    <td>
+                                        <button style="width: 100px;" class="btn btn-danger" type="submit"> Eliminar
+                                        </button>
+                                        <button style="width: 100px;" class="btn btn-primary" type="submit"> Ver
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td style="width: 50%;">Derecho penal 1</td>
+                                    <td>
+                                        <button style="width: 100px;" class="btn btn-danger" type="submit"> Eliminar
+                                        </button>
+                                        <button style="width: 100px;" class="btn btn-primary" type="submit"> Ver
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col" style="text-align: center;">
+                            <button style="width: 400px;" class="btn btn-success" type="submit"> Registrar nueva
+                                asignatura
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

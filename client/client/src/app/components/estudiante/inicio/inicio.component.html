@@ -1,0 +1,74 @@
+<app-navegacion></app-navegacion>
+<div style="padding-top: 10%; width: 100%; padding-left: 25%;">
+
+    <h2>JUAN ALBERTO ESCOBAR FERNANDEZ</h2>
+    <h4>Carrera: Licenciatura en ciencias jurídicas y sociales, abogado y notario</h4>
+    <h4>Centro universitario: Campus central</h4>
+
+</div>
+<hr>
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col-2">
+            <!-- <button (click)="goProcesoNuevo()" style="margin-left: 10%; margin-top: 2%;" type="button"
+                class="btn btn-success">Iniciar nuevo
+                proceso</button> -->
+            <button (click)="goProcesoNuevo()" style="margin-left: 10%; margin-top: 2%;" type="button"
+                class="btn btn-secondary">Iniciar nuevo
+                proceso</button>
+        </div>
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                No se puede iniciar un proceso nuevo mientras haya un proceso activo vigente
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div style="padding-top: 5%;">
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm">
+
+                <div class="card text-bg-primary mb-3" style="max-width: 18rem; float: left;">
+                    <div class="card-header">Proceso activo</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Iniciado el 05/10/2022</h5>
+                        <button (click)="goRevisarActivo()" type="button" class="btn btn-success"> Revisar </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card text-bg-secondary mb-3" style="max-width: 18rem; float: left;">
+                    <div class="card-header">Proceso terminado</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Iniciado el 02/04/2022</h5>
+                        <h5 class="card-title">Terminado el 02/05/2022</h5>
+                        <button (click)="goRevisarTerminado()" type="button" class="btn btn-success"> Revisar </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm">
+                <div class="card text-bg-secondary mb-3" style="max-width: 18rem; float: left;">
+                    <div class="card-header">Proceso terminado</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Iniciado el 02/04/2021</h5>
+                        <h5 class="card-title">Terminado el 02/05/2021</h5>
+                        <button type="button" class="btn btn-success"> Revisar </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
