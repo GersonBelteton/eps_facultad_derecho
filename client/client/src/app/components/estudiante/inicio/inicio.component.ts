@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {SolicitudService} from '../../../services/solicitud.service'
 
 @Component({
   selector: 'app-inicio',
@@ -8,9 +9,15 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  solicitudes:any=[]
+
+  constructor(
+    private solicitudService: SolicitudService,
+    private _router: Router
+    ) { }
 
   ngOnInit(): void {
+    this.getSolicitudes()
   }
 
   goProcesoNuevo(){
@@ -23,6 +30,19 @@ export class InicioComponent implements OnInit {
 
   goRevisarTerminado(){
     this._router.navigate(['revisar-terminado'])
+  }
+
+  getSolicitudes(){
+    this.solicitudService.getSolicitudes('201807228')
+    .subscribe(
+      (res)=>{
+        this.solicitudes = res
+        console.log(this.solicitudes)
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
 }

@@ -1,0 +1,19 @@
+.formulario{
+    box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.3);
+}
+
+.formulario-encabezado{
+    background-color: white;
+}
+
+.linea-vertical{
+    height: 100px; 
+    width: 2px; 
+    padding-right: 0%;
+}
+
+.titulo{
+    padding-left: 0%; 
+    margin-left: auto;
+    color: rgb(55, 55, 155);
+}

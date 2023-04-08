@@ -13,11 +13,20 @@ export class SeleccionCursosComponent implements OnInit {
   }
 
 
-  regresar(){
+  regresar() {
     this._router.navigate(['proceso-nuevo'])
   }
 
-  finalizar(){
+  finalizar() {
     this._router.navigate(['inicio'])
+  }
+
+  currentInput: any;
+  fileName: any;
+  onFileSelected(event: any) {
+    // console.log(event.target.files);
+    this.currentInput = event.target.files;
+    this.fileName=this.currentInput[0].name
+    console.log(this.fileName)
   }
 }

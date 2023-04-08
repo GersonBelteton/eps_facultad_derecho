@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavegacionComponent } from './components/navegacion/navegacion.component';
@@ -11,6 +11,7 @@ import { SeleccionCursosComponent } from './components/estudiante/seleccion-curs
 import { RevisarProcesoActivoComponent } from './components/estudiante/revisar-proceso-activo/revisar-proceso-activo.component';
 import { RevisarProcesoTerminadoComponent } from './components/estudiante/revisar-proceso-terminado/revisar-proceso-terminado.component';
 import { EstadoProcesoComponent } from './components/estudiante/estado-proceso/estado-proceso.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { EstadoProcesoComponent } from './components/estudiante/estado-proceso/e
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
