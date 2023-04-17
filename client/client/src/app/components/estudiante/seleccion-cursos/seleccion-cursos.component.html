@@ -4,9 +4,12 @@
     <div class="row myt-5 text-center">
         <div class="col">
 
-            <h1 class="my-5">
-                Nuevo Proceso
-            </h1>
+            <div class="my-5">
+                <h1>
+                    Nuevo Proceso
+                </h1>
+            </div>
+
             <hr>
         </div>
     </div>
@@ -14,10 +17,10 @@
         <div class="col alerta-info">
             <div class="alert alert-info " role="alert">
                 <p>
-                    Revisa en el recuadro izquierdo que aparezca tu unidad académica y carrera actual.
-                    Selecciona en el recuadro derecho tu unidad académica y carrera destino.
-                    Da click en siguiente si deseas continuar con el proceso.
-                    Da click en cancelar si deseas cancelar el proceso.
+
+                    Selecciona tus cursos aprobados en el recuadro izquierdo, verífica los cusos euquivalentes al hacer clic
+                    en el botón de "Ver equivalencias", posteriormente carga un documento de certificación de cursos aprobados
+                    y da clic en la opción de "Finalizar", para iniciar el proceso.
                 </p>
 
             </div>
@@ -36,14 +39,14 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="container border border-primary mb-3 listado">
-                        <div class="form-check">
+                    <div class="container border border-primary mb-3 listado" style="border-radius: 5px;">
+                        <div *ngFor="let asignatura of asignaturas" class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                                Historia
+                                {{asignatura.codigo}} - {{asignatura.nombre}}
                             </label>
                         </div>
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
                                 Ciencias
@@ -72,7 +75,7 @@
                             <label class="form-check-label" for="flexCheckChecked">
                                 Historia 2
                             </label>
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -95,20 +98,33 @@
         </div>
         <div class="col-5">
             <div class="card mb-3 tarjeta" style="max-width: 30rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Cursos equivalentes</h5>
+                <div class="card-header">
+                    <h5 class="card-title text-center">Cursos equivalentes</h5>
                     <p class="card-text">CUNOC - Licenciatura en ciencias jurídicas y sociales, abogado y notario</p>
-                    <ul class="list-group">
-                        <li class="list-group-item">Historia</li>
-                        <li class="list-group-item">Derecho penal 1</li>
-                        <li class="list-group-item">Derecho penal 2</li>
-                        <li class="list-group-item">Literatura</li>
+                </div>
+                <div class="card-body">
+
+                    <ul class="list-group border border-primary" style="border-radius: 5px;">
+                        <li class="list-group-item listado">Historia</li>
+                        <li class="list-group-item listado">Derecho penal 1</li>
+                        <li class="list-group-item listado">Derecho penal 2</li>
+                        <li class="list-group-item listado">Literatura</li>
                     </ul>
 
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <div class="row justify-content-center text-center">
+        <div class="col"></div>
+        <div class="col">
+            <button (click)="getEquivalencias()" style="width: 200px;" class="btn btn-primary" type="submit"> Ver
+                equivalencias
+            </button>
+        </div>
+        <div class="col"></div>
     </div>
 
 
@@ -145,8 +161,8 @@
 
             </div>
             <h4 class="mt-3">
-                <svg *ngIf="this.currentInput != undefined" style="color:red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                <svg *ngIf="this.currentInput != undefined" style="color:red" xmlns="http://www.w3.org/2000/svg"
+                    width="20" height="20" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
                     <path
                         d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                     <path
@@ -160,28 +176,17 @@
         </div>
     </div>
 
-
-</div>
-
-
-
-
-
-
-<div class="container text-center">
-    <div class="row" style="height: 50px;">
-
-    </div>
-    <div class="row">
-        <div class="col" style="text-align: center;">
-            <button (click)="regresar()" style="width: 200px;" class="btn btn-danger" type="submit"> Regresar </button>
-        </div>
-        <div class="col">
-
-        </div>
-        <div class="col">
+    <div class="row justify-content-center text-center">
+        
+        <div class="col mb-5">
             <button (click)="finalizar()" style="width: 200px;" class="btn btn-success" type="submit"> Finalizar
             </button>
         </div>
     </div>
+
+
 </div>
+
+
+
+

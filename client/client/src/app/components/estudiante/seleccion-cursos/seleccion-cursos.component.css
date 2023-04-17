@@ -5,8 +5,10 @@
 
 .listado {
     background-color: white;
-}
+    padding-top: 0px;
+    padding-bottom: 0px;
 
+}
 
 .file-input {
     opacity: 0;

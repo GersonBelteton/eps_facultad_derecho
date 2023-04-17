@@ -50,9 +50,9 @@
                 </div>
                 <div class="card-body">
                   
-                    <select class="form-select mt-3 border border-primary text-center" aria-label="Disabled select example">
+                    <select #teams (change)="onSelected2(teams.value)" class="form-select mt-3 border border-primary text-center" aria-label="Disabled select example">
                         <option selected>Carrera</option>
-                        <option *ngFor="let carrera of carreras" selected>{{carrera.nombre}}</option>
+                        <option *ngFor="let carrera of carreras" [value]="carrera.codigo">{{carrera.nombre}}</option>
                         <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
 
                     </select>

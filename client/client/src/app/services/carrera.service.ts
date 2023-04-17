@@ -38,4 +38,20 @@ export class CarreraService {
       catchError(this.handleError)
     )
   }
+
+  getAsignaturas(id_carrera:any):Observable<any>{
+    let url = `${environment.basePath}asignatura.php?id_carrera=${id_carrera}`
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getEquivalencias(id_asignatura:any, id_carrera:any):Observable<any>{
+    let url = `${environment.basePath}equivalencia.php?id_asignatura=${id_asignatura}&id_carrera=${id_carrera}`
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }

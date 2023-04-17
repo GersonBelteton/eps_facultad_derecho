@@ -33,7 +33,7 @@ export class InicioComponent implements OnInit {
   }
 
   getSolicitudes(){
-    this.solicitudService.getSolicitudes('201807228')
+    this.solicitudService.getSolicitudes('201805977')
     .subscribe(
       (res)=>{
         this.solicitudes = res

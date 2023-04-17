@@ -19,6 +19,7 @@ export class ProcesoNuevoComponent implements OnInit {
   }
 
   siguiente(){
+    
     this._router.navigate(['seleccion-cursos'])
   }
 
@@ -52,11 +53,18 @@ export class ProcesoNuevoComponent implements OnInit {
     )
   }
 
-  selectedTeam = '';
+  selectedUnidad = '';
 	onSelected(value:string): void {
-		this.selectedTeam = value;
-    console.log(this.selectedTeam)
-    this.getCarreras(this.selectedTeam)
+		this.selectedUnidad = value;
+    console.log(this.selectedUnidad)
+    this.getCarreras(this.selectedUnidad)
+	}
+
+  selectedCarrera = '';
+	onSelected2(value:string): void {
+		this.selectedCarrera = value;
+    console.log(this.selectedCarrera)
+    localStorage.setItem("id_carrera_destino", this.selectedCarrera )
 	}
 
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavegacionComponent } from './components/navegacion/navegacion.component';
@@ -12,6 +12,7 @@ import { RevisarProcesoActivoComponent } from './components/estudiante/revisar-p
 import { RevisarProcesoTerminadoComponent } from './components/estudiante/revisar-proceso-terminado/revisar-proceso-terminado.component';
 import { EstadoProcesoComponent } from './components/estudiante/estado-proceso/estado-proceso.component';
 import { FormsModule } from '@angular/forms';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,13 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RecaptchaV3Module,
   ],
-  providers: [],
+  providers: [{
+    provide: RECAPTCHA_V3_SITE_KEY,
+    useValue: '6Ld4c5IlAAAAAPMPkSI40bYeD0H1fYiuZvbmzsCt',
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
