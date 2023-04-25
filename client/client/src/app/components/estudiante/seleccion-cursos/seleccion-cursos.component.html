@@ -1,7 +1,29 @@
 <app-navegacion></app-navegacion>
+
+
 <div class="container mt-5">
 
-    <div class="row myt-5 text-center">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-5 text-center">
         <div class="col">
 
             <div class="my-5">
@@ -18,8 +40,10 @@
             <div class="alert alert-info " role="alert">
                 <p>
 
-                    Selecciona tus cursos aprobados en el recuadro izquierdo, verífica los cusos euquivalentes al hacer clic
-                    en el botón de "Ver equivalencias", posteriormente carga un documento de certificación de cursos aprobados
+                    Selecciona tus cursos aprobados en el recuadro izquierdo, verífica los cusos euquivalentes al hacer
+                    clic
+                    en el botón de "Ver equivalencias", posteriormente carga un documento de certificación de cursos
+                    aprobados
                     y da clic en la opción de "Finalizar", para iniciar el proceso.
                 </p>
 
@@ -27,9 +51,9 @@
         </div>
     </div>
 
-    <div class="row row justify-content-between">
-        <div class="col-5">
-            <div class="card mb-3 tarjeta" style="max-width: 30rem;">
+    <div class="row row justify-content-between mt-5">
+        <div class="col-6">
+            <div class="card mb-3 tarjeta" style="max-width: 60rem;">
 
                 <div class="card-header">
                     <h5 class="card-title text-center">Seleccionar cursos aprobados</h5>
@@ -41,9 +65,9 @@
 
                     <div class="container border border-primary mb-3 listado" style="border-radius: 5px;">
                         <div *ngFor="let asignatura of asignaturas" class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input #teams (change)="fieldsChange($event)" value="angular" class="form-check-input" type="checkbox" [value]="asignatura.nombre" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                                {{asignatura.codigo}} - {{asignatura.nombre}}
+                                {{asignatura.codigo_asignatura}} - {{asignatura.nombre}}
                             </label>
                         </div>
                         <!-- <div class="form-check">
@@ -96,20 +120,77 @@
             </button>
             <a href="#" class="btn btn-primary">Cursos equivalentes</a> -->
         </div>
-        <div class="col-5">
-            <div class="card mb-3 tarjeta" style="max-width: 30rem;">
+        <div class="col-6">
+            <div class="card mb-3 tarjeta" style="max-width: 60rem;">
                 <div class="card-header">
-                    <h5 class="card-title text-center">Cursos equivalentes</h5>
-                    <p class="card-text">CUNOC - Licenciatura en ciencias jurídicas y sociales, abogado y notario</p>
+                    <h5 class="card-title text-center">Cargar certificado de cursos aprobados</h5>
+                    <p class="card-text">De click en el recuadro de abajo o arrastre su documento</p>
+                    <div *ngIf="this.errorType" class="alert alert-danger" role="alert">
+                        El documento debe ser de tipo pdf, jpg o png
+                    </div>
+                    <div *ngIf="this.errorSize" class="alert alert-danger" role="alert">
+                        El documento debe ser menor a 2 mb
+                    </div>
                 </div>
                 <div class="card-body">
 
-                    <ul class="list-group border border-primary" style="border-radius: 5px;">
-                        <li class="list-group-item listado">Historia</li>
-                        <li class="list-group-item listado">Derecho penal 1</li>
-                        <li class="list-group-item listado">Derecho penal 2</li>
-                        <li class="list-group-item listado">Literatura</li>
-                    </ul>
+
+                    <div class="row my-1 justify-content-center">
+                        <div class="col">
+
+                        </div>
+                        <div class="col text-center">
+                            <div class=" div-file text-center">
+
+                                <p class="file-label">Arrastra aquí tu certificado de cursos aprobados
+                                    <br>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+                                        class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
+                                        <path
+                                            d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
+                                    </svg>
+                                </p>
+                                <input class="file-input" id="formFileLg" type="file" [(ngModel)]="currentInput"
+                                    (change)="onFileSelected($event)">
+
+                                <!-- 
+                
+                                        <label> Arrastra aquí tu certificado de cursos aprobados <br>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z"/>
+                                                <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                                              </svg>
+                                        </label> -->
+
+
+
+                            </div>
+                            <h4 *ngIf="!this.errorSize && !this.errorType" class="mt-3">
+                                <svg *ngIf="this.currentInput != undefined && this.typeFile == 'application/pdf'"
+                                    style="color:red" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                    <path
+                                        d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z" />
+                                </svg>
+                                <svg *ngIf="this.currentInput != undefined && (this.typeFile == 'image/jpeg'|| this.typeFile == 'image/png' )"
+                                    style="color: blueviolet;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                    <path
+                                        d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
+                                </svg>
+                                {{fileName}}
+                            </h4>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -117,7 +198,7 @@
 
     </div>
 
-    <div class="row justify-content-center text-center">
+    <!-- <div class="row justify-content-center text-center">
         <div class="col"></div>
         <div class="col">
             <button (click)="getEquivalencias()" style="width: 200px;" class="btn btn-primary" type="submit"> Ver
@@ -125,68 +206,17 @@
             </button>
         </div>
         <div class="col"></div>
-    </div>
+    </div> -->
 
 
-    <div class="row my-5 justify-content-center">
-        <div class="col">
-
-        </div>
-        <div class="col text-center">
-            <div class=" div-file text-center">
-
-                <p class="file-label">Arrastra aquí tu certificado de cursos aprobados
-                    <br>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
-                        class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
-                        <path
-                            d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
-                    </svg>
-                </p>
-                <input class="file-input" id="formFileLg" type="file" [(ngModel)]="currentInput"
-                    (change)="onFileSelected($event)">
-
-                <!-- 
-
-                        <label> Arrastra aquí tu certificado de cursos aprobados <br>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z"/>
-                                <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-                              </svg>
-                        </label> -->
-
-
-
-            </div>
-            <h4 class="mt-3">
-                <svg *ngIf="this.currentInput != undefined" style="color:red" xmlns="http://www.w3.org/2000/svg"
-                    width="20" height="20" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
-                    <path
-                        d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                    <path
-                        d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z" />
-                </svg>
-                {{fileName}}
-            </h4>
-        </div>
-        <div class="col">
-
-        </div>
-    </div>
 
     <div class="row justify-content-center text-center">
-        
+
         <div class="col mb-5">
-            <button (click)="finalizar()" style="width: 200px;" class="btn btn-success" type="submit"> Finalizar
+            <button  style="width: 200px;" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Finalizar
             </button>
         </div>
     </div>
 
 
 </div>
-
-
-
-

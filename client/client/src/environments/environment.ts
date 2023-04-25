@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  basePath: 'http://localhost/ws/'
+  basePath: 'http://localhost/ws/',
+  recaptcha: {
+    siteKey: '6LdwVpclAAAAADp58Yoc-m2Y3k-WxuWgOfEF1bbO'
+  },
 };
 
 /*

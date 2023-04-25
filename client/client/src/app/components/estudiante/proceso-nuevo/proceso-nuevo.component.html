@@ -8,20 +8,32 @@
             <hr>
         </div>
     </div>
+
+
     <div class="row mt-3 justify-content-center">
         <div class="col alerta-info">
             <div class="alert alert-info " role="alert">
                 <p>
-                    Revisa en el recuadro izquierdo que aparezca tu unidad académica y carrera actual.
-                    Selecciona en el recuadro derecho tu unidad académica y carrera destino.
+                    Revisa en el recuadro izquierdo que aparezca tu centro universitario y carrera actual.
+                    Selecciona en el recuadro derecho tu centro universitario y carrera destino.
                     Da click en siguiente si deseas continuar con el proceso.
-                    Da click en cancelar si deseas cancelar el proceso.
                 </p>
 
             </div>
         </div>
     </div>
 
+    <div class="row mt-3 justify-content-center">
+        <div class="col alerta-info">
+            <div class="alert alert-warning " role="alert">
+                <p class="font-weight-bold">
+                    El expediente que se generará a continuación es provisional y será valido hasta presentar
+                     los documentos originales.
+                </p>
+
+            </div>
+        </div>
+    </div>
     <div class="row justify-content-between text-center">
 
         <div class="col-5">
@@ -29,42 +41,61 @@
             <h4 class="mb-3"> Carrera actual</h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
-                    <h5 class="card-title">Facultad de Ciencias Jurídicas y Sociales (Ciudad de Guatemala)</h5>
+                    <h5 class="card-title">{{centro_universitario_actual.unidad_academica}}-{{centro_universitario_actual.extension_universitaria}}-{{carrera_actual.codigo_carrera}}</h5>
+                    <h5 class="card-title">{{centro_universitario_actual.nombre}} ({{centro_universitario_actual.abreviatura}})</h5>
                 </div>
                 <div class="card-body">
-                  
-                  <p class="card-text">Licenciatura en ciencias jurídicas y sociales, abogado y notario.</p>
+
+                    <p class="card-text">{{carrera_actual.nombre}}.</p>
                 </div>
-              </div>
+            </div>
         </div>
         <div class="col-5">
             <h4 class="mb-3"> Carrera posterior</h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
-                    <select #teams (change)="onSelected(teams.value)" class="form-select my-2 border border-primary font-weight-bold text-center" aria-label="Disabled select example">
+                    <select #teams (change)="onSelected(teams.value)"
+                        class="form-select my-2 border border-primary font-weight-bold "
+                        aria-label="Disabled select example">
                         <option selected>Centro universitario</option>
 
-                        <option *ngFor="let unidad of unidades_academicas" [value]="unidad.codigo">{{unidad.abreviatura}}</option>
-     
+                        <option *ngFor="let centro of centros_universitarios" [value]="centro.id">
+
+                            <div class="row justify-content-around">
+                                <div class="col-2">
+                                    {{centro.unidad_academica}} - {{centro.extension_universitaria}}
+                                </div>
+                                <div class="col-10 text-center">
+                                    {{centro.nombre}}
+                                </div>
+                            </div>
+                           
+
+
+                        </option>
+
                     </select>
+
+                    <p> </p>
                 </div>
                 <div class="card-body">
-                  
-                    <select #teams (change)="onSelected2(teams.value)" class="form-select mt-3 border border-primary text-center" aria-label="Disabled select example">
+
+                    <select #teams (change)="onSelected2(teams.value)"
+                        class="form-select mt-3 border border-primary " aria-label="Disabled select example">
                         <option selected>Carrera</option>
-                        <option *ngFor="let carrera of carreras" [value]="carrera.codigo">{{carrera.nombre}}</option>
+                        <option *ngFor="let carrera of carreras" [value]="carrera.id">{{carrera.codigo_carrera}} {{carrera.nombre}}</option>
                         <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
 
                     </select>
                 </div>
-              </div>
+            </div>
         </div>
 
     </div>
 
     <div class="row my-3 justify-content-center text-center">
         <div class="col">
-            <button (click)="siguiente()"  class="btn btn-success boton" type="submit"> Siguiente
+            <button (click)="siguiente()" class="btn btn-success boton" type="submit"> Siguiente
             </button>
         </div>
     </div>

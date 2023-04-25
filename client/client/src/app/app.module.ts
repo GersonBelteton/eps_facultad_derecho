@@ -12,8 +12,10 @@ import { RevisarProcesoActivoComponent } from './components/estudiante/revisar-p
 import { RevisarProcesoTerminadoComponent } from './components/estudiante/revisar-proceso-terminado/revisar-proceso-terminado.component';
 import { EstadoProcesoComponent } from './components/estudiante/estado-proceso/estado-proceso.component';
 import { FormsModule } from '@angular/forms';
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
-
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
+import { environment } from '../environments/environment';
+import {  ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,19 +26,25 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
     SeleccionCursosComponent,
     RevisarProcesoActivoComponent,
     RevisarProcesoTerminadoComponent,
-    EstadoProcesoComponent
+    EstadoProcesoComponent,
+    RecaptchaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RecaptchaV3Module,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    ReactiveFormsModule
+
   ],
-  providers: [{
-    provide: RECAPTCHA_V3_SITE_KEY,
-    useValue: '6Ld4c5IlAAAAAPMPkSI40bYeD0H1fYiuZvbmzsCt',
-  }],
+  providers: [  {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: environment.recaptcha.siteKey,
+    } as RecaptchaSettings,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

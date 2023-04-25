@@ -54,4 +54,21 @@ export class CarreraService {
       catchError(this.handleError)
     )
   }
+
+  getCentroUniversitario(unidad_academica:any, extension:any):Observable<any>{
+    let url = `${environment.basePath}unidad_academica.php?unidad_academica=${unidad_academica}&extension=${extension}`
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getCarrera(unidad_academica:any, extension:any, carrera:any):Observable<any>{
+    let url = `${environment.basePath}carrera.php?codigo_carrera=${carrera}&unidad_academica=${unidad_academica}&extension=${extension}`
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }
