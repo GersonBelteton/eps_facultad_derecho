@@ -5,12 +5,34 @@ $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     header("Access-Control-Allow-Origin: http://localhost:4200");
-    $sql = $pdo->prepare("SELECT * FROM centro_universitario;");
-    $sql->execute();
 
-    $sql->setFetchMode(PDO::FETCH_ASSOC);
-    header("HTTP/1.1 200 OK");
-    echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    if(!empty($_GET['unidad_academica']) && !empty($_GET['extension'])){
+
+        $unidad = $_GET['unidad_academica'];
+        $extension = $_GET['extension'];
+
+        $sql =$pdo->prepare("select * from centro_universitario where unidad_academica = ? and extension_universitaria = ?");
+        $sql->execute([$unidad, $extension]);
+
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+
+
+    }else{
+
+        $sql = $pdo->prepare("SELECT * FROM centro_universitario;");
+        $sql->execute();
+    
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    
+    }
+
+
+
+    
 }
 
 

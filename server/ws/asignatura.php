@@ -14,8 +14,9 @@ if ($method == 'GET') {
 
         $sql = $pdo->prepare("select * from asignatura");
         $sql->execute();
-        $asignatura = $sql->fetchObject();
-        echo json_encode($asignatura);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $asignatura = $sql->fetchAll();
+        echo json_encode($asignatura,JSON_PRETTY_PRINT);
         exit('no hay id de carrera');
 
     }
@@ -23,8 +24,9 @@ if ($method == 'GET') {
     $id = $_GET['id_carrera'];
     $sql = $pdo->prepare("select * from asignatura where codigo_carrera = ?");
     $sql->execute([$id]);
-    $asignatura = $sql->fetchObject();
-    echo json_encode($asignatura);
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    $asignatura = $sql->fetchAll();
+    echo json_encode($asignatura, JSON_PRETTY_PRINT);
 }
 
 
