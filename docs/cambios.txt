@@ -1,0 +1,8 @@
+
+posibles cambios
+
+agregar columna registro academico en tabla solicitud
+
+agregar relacion de uno a muchos entre tabla carrera a tabla solicitud
+
+agregar fecha de modificacion de solicitudes

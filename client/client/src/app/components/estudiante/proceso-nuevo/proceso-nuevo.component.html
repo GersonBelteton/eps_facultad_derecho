@@ -28,21 +28,24 @@
             <div class="alert alert-warning " role="alert">
                 <p class="font-weight-bold">
                     El expediente que se generará a continuación es provisional y será valido hasta presentar
-                     los documentos originales.
+                    los documentos originales.
                 </p>
 
             </div>
         </div>
     </div>
-    <div class="row justify-content-between text-center">
+    <div class="row mt-5 justify-content-between text-center">
 
         <div class="col-5">
 
-            <h4 class="mb-3"> Carrera actual</h4>
+            <h4 class="mb-3"> Aprobé los cursos en: </h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
-                    <h5 class="card-title">{{centro_universitario_actual.unidad_academica}}-{{centro_universitario_actual.extension_universitaria}}-{{carrera_actual.codigo_carrera}}</h5>
-                    <h5 class="card-title">{{centro_universitario_actual.nombre}} ({{centro_universitario_actual.abreviatura}})</h5>
+                    <h5 class="card-title">
+                        {{unidad_academica_actual.codigo}}-{{extension_universitaria_actual.codigo}}-{{carrera_actual.codigo}}
+                    </h5>
+                    <h5 class="card-title">{{unidad_academica_actual.nombre}}
+                        ({{extension_universitaria_actual.nombre}})</h5>
                 </div>
                 <div class="card-body">
 
@@ -50,26 +53,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-5">
-            <h4 class="mb-3"> Carrera posterior</h4>
-            <div class="card tarjeta mb-3" style="max-width: 30rem;">
+        <div class="col-6">
+            <h4 class="mb-3">Solicito equivalencias de cursos en: </h4>
+            <div class="card tarjeta mb-3" style="max-width: 60rem;">
                 <div class="card-header">
                     <select #teams (change)="onSelected(teams.value)"
                         class="form-select my-2 border border-primary font-weight-bold "
                         aria-label="Disabled select example">
-                        <option selected>Centro universitario</option>
+                        <option selected>Unidad Académica</option>
 
-                        <option *ngFor="let centro of centros_universitarios" [value]="centro.id">
+                        <option *ngFor="let unidad of unidades_academicas" [value]="unidad.id">
 
                             <div class="row justify-content-around">
                                 <div class="col-2">
-                                    {{centro.unidad_academica}} - {{centro.extension_universitaria}}
+                                    {{unidad.codigo}} -
                                 </div>
                                 <div class="col-10 text-center">
-                                    {{centro.nombre}}
+                                    {{unidad.nombre}}
                                 </div>
                             </div>
-                           
+
 
 
                         </option>
@@ -80,14 +83,36 @@
                 </div>
                 <div class="card-body">
 
-                    <select #teams (change)="onSelected2(teams.value)"
-                        class="form-select mt-3 border border-primary " aria-label="Disabled select example">
-                        <option selected>Carrera</option>
-                        <option *ngFor="let carrera of carreras" [value]="carrera.id">{{carrera.codigo_carrera}} {{carrera.nombre}}</option>
+                    <select #teams2 (change)="onSelected2(teams2.value)" class="form-select mt-3 border border-primary "
+                        aria-label="Disabled select example">
+                        <option selected>Extension</option>
+                        <option *ngFor="let extension of extensiones_universitarias" [value]="extension.id">
+                            {{extension.codigo}}
+                            {{extension.nombre}}</option>
                         <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
 
                     </select>
+
                 </div>
+                <div class="card-body">
+
+                    <select #teams3 (change)="onSelected3(teams3.value)" class="form-select mt-3 border border-primary "
+                        aria-label="Disabled select example">
+                        <option selected>Carrera</option>
+                        <option *ngFor="let carrera of carreras" [value]="carrera.id">{{carrera.codigo}}
+                            {{carrera.nombre}}</option>
+                        <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
+
+                    </select>
+
+                </div>
+
+
+
+
+
+
+
             </div>
         </div>
 

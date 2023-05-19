@@ -4,15 +4,27 @@ include 'conexion.php';
 $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $sql = $pdo->prepare("SELECT * FROM centro_universitario;");
-    $sql->execute();
+    header("Access-Control-Allow-Origin: http://localhost:4200");
+    if(!empty($_GET['id_carrera'])){
 
-    $sql->setFetchMode(PDO::FETCH_ASSOC);
-    header("HTTP/1.1 200 OK");
-    echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+
+        $id = $_GET['id_carrera'];
+
+        $sql = $pdo->prepare(
+
+            "select carrera.codigo as carrera_codigo, carrera.nombre as carrera_nombre, 
+            extension_universitaria.codigo as extension_codigo, extension_universitaria.nombre as extension_nombre, 
+            unidad_academica.codigo as unidad_codigo, unidad_academica.nombre as unidad_nombre
+            from carrera inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
+            inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
+            where carrera.id = ?;"
+        );
+        $sql->execute([$id]);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $carrera = $sql->fetchAll();
+        echo json_encode($carrera, JSON_PRETTY_PRINT);
+    }
 }
-
-
 //Insertar registro
 // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //     $sql = "INSERT INTO centro_universitario (nombre, unidad_academica, extension_universitaria, abreviatura) VALUES(:nombre, :unidad_academica, :extension, :abreviatura)";

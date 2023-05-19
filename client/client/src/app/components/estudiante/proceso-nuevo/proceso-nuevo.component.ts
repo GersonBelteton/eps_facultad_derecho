@@ -8,9 +8,11 @@ import { CarreraService } from '../../../services/carrera.service'
 })
 export class ProcesoNuevoComponent implements OnInit {
 
-  centro_universitario_actual: any
+  unidad_academica_actual: any
+  extension_universitaria_actual : any
   carrera_actual: any
-  centros_universitarios: any = []
+  unidades_academicas: any = []
+  extensiones_universitarias: any = []
   carreras: any = {}
   constructor(private _router: Router,
     private carreraService: CarreraService
@@ -18,7 +20,8 @@ export class ProcesoNuevoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUnidadesAcademicas()
-    this.getCentroUniversitarioActual()
+    this.getUnidadAcademicaActual()
+    this.getExtensionUniversitariaActual()
     this.getCarreraActual()
   }
 
@@ -35,8 +38,8 @@ export class ProcesoNuevoComponent implements OnInit {
     this.carreraService.getUnidadesAcademicas()
       .subscribe(
         (res) => {
-          this.centros_universitarios = res
-          console.log(this.centros_universitarios)
+          this.unidades_academicas = res
+          console.log(this.unidades_academicas)
         },
         (error) => {
           console.log(error)
@@ -44,8 +47,21 @@ export class ProcesoNuevoComponent implements OnInit {
       )
   }
 
-  getCarreras(id_unidad: any) {
-    this.carreraService.gerCarreras(id_unidad)
+  getExtensiones(id_unidad: any) {
+    this.carreraService.getExtensionesUniversitarias(id_unidad)
+      .subscribe(
+        (res) => {
+          this.extensiones_universitarias = res
+          console.log(this.extensiones_universitarias)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+  }
+
+  getCarreras(id_extension: any) {
+    this.carreraService.gerCarreras(id_extension)
       .subscribe(
         (res) => {
           this.carreras = res
@@ -57,14 +73,28 @@ export class ProcesoNuevoComponent implements OnInit {
       )
   }
 
-  getCentroUniversitarioActual() {
+  getUnidadAcademicaActual() {
+    var unidad_academica = localStorage.getItem("ua_est")
+    //var extension = localStorage.getItem("ext_est")
+
+    this.carreraService.getUnidadAcademica(unidad_academica)
+      .subscribe((res) => {
+        this.unidad_academica_actual = res[0]
+        console.log(this.unidad_academica_actual)
+      },
+        (error) => {
+          console.error(error)
+        })
+  }
+
+  getExtensionUniversitariaActual(){
     var unidad_academica = localStorage.getItem("ua_est")
     var extension = localStorage.getItem("ext_est")
 
-    this.carreraService.getCentroUniversitario(unidad_academica, extension)
+    this.carreraService.getExtensionUniversitaria(extension, unidad_academica)
       .subscribe((res) => {
-        this.centro_universitario_actual = res[0]
-        console.log(this.centro_universitario_actual)
+        this.extension_universitaria_actual = res[0]
+        console.log(this.extension_universitaria_actual)
       },
         (error) => {
           console.error(error)
@@ -90,14 +120,22 @@ export class ProcesoNuevoComponent implements OnInit {
   onSelected(value: string): void {
     this.selectedUnidad = value;
     console.log(this.selectedUnidad)
-    this.getCarreras(this.selectedUnidad)
+    this.getExtensiones(this.selectedUnidad)
   }
 
   selectedCarrera = '';
-  onSelected2(value: string): void {
+  onSelected3(value: string): void {
     this.selectedCarrera = value;
     console.log(this.selectedCarrera)
     localStorage.setItem("id_carrera_destino", this.selectedCarrera)
+  }
+
+
+  selectedExtension = '';
+  onSelected2(value: string): void {
+    this.selectedExtension = value;
+    console.log(this.selectedExtension)
+    this.getCarreras(this.selectedExtension)
   }
 
 }

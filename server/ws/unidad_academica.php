@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     header("Access-Control-Allow-Origin: http://localhost:4200");
 
-    if(!empty($_GET['unidad_academica']) && !empty($_GET['extension'])){
+    if(!empty($_GET['unidad_academica'])){
 
         $unidad = $_GET['unidad_academica'];
-        $extension = $_GET['extension'];
 
-        $sql =$pdo->prepare("select * from centro_universitario where unidad_academica = ? and extension_universitaria = ?");
-        $sql->execute([$unidad, $extension]);
+
+        $sql =$pdo->prepare("select * from unidad_academica where codigo = ?");
+        $sql->execute([$unidad]);
 
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     }else{
 
-        $sql = $pdo->prepare("SELECT * FROM centro_universitario;");
+        $sql = $pdo->prepare("SELECT * FROM unidad_academica;");
         $sql->execute();
     
         $sql->setFetchMode(PDO::FETCH_ASSOC);

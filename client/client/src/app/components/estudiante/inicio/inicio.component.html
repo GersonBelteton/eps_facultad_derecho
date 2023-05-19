@@ -35,7 +35,7 @@
         <div class="col">
             <div class="alert alert-info" role="alert">
                 Inicia un nuevo proceso de gestión de equivalenicas o revisa procesos iniciados anteriormente
-              </div>
+            </div>
         </div>
     </div>
 
@@ -43,7 +43,15 @@
 
     <div class="row justify-content-center">
         <div class="col">
-            <button (click)="goProcesoNuevo()" type="button" class="btn btn-success">
+            <button *ngIf="!hayProcesoActivo" (click)="goProcesoNuevo()" type="button" class="btn btn-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                </svg>
+                Iniciar nuevo proceso</button>
+
+            <button *ngIf="hayProcesoActivo" (click)="alertaProcesoActivo()" type="button" class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg"
                     viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -63,9 +71,17 @@
         </div> -->
     </div>
 
+    <div class="row justify-content-center">
+        <div class="col-6 ">
+            <div *ngIf="mostrarAlerta" class="mt-3 alert alert-danger" role="alert">
+                No se puede iniciar un nuevo proceso con un proceso activo vigente
+            </div>
+        </div>
+    </div>
+
     <div class="row my-3">
 
-        <table class="table border border-primary tabla" >
+        <table class="table border border-primary tabla">
             <thead>
                 <th> Estado </th>
                 <th> Fecha de inicio</th>
@@ -81,20 +97,24 @@
                     <td *ngIf="solicitud.fecha_final==null"> --- </td>
                     <td *ngIf="solicitud.fecha_final!=null">{{solicitud.fecha_final}}</td>
                     <td *ngIf="solicitud.resultado==null">
-                        <button (click)="goRevisarActivo()" type="button" class="btn btn-outline-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                              </svg>
+                        <button (click)="goRevisarActivo(solicitud.id)" type="button" class="btn btn-outline-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg>
 
                         </button>
                     </td>
                     <td *ngIf="solicitud.resultado!=null">
                         <button (click)="goRevisarTerminado()" type="button" class="btn btn-outline-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg>
 
                         </button>
                     </td>

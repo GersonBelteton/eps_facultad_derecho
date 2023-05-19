@@ -1,8 +1,12 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
+header("Allow: *");
 
 include('conexion.php');
-
 $pdo = new conexion();
+
 
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -27,8 +31,9 @@ if ($method == 'GET') {
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $res = $sql->fetchAll();
 
-        $sql = $pdo->prepare('select * from asignatura inner join detalle_solicitud on
-        detalle_solicitud.codigo_asignatura = asignatura.codigo where id_solicitud = ?');
+        $sql = $pdo->prepare('select asignatura.id, asignatura.nombre,asignatura.codigo_carrera,asignatura.codigo_asignatura
+         from asignatura inner join detalle_solicitud on
+        detalle_solicitud.codigo_asignatura = asignatura.id where id_solicitud = ?');
         $asignaturas = $sql->execute([$id_solicitud]);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $asignaturas = $sql->fetchAll();
@@ -42,8 +47,13 @@ if ($method == 'GET') {
 }
 
 if ($method == 'POST') {
-    header("Access-Control-Allow-Origin: http://localhost:4200");
-    header("Access-Control-Allow-Headers: *");
+    /*header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: X-Requested-With');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+    header('Content-Type: application/json');
+*/
+
+    
 
     $json = json_decode(file_get_contents('php://input'));
     if (!$json) {

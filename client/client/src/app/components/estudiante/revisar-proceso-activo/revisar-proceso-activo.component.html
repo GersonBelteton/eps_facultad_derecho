@@ -7,54 +7,103 @@
 
 <hr>
 
-<h4 style="padding-left: 100px;"> Proceso iniciado: 05/10/2022</h4>
+
 
 <div class="container">
-    <div class="row text-center">
-        <div class="col">
-            <div class="col-sm">
-                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Actualidad </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Campus central</h5>
-                        <p class="card-text">Licenciatura en ciencias jurídicas y sociales, abogado y notario.</p>
-                    </div>
-                </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cursos aprobados</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li *ngFor="let asignatura of solicitud.asignaturas" class="list-group-item">{{asignatura.codigo_asignatura}} - {{asignatura.nombre}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
             </div>
         </div>
-        <div class="col">
+    </div>
+
+
+    <div class="row">
+        <h4 class="my-5"> Proceso iniciado: {{solicitud.solicitud[0].fecha_inicio}}</h4>
+    </div>
+    <div class="row justify-content-between text-center">
+        <div class="col-5">
+
+            <h4 class="mb-3"> Aprobé los cursos en: </h4>
+            <div class="card tarjeta mb-3" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{carreraActual.unidad_codigo}}-{{carreraActual.extension_codigo}}-{{carreraActual.carrera_codigo}}
+                    </h5>
+                    <h5 class="card-title">{{carreraActual.unidad_nombre}}
+                        ({{carreraActual.extension_nombre}})</h5>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">{{carreraActual.carrera_nombre}}.</p>
+
+                    <hr>
+
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-clipboard2-check-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z">
+                            </path>
+                            <path
+                                d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5Zm6.769 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708Z">
+                            </path>
+                        </svg>
+                        Mostrar Cursos aprobados
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col">
             <img src="https://res.cloudinary.com/dst1u4bij/image/upload/v1674841310/flechaderecha_tosavo.png" alt="Logo"
                 width="200" height="120" class="d-inline-block align-text-top">
-        </div>
-        <div class="col">
-            <div class="col-sm">
-                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Destino</div>
-                    <div class="card-body">
-                        <select class="form-select" aria-label="Disabled select example">
-                            <option selected>Centro universitario</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <select class="form-select" aria-label="Disabled select example">
-                            <option selected>Carrera</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
+        </div> -->
+        <div class="col-5">
 
+            <h4 class="mb-3"> Solicito equivalencias en: </h4>
+            <div class="card tarjeta mb-3" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{carreraDestino.unidad_codigo}}-{{carreraDestino.extension_codigo}}-{{carreraDestino.carrera_codigo}}
+                    </h5>
+                    <h5 class="card-title">{{carreraDestino.unidad_nombre}}
+                        ({{carreraDestino.extension_nombre}})</h5>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">{{carreraDestino.carrera_nombre}}.</p>
+
+
+                </div>
             </div>
         </div>
     </div>
 
 
 
+    <div class="row mt-5">
+        <div class="col">
+            <h4> Estado del Proceso:</h4>
+        </div>
+    </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <div class="card mb-3" style="width: 30rem;">
                 <div class="card-body">
@@ -121,7 +170,8 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="card-title">Cursos equivalentes</h5>
-                        <p class="card-text">CUNOC - Licenciatura en ciencias jurídicas y sociales, abogado y notario</p>
+                        <p class="card-text">CUNOC - Licenciatura en ciencias jurídicas y sociales, abogado y notario
+                        </p>
                     </div>
 
                     <ul class="list-group">
@@ -142,8 +192,8 @@
 
     <div class="row" style="height: 50px;">
 
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
         <div class="col" style="text-align: center;">
             <button (click)="regresar()" style="width: 200px;" class="btn btn-danger" type="submit"> Regresar </button>
         </div>
@@ -153,7 +203,7 @@
         <div class="col">
             <button style="width: 200px;" class="btn btn-success" type="submit"> Guardar Cambios </button>
         </div>
-    </div>
+    </div> -->
 
     <app-estado-proceso></app-estado-proceso>
 

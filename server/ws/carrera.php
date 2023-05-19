@@ -16,19 +16,27 @@ if ($method == 'GET') {
         $unidad_academica = $_GET['unidad_academica'];
         $extension = $_GET['extension'];
 
-        $sql = $pdo->prepare("select carrera.id, carrera.nombre, carrera.codigo_carrera from carrera inner join centro_universitario 
-        on centro_universitario.id = carrera.codigo_cu where codigo_carrera = ? 
-        and unidad_academica = ? and extension_universitaria = ?");
-        $sql->execute([$id, $unidad_academica, $extension]);
+        $sql = $pdo->prepare(
+
+            "select carrera.id, carrera.nombre, carrera.codigo 
+            from carrera inner join extension_universitaria 
+            on extension_universitaria.id = carrera.id_eu
+            inner join unidad_academica 
+            on unidad_academica.id = extension_universitaria.id_ua 
+            where extension_universitaria.codigo = ? 
+            and unidad_academica.codigo = ? 
+            and carrera.codigo = ?"
+        );
+        $sql->execute([$extension, $unidad_academica,$id]);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $carrera = $sql->fetchAll();
         echo json_encode($carrera, JSON_PRETTY_PRINT);
 
-    } else if (!empty($_GET['id_unidad'])) {
+    } else if (!empty($_GET['id_extension'])) {
         
 
-        $id = $_GET['id_unidad'];
-        $sql = $pdo->prepare("select * from carrera where codigo_cu = ?");
+        $id = $_GET['id_extension'];
+        $sql = $pdo->prepare("select * from carrera where id_eu = ?");
         $sql->execute([$id]);
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $carrera = $sql->fetchAll();

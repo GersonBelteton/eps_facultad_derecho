@@ -1,0 +1,43 @@
+Observaciones:
+1. Pantalla de Login: Incluir la validación Capcha
+2. Incluir Código de UA + Extensión + Carrera
+Valeska Ruiz19:35
+3. Web service; Acuerdo para la consulta de información con Registro y Estadística
+4. Incluir el perfil que identifique el usuario (nombre y carnet)
+Valeska Ruiz19:54
+5. En la pantalla de cursos aprobados por el estudiante, agregar el código del curso
+Valeska Ruiz19:56
+6. En el perfir de estudiante, eliminar la visualización de posibles cursos equivalentes
+Valeska Ruiz19:58
+7. Incluir el tamaño y caracteristicas del archivo (certificación de cursos aprobados)
+Valeska Ruiz19:59
+8. Anotación de que este es un expediente provisional y valido hasta presentar los documentos originales.
+Valeska Ruiz20:11
+9. Al revisar el expediente tiene varias alternativas: Expediente rechazado, expediente con previo, expediente contínua su trámite
+10,  En el perfil adminitrativo, incluir las observaciones ´del previo ó rechazo
+
+-------------------------------------------------------------------------------------------------------------------
+claves reCaptcha
+
+Usa esta clave de sitio web en el código HTML que tu sitio web sirve a los usuarios.
+6Lc0MZIlAAAAAIpQfGl4IdhZwtLG5B9M2iidU3ZH
+
+Usa esta clave secreta para la comunicación entre tu sitio web y el servicio reCAPTCHA.
+6Lc0MZIlAAAAAH9DXg8Sh7dR8Q7nB8py9uRF6ZZm
+
+
+---------------------------------------------------------------------------------------
+
+
+OBSERVACIONES Y COMENTARIOS:
+1. Definir estructura y requerimientos específicos (incluir PIN)
+Valeska Ruiz19:56
+2. Información si ya se implementó password por parte de Registro y Estadística
+Valeska Ruiz20:03
+3. Incluir Unidad académica, extensión y carrera
+4. Modificar caracteres en altas y bajas (mayúsculas y minúsculas)
+Valeska Ruiz20:39
+5. Modelo de reporte interno
+6. Modelo de previo al trámite
+
+----------------------------------------------------------------------------

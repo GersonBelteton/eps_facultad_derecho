@@ -9,6 +9,13 @@ export class SolicitudService {
 
   constructor(private http: HttpClient) { }
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -26,6 +33,22 @@ export class SolicitudService {
   getSolicitudes(registro_academico: String) : Observable<any>{
     let url = `${environment.basePath}solicitud.php?registro_academico=${registro_academico}`;
     return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getSolicitud(id_solicitud: any) : Observable<any>{
+    let url = `${environment.basePath}solicitud.php?id_solicitud=${id_solicitud}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  createSolicitud(data: any) : Observable<any> {
+    let url = `${environment.basePath}solicitud.php`
+    return this.http.post(url, data)
     .pipe(
       catchError(this.handleError)
     )
