@@ -15,6 +15,8 @@ export class RevisarProcesoActivoComponent implements OnInit {
   carreraActual:any
   carreraDestino:any
 
+
+
   constructor(
     private _router: Router,
     private solicitudService:SolicitudService,

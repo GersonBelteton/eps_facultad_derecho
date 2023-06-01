@@ -6,32 +6,43 @@ import {ProcesoNuevoComponent} from './components/estudiante/proceso-nuevo/proce
 import {SeleccionCursosComponent} from './components/estudiante/seleccion-cursos/seleccion-cursos.component'
 import {RevisarProcesoActivoComponent} from './components/estudiante/revisar-proceso-activo/revisar-proceso-activo.component'
 import {RevisarProcesoTerminadoComponent} from './components/estudiante/revisar-proceso-terminado/revisar-proceso-terminado.component'
+import {AuthGuard} from './guards/auth/auth.guard'
+import {HomeGuard} from './guards/auth/home.guard'
+import {NewProcessGuard} from './guards/select/newprocess.guard'
+import {SelectGuard} from './guards/select/select.guard'
+import {NewProcessGuard2} from './guards/newProcess/newprocess.guard'
 const routes: Routes = [
 
   {
     path:'',
-    component:LoginComponent
+    component:LoginComponent,
+    canActivate: [HomeGuard]
 
   },
   {
     path:'inicio',
-    component:InicioComponent
+    component:InicioComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'proceso-nuevo',
-    component: ProcesoNuevoComponent
+    component: ProcesoNuevoComponent,
+    canActivate: [AuthGuard, NewProcessGuard, NewProcessGuard2]
   },
   {
     path: 'seleccion-cursos',
-    component: SeleccionCursosComponent
+    component: SeleccionCursosComponent,
+    canActivate: [AuthGuard, SelectGuard, NewProcessGuard2]
   },
   {
     path: 'revisar-activo',
-    component: RevisarProcesoActivoComponent
+    component: RevisarProcesoActivoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'revisar-terminado',
-    component: RevisarProcesoTerminadoComponent
+    component: RevisarProcesoTerminadoComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

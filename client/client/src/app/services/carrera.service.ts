@@ -23,8 +23,8 @@ export class CarreraService {
   };
 
 
-  getUnidadesAcademicas():Observable<any>{
-    let url = `${environment.basePath}unidad_academica.php`;
+  getUnidadesAcademicas(origen:any):Observable<any>{
+    let url = `${environment.basePath}unidad_academica.php?origen=${origen}`;
     return this.http.get(url)
     .pipe(
       catchError(this.handleError)

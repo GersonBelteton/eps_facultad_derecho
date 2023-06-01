@@ -19,11 +19,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
 
 
-    }else{
+    }else if(!empty($_GET['origen'])){
 
-        $sql = $pdo->prepare("SELECT * FROM unidad_academica;");
+        $unidades = $_GET['origen'];
+        if($unidades == 'centro_regional'){
+
+            $sql = $pdo->prepare("select * from unidad_academica where codigo = '04';");
+ 
+        }else if($unidades == 'campus_central'){
+            $sql = $pdo->prepare("select * from unidad_academica where codigo != '04';");
+        
+        }
+
         $sql->execute();
-    
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
         echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);

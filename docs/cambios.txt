@@ -1,8 +1,23 @@
 
 posibles cambios
 
-agregar columna registro academico en tabla solicitud
+----agregar columna registro academico en tabla solicitud
 
-agregar relacion de uno a muchos entre tabla carrera a tabla solicitud
+----agregar relacion de uno a muchos entre tabla carrera a tabla solicitud
 
 agregar fecha de modificacion de solicitudes
+
+-----validaciones de guard, saltar ventanas modificando la url (de login a ventana de inicio, de ventana de inicio a ventana de nuevo proceso cuando hay proceso activo, de ventana de nuevo proceso a ventana de selección de cursos cuando no se ha seleccionado unidad académica, extensión y carrera)
+
+
+texto quemado en tarjeta seleccionar cursos (unidad academica y carrera) se debe volver dinámico
+
+validación en ventana seleccion de cursos (no iniciar proceso si no se han seleccionado cursos ni cargado documento)
+
+modificar los puntos del tracking de estados de proceso, serian los siguientes : 
+Proceso iniciado
+Expediente abierto
+Validación de información
+Expediente en revisión
+Generación de reporte
+traslado a junta directiva para continuar proceso académico

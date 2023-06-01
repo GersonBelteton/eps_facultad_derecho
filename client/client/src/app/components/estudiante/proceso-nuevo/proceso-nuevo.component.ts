@@ -14,6 +14,7 @@ export class ProcesoNuevoComponent implements OnInit {
   unidades_academicas: any = []
   extensiones_universitarias: any = []
   carreras: any = {}
+  origen:any
   constructor(private _router: Router,
     private carreraService: CarreraService
   ) { }
@@ -27,7 +28,12 @@ export class ProcesoNuevoComponent implements OnInit {
 
   siguiente() {
 
-    this._router.navigate(['seleccion-cursos'])
+    if(this.selectedUnidad && this.selectedExtension && this.selectedCarrera){
+      this._router.navigate(['seleccion-cursos'])
+    }else{
+      alert("Debes seleccionar Unidad Académica, Extensión Universitaria y Carrera")
+    }
+    
   }
 
   regresar() {
@@ -35,7 +41,12 @@ export class ProcesoNuevoComponent implements OnInit {
   }
 
   getUnidadesAcademicas() {
-    this.carreraService.getUnidadesAcademicas()
+    if(localStorage.getItem("ua_est")=="04"){
+      this.origen="campus_central"
+    }else{
+      this.origen="centro_regional"
+    }
+    this.carreraService.getUnidadesAcademicas(this.origen)
       .subscribe(
         (res) => {
           this.unidades_academicas = res
@@ -123,6 +134,14 @@ export class ProcesoNuevoComponent implements OnInit {
     this.getExtensiones(this.selectedUnidad)
   }
 
+
+  selectedExtension = '';
+  onSelected2(value: string): void {
+    this.selectedExtension = value;
+    console.log(this.selectedExtension)
+    this.getCarreras(this.selectedExtension)
+  }
+
   selectedCarrera = '';
   onSelected3(value: string): void {
     this.selectedCarrera = value;
@@ -131,11 +150,6 @@ export class ProcesoNuevoComponent implements OnInit {
   }
 
 
-  selectedExtension = '';
-  onSelected2(value: string): void {
-    this.selectedExtension = value;
-    console.log(this.selectedExtension)
-    this.getCarreras(this.selectedExtension)
-  }
+
 
 }

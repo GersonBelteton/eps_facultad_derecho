@@ -251,12 +251,20 @@ values('Juan Lopez', '201505998', 'equivalencia', 'NR', 'ruta', now(), 2);
 
 insert into estudiante values("Juan Alberto Escobar Fernandez","201708265","04","00","01","12345");
 insert into estudiante values("Alejandro Matias Diaz Gonzalez","201805647","38","00","04","12345");
-insert into estudiante values("Rodolfo de Jesus Rodriguez Lopez","201609876","04","00","08","12345");
+insert into estudiante values("Rodolfo de Jesus Rodriguez Lopez","201609876","12","00","01","12345");
+insert into estudiante values("Juan Antonia Gomez Bolaños","201405879","12","00","01","12345");
 select * from estudiante;
 truncate table estudiante;
 
 update solicitud set resultado='aprobado', fecha_final=now() where id = 1;
+update solicitud set estado='DPP' where id = 1;
+
+
 delete from solicitud where id = 1;
+
+select * from unidad_academica where codigo != '04';
+select * from unidad_academica where codigo = '04';
+
 (select * from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.codigo where codigo_asignatura1 = 4 and codigo_carrera = 1)
 union
 (select * from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.codigo where codigo_asignatura2 = 4 and codigo_carrera = 1);

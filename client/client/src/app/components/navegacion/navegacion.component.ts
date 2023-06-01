@@ -30,5 +30,9 @@ export class NavegacionComponent implements OnInit {
     carrera:""
   }
 
+  logOut(){
+    localStorage.clear()
+  }
+
 
 }

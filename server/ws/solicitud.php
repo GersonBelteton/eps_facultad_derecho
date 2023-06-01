@@ -66,10 +66,30 @@ if ($method == 'POST') {
     $tipo = $json->tipo;
     $carrera = $json->codigo_carrera;
     $asignaturas = $json->asignaturas;
+    $nombre_archivo = $json->archivo->fileName;
+    $archivo = $json->archivo->base64textString;
+    $archivo = base64_decode($archivo);
+    $path = "/WS/documentos/certificados_cursos/".$registro."_".$nombre_archivo;
+    $filePath = $_SERVER['DOCUMENT_ROOT'].$path;
+
+
+    $i=1;
+    while(file_exists($filePath)){
+     $nombre_archivo="($i)".$nombre_archivo;
+     $i++;
+     $filePath = $_SERVER['DOCUMENT_ROOT']."/WS/documentos/certificados_cursos/".$registro."_".$nombre_archivo;
+    }
+
+
+    file_put_contents($filePath, $archivo);
+
+
+
+
 
     $sql = $pdo->prepare("insert into solicitud (estudiante, registro_academico, tipo, estado, ruta_certificado_cursos, fecha_inicio, codigo_carrera)
-    values (?,?,?,'NR','ruta',now(), ?)");
-    $sql->execute([$estudiante, $registro, $tipo, $carrera]);
+    values (?,?,?,'PI',?,now(), ?)");
+    $sql->execute([$estudiante, $registro, $tipo, "http://localhost".$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
     $id_solicitud = $pdo->lastInsertId();
     $res = [];
     $cont = 0;

@@ -63,6 +63,7 @@ export class InicioComponent implements OnInit {
       console.log(solicitud.resultado)
       if (solicitud.resultado == null) {
         this.hayProcesoActivo = true
+        localStorage.setItem("act_pr","true")
         return
       }else{
         this.hayProcesoActivo = false

@@ -59,6 +59,18 @@
                         Carrera: <br> {{destino.carrera_codigo}} - {{destino.carrera_nombre}}
                     </p>
 
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col alerta-info">
+                            <div class="alert alert-warning " role="alert">
+                                <p class="font-weight-bold">
+                                    NOTA: El expediente que se generará a continuación es provisional y será valido hasta presentar
+                                    los documentos originales.
+                                </p>
+                
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div class="modal-footer">
@@ -100,7 +112,16 @@
         </div>
     </div>
 
-    <div class="row row justify-content-between mt-5">
+    <div class="row justify-content-center text-center">
+
+        <div *ngIf="opcionFinalizar" class="col mb-5">
+            <button (click)="finalizar()" style="width: 200px;" class="btn btn-success" type="button"
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Finalizar
+            </button>
+        </div>
+    </div>
+
+    <div class="row row justify-content-between mt-1">
         <div class="col-6">
             <div class="card mb-3 tarjeta" style="max-width: 60rem;">
 
@@ -262,14 +283,7 @@
 
 
 
-    <div class="row justify-content-center text-center">
 
-        <div class="col mb-5">
-            <button (click)="finalizar()" style="width: 200px;" class="btn btn-success" type="button"
-                data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Finalizar
-            </button>
-        </div>
-    </div>
 
 
 </div>

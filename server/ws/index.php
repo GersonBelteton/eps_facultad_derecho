@@ -1,10 +1,11 @@
 <?php
 include 'conexion.php';
+header("Access-Control-Allow-Origin: *");
 
 $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+
     if(!empty($_GET['id_carrera'])){
 
 

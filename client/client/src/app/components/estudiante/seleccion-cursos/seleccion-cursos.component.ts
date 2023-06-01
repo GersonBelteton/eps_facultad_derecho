@@ -20,11 +20,19 @@ export class SeleccionCursosComponent implements OnInit {
   errorType: any
   errorSize: any
 
+  cursosSeleccionados : boolean = false
+  documentoCargado : boolean = false
+  opcionFinalizar : boolean = false
+
+  file: any = {
+    fileName : null,
+    base64textString:null
+  }
+
   maxSizeFile: any = 3 //megabytes
   carrera_actual: any;
   unidad_academica_actual: any;
   extension_universitaria_actual : any
-
   destino : any
   constructor(
     private _router: Router,
@@ -151,18 +159,35 @@ export class SeleccionCursosComponent implements OnInit {
     this.fileName = this.currentInput[0].name
     this.sizeFile = this.currentInput[0].size
     this.typeFile = this.currentInput[0].type
+    this.file.fileName = this.fileName
     console.log(this.currentInput[0])
-    if (this.sizeFile / 1000000 >= this.maxSizeFile) {
-      //alert('sobrepasa el tamaño máximo')
-      this.errorSize = true
-    }
     if (this.typeFile != "application/pdf" && this.typeFile != "image/jpeg" && this.typeFile != "image/png") {
       //alert('debe ser de tipo pdf o jpg')
       this.errorType = true
+      return
+    }
+    if (this.sizeFile / 1000000 >= this.maxSizeFile) {
+      //alert('sobrepasa el tamaño máximo')
+      this.errorSize = true
+      return
     }
 
+    if(this.currentInput && this.currentInput[0]) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(this.currentInput[0]);
 
+      this.documentoCargado = true;
+      this.mostrarOpcionFinalizar()
+    }
 
+    console.log(this.file)
+
+  }
+
+  _handleReaderLoaded(readerEvent:any) {
+    var binaryString = readerEvent.target.result;
+    this.file.base64textString = btoa(binaryString);
   }
 
   cursosMarcados: any = []
@@ -183,7 +208,17 @@ export class SeleccionCursosComponent implements OnInit {
       }
     }
 
+    this.mostrarOpcionFinalizar()
     console.log(this.cursosMarcados)
+  }
+
+
+  mostrarOpcionFinalizar(){
+    if(this.documentoCargado && this.cursosMarcados.length > 0){
+      this.opcionFinalizar = true
+    }else{
+      this.opcionFinalizar = false
+    }
   }
 
   idCursos : any = []
@@ -212,6 +247,7 @@ export class SeleccionCursosComponent implements OnInit {
         registro_academico: localStorage.getItem("registro_est"),
         tipo:"equivalencia",
         codigo_carrera:parseInt(id_carrera, 10),
+        archivo:this.file,
         asignaturas:this.idCursos
   
       }
