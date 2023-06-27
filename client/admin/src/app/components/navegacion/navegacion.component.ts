@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {AdministradorService} from '../../services/administrador.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navegacion',
   templateUrl: './navegacion.component.html',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavegacionComponent implements OnInit {
 
-  constructor() { }
+  admin:any
+  constructor(
+    private _router:Router,
+    private administradorServie:AdministradorService
+  ) { }
 
   ngOnInit(): void {
+    this.getAdministrador()
+  }
+
+  logOut(){
+    localStorage.removeItem("current_id")
+  }
+  
+  getAdministrador(){
+    var idAdmin = localStorage.getItem("current_id")
+    this.administradorServie.getAdministrador(idAdmin)
+    .subscribe(
+      (res)=>{
+        console.log(res)
+        this.admin = res[0]
+      },
+      (error)=>{
+        console.error(error)
+      }
+    )
   }
 
 }

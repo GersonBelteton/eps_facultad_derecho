@@ -1,83 +1,141 @@
 <app-navegacion></app-navegacion>
-<div style="padding-top: 10%; width: 100%; padding-left: 25%;">
 
-    <h2>Lcda. Valeska Ruiz</h2>
 
-</div>
-<hr>
+<div class="container text-center mt-5">
 
-<div class="container text-center">
 
     <div class="row">
-        <div class="col-4">
-            <button (click)="goConfiguracion()" type="button" class="btn btn-success">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z">
-                    </path>
-                    <path
-                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z">
-                    </path>
-                </svg>
-                Configuracion
-            </button>
+        <div class="col">
+            <h1 > Revisión de Expedientes</h1>
+            <hr>
         </div>
-
     </div>
-    <div class="row">
-        <h4>Listado de expedientes</h4>
-    </div>
-    <div class="row">
+
+    <div class="row justify-content-center">
+        <div class="card tarjeta mb-3" style="max-width: 50rem;">
+            <div class="card-header">
+                <h5 class="card-title">
+                    Listados de procesos
+                </h5>
+            </div>
+            <div class="card-body">
+
+                <!-- <div class="row justify-content-evenly">
+
+                    <div class="col-6">
+                        <h4 class="card-title">Procesos nuevos sin revisar: </h4>
+                    </div>
 
 
-        <div class="card-group">
-            <div class="col">
-                <h5>Procesos Activos</h5>
-                <div class="card text-bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Juan Alberto Escobar Fernandez</div>
-                    <div class="card-body">
-                        <h5 class="card-title">20150000</h5>
-                        <p class="card-text">Proceso iniciado el 05/08/2021</p>
-                        <button (click)="goVerActivo()" type="button" class="btn btn-dark">Ver</button>
+                    <div class="col-4 mb-3">
+
+                        <button (click)="goListaProcesosNuevos()" type="button" class="btn btn-outline-primary">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                                class="bi bi-folder-plus" viewBox="0 0 16 16">
+                                <path
+                                    d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" />
+                                <path
+                                    d="M13.5 10a.5.5 0 0 1 .5.5V12h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V13h-1.5a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                            <h3>6</h3>
+                        </button>
                     </div>
-                </div>
-                <div class="card text-bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Juan Alberto Escobar Fernandez</div>
-                    <div class="card-body">
-                        <h5 class="card-title">20150000</h5>
-                        <p class="card-text">Proceso iniciado el 05/08/2021</p>
-                        <button type="button" class="btn btn-dark">Ver</button>
+                    <hr>
+                </div> -->
+                <div class="row justify-content-evenly">
+
+                    <div class="col-6">
+                        <h4 class="card-title">Procesos Activos:</h4>
                     </div>
+
+                    <div class="col-4 mb-3">
+                        <button (click)="goListaProcesosActivos()" type="button" class="btn btn-outline-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                                class="bi bi-folder2-open" viewBox="0 0 16 16">
+                                <path
+                                    d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0 1 12.733 15H3.266a2.5 2.5 0 0 1-2.481-2.19l-.64-5.124A1.5 1.5 0 0 1 1 6.14V3.5zM2 6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5a.5.5 0 0 0-.5.5V6zm-.367 1a.5.5 0 0 0-.496.562l.64 5.124A1.5 1.5 0 0 0 3.266 14h9.468a1.5 1.5 0 0 0 1.489-1.314l.64-5.124A.5.5 0 0 0 14.367 7H1.633z" />
+                            </svg>
+                            <h3 >8</h3>
+                        </button>
+                    </div>
+                    <hr>
                 </div>
+                <div class="row justify-content-evenly">
+
+                    <div class="col-6">
+                        <h4 class="card-title">Procesos Enviado a Junta Directiva:</h4>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="goListaProcesosTerminados()" type="button" class="btn btn-outline-danger">
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                                    class="bi bi-folder-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" />
+                                    <path
+                                        d="M15.854 10.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.707 0l-1.5-1.5a.5.5 0 0 1 .707-.708l1.146 1.147 2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                                <h3>10</h3>
+                            
+
+                        </button>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
-            <div class="col">
-                <h5>Procesos Nuevos</h5>
-                <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Juan Alberto Escobar Fernandez</div>
-                    <div class="card-body">
-                        <h5 class="card-title">20150000</h5>
-                        <p class="card-text">Proceso iniciado el 05/08/2021</p>
-                        <button type="button" class="btn btn-dark">Ver</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <h5>Procesos Terminados</h5>
-                <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Juan Alberto Escobar Fernandez</div>
-                    <div class="card-body">
-                        <h5 class="card-title">20150000</h5>
-                        <p class="card-text">Proceso iniciado el 05/08/2021</p>
-                        <button type="button" class="btn btn-dark">Ver</button>
-                    </div>
+        </div>
+        <!-- <div class="col">
+            <div class="card text-bg-success mb-3" style="max-width: 25rem; height: 240px;">
+                <div class="card-header">Procesos Nuevos</div>
+                <div class="card-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                        class="bi bi-folder-plus" viewBox="0 0 16 16">
+                        <path
+                            d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" />
+                        <path
+                            d="M13.5 10a.5.5 0 0 1 .5.5V12h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V13h-1.5a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z" />
+                    </svg>
+                    <h5 class="card-title">6 Procesos nuevos sin revisar</h5>
+                    <button (click)="goListaProcesosNuevos()" type="button" class="btn btn-dark">Ver</button>
                 </div>
             </div>
         </div>
-
-
-
-
+        <div class="col">
+            <div class="card text-bg-primary mb-3" style="max-width: 25rem; height: 240px;">
+                <div class="card-header">Procesos Activos</div>
+                <div class="card-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                        class="bi bi-folder2-open" viewBox="0 0 16 16">
+                        <path
+                            d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0 1 12.733 15H3.266a2.5 2.5 0 0 1-2.481-2.19l-.64-5.124A1.5 1.5 0 0 1 1 6.14V3.5zM2 6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5a.5.5 0 0 0-.5.5V6zm-.367 1a.5.5 0 0 0-.496.562l.64 5.124A1.5 1.5 0 0 0 3.266 14h9.468a1.5 1.5 0 0 0 1.489-1.314l.64-5.124A.5.5 0 0 0 14.367 7H1.633z" />
+                    </svg>
+                    <h5 class="card-title">8 Procesos activos sin finalizar</h5>
+                    <button (click)="goListaProcesosActivos()" type="button" class="btn btn-dark">Ver</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-secondary mb-3" style="max-width: 25rem; height: 240px;">
+                <div class="card-header">Procesos terminados</div>
+                <div class="card-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                        class="bi bi-folder-check" viewBox="0 0 16 16">
+                        <path
+                            d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" />
+                        <path
+                            d="M15.854 10.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.707 0l-1.5-1.5a.5.5 0 0 1 .707-.708l1.146 1.147 2.646-2.647a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    <h5 class="card-title">10 Procesos finalizados</h5>
+                    <button (click)="goListaProcesosTerminados()" type="button" class="btn btn-dark">Ver</button>
+                </div>
+            </div>
+        </div> -->
 
     </div>
+
 </div>

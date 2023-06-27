@@ -13,7 +13,14 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
+
+    if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
+    {  
+        header("Access-Control-Allow-Origin: $http_origin");
+    }
+    //header("Access-Control-Allow-Origin:[http://localhost:4200, http://localhost:4201]");
+    //header("Access-Control-Allow-Origin: http://localhost:4201");
     if (!empty($_GET['registro_academico'])) {
 
         $registro = $_GET['registro_academico'];
@@ -41,6 +48,12 @@ if ($method == 'GET') {
             "solicitud" => $res,
             "asignaturas" => $asignaturas
         ], JSON_PRETTY_PRINT);
+    }else{
+        $sql = $pdo->prepare('select * from solicitud;');
+        $sql->execute();
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $sql->fetchAll();
+        echo json_encode($res, JSON_PRETTY_PRINT);
     }
 
     //exit('no hay id solicitud ni registro academico');
@@ -109,6 +122,7 @@ if ($method == 'POST') {
 
 if ($method == 'DELETE') {
     header("Access-Control-Allow-Origin: http://localhost:4200");
+    header("Access-Control-Allow-Origin: http://localhost:4201");
     header("Access-Control-Allow-Headers: *");
 
     if (empty($_GET['id_solicitud'])) {

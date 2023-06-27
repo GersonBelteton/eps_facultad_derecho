@@ -1,0 +1,22 @@
+nav,
+.offcanvas {
+  background-color: #1e293b;
+}
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav li:hover{
+  background-color: #078ca7;
+}
+
+.dropdown-menu{
+  background-color: #1e293b;
+  width: 100%;
+}
+
+

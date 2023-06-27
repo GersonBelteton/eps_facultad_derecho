@@ -256,8 +256,12 @@ insert into estudiante values("Juan Antonia Gomez Bolaños","201405879","12","00
 select * from estudiante;
 truncate table estudiante;
 
+insert into administrador(nombre_completo, usuario, contrasena) values ("Valeska Ruiz", "VRuiz", "123");
+insert into administrador(nombre_completo, usuario, contrasena) values ("Roberto Fernandez", "Rfernandez", "123");
+select * from administrador;
+
 update solicitud set resultado='aprobado', fecha_final=now() where id = 1;
-update solicitud set estado='DPP' where id = 1;
+update solicitud set estado='PI' where id = 1;
 
 
 delete from solicitud where id = 1;

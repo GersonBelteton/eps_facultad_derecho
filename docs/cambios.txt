@@ -21,3 +21,56 @@ Validación de información
 Expediente en revisión
 Generación de reporte
 traslado a junta directiva para continuar proceso académico
+
+
+
+
+reglamento de administración estudianteil USAC 38 39 40 47
+
+ingresa una solicitud a registro y estadistica, debe acompañar un formulairo establecido adjuntando el certificado de cursos , o en su defecto catalogo de estudios mas programas de estudios tematicos a los cuales les esta pidiendo le equivalencia, rye no pueden ver la parte academica, solo parte administrativa, solo inscripciones, se lo remiten a la unidad academica correspondiente, facultad de derecha, ellos solo revisan el articulo 38 a. cuando llegan con la licenciada deben verificar
+
+esta inscrito
+unidad academica extension
+tena soporte academico
+
+equivalencia al pensum nuevo 
+
+año inscrito 
+a que promoción pertenece de acuerdo al primer curso aprobado en el certificado de cursos
+
+Art. 38, 39, 39A,40 y 47 del Reglamento de Administración Estudiantil. USAC
+
+
+_____________________________________
+ 
+el estudiante inicia proceso, selecciona cursos aprobados y envía documento que los certifique, dichos datos serán revisados por el administrador, de haber algún error este generará un previo que le llegará al estudiante, el proceso se detiene y el estudiante debe iniciar uno nuevo tomando en cuenta los comentarios agregados en el previo. De estar correcta la información, el administrador procederá a generar el reporte que enviará a junta directiva, se debe generar automaticamente en la aplicación, algunos campos deberán de ser ingresados manualmente por el usuario administrador.
+
+Estado de proceso:
+
+iniciado, abierto, validando información, generando reporte, enviado a junta directiva.
+
+cuando el estudiante inicia un nuevo proceso este tomará el valor de iniicado, este llegará al usuario administrador, que al momento de abrir dicho proceso cambiara el estado del mismo a "abierto", una vez abierto el administrador deberá de seleccionar la casilla de "validando" para que cambie el estado del proceso, cuando el administrador considera que la información es correcta, selecciona la opción de generar reporte, lo cual cambiará el estado del proces automaticamente al valor de "generando reporte", una vez validada la información generada en el reporte, el administrador deberá precionar el botón de enviado a junta directiva, la cual agregará ese valor en el proceso.
+
+
+
+
+Información necesaria de RyE:
+
+información enviada:
+
+{
+	registro_academico: "201807228",
+	pin: "dd258d"
+}
+
+información esperada:
+
+{
+	registro_academico: "201807228",
+	pin: "dd258d"
+	nombre: "Gerson Alejandro Beltetón Urbina",
+	CUI: "306987492",
+	carrera: 01,
+	extension: 00,
+	unidad_academica: 04
+}

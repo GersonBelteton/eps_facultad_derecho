@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,7 +17,8 @@ import { ListaProcesosTerminadosComponent } from './components/administrador/lis
 import { ProcesoTerminadoComponent } from './components/administrador/proceso-terminado/proceso-terminado.component';
 import { AsignaturasComponent } from './components/administrador/configuracion/asignaturas/asignaturas.component';
 import { EquivalenciasComponent } from './components/administrador/configuracion/equivalencias/equivalencias.component';
-
+import { FormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,10 @@ import { EquivalenciasComponent } from './components/administrador/configuracion
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

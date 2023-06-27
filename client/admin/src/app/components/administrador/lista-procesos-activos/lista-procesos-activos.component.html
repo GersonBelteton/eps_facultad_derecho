@@ -1,5 +1,53 @@
 <app-navegacion></app-navegacion>
-<div style="padding-top: 10%; width: 100%;  text-align: center;">
+
+
+<div class="container text-center mt-5">
+
+    <div class="row mt-5 ">
+        <h1>Procesos activos</h1>
+        <hr>
+    </div>
+    <div class="row  my-3">
+
+
+        <table class="table border border-primary tabla">
+            <thead>
+
+
+                <th>Nombre</th>
+                <th>Registro académico</th>
+                <th>Inicio de proceso</th>
+                <th></th>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let solicitud of solicitudes">
+                    <td>{{solicitud.estudiante}}</td>
+                    <td>{{solicitud.registro_academico}}</td>
+                    <td>{{solicitud.fecha_inicio}}</td>
+                    <td>
+                        <button (click)="goVer()" type="button" class="btn btn-outline-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg>
+
+                        </button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+<!-- <div style="padding-top: 10%; width: 100%;  text-align: center;">
 
     <h2>Procesos activos</h2>
 
@@ -48,4 +96,4 @@
       </tr>
 
     </tbody>
-  </table>
+  </table> -->
