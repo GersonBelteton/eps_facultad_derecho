@@ -30,6 +30,14 @@ export class AdministradorService {
     )
   }
 
+  createAdministrador(data:any):Observable<any>{
+    let url = `${environment.basePath}administrador.php`;
+    return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   getAdministrador(id:any):Observable<any>{
     let url = `${environment.basePath}administrador.php?id_admin=${id}`;
     return this.http.get(url)
@@ -38,6 +46,13 @@ export class AdministradorService {
     )
   }
 
+  getAdministradores():Observable<any>{
+    let url = `${environment.basePath}administrador.php`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 
 
 }

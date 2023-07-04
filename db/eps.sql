@@ -105,7 +105,10 @@ create table administrador(
 	id int primary key auto_increment,
     nombre_completo varchar(100) not null,
     usuario varchar(50) not null,
-    contrasena varchar(50) not null
+    contrasena varchar(50) not null,
+    permiso_usuarios boolean,
+    permiso_equivalencias boolean,
+    permiso_expedientes boolean
 );
 
 create table permiso (
@@ -256,7 +259,8 @@ insert into estudiante values("Juan Antonia Gomez Bolaños","201405879","12","00
 select * from estudiante;
 truncate table estudiante;
 
-insert into administrador(nombre_completo, usuario, contrasena) values ("Valeska Ruiz", "VRuiz", "123");
+insert into administrador(nombre_completo, usuario, contrasena, permiso_usuarios, permiso_equivalencias, permiso_expedientes) 
+values ("Valeska Ruiz", "VRuiz", "123", true, true, true );
 insert into administrador(nombre_completo, usuario, contrasena) values ("Roberto Fernandez", "Rfernandez", "123");
 select * from administrador;
 
@@ -310,6 +314,8 @@ drop table extension_universitaria;
 drop table unidad_academica;
 
 drop table estudiante;
-
+drop table detalle_permiso;
+drop table permiso;
+drop table administrador;
 truncate table solicitud;
 truncate table detalle_solicitud;

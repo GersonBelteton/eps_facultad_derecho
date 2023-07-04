@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     console.log(data.contrasena)
 
     let usuario = {
+      api: "login",
       user: data.usuario,
       password: data.contrasena
     }
