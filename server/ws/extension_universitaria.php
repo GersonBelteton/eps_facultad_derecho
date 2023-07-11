@@ -1,10 +1,16 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
+header("Allow: *");
+
 include 'conexion.php';
 
 $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    header("Access-Control-Allow-Origin: http://localhost:4201");
 
     if(!empty($_GET['extension']) && !empty($_GET['unidad_academica'])){
 
@@ -35,7 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header("HTTP/1.1 200 OK");
         echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
     }
-    else{
+    else if (!empty($_GET['id_extension'])){
+        $id = $_GET['id_extension'];
+
+        $sql =$pdo->prepare("select * from extension_universitaria where id = ?");
+        $sql->execute([$id]);
+
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    }else{
 
         $sql = $pdo->prepare("SELECT * FROM extension_universitaria;");
         $sql->execute();
@@ -51,6 +66,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    header("Access-Control-Allow-Origin: http://localhost:4201");
+
+    $json = json_decode(file_get_contents("php://input"));
+    if (!$json) {
+        exit("No hay datos");
+    }
+    $sentencia = $pdo->prepare("INSERT INTO extension_universitaria (codigo, nombre, id_ua) VALUES(?,?,?)");
+    $resultado = $sentencia->execute([$json->codigo, $json->nombre, $json->id_ua]);
+    echo json_encode([
+        "resultado" => $resultado,
+        "id" => $pdo->lastInsertId()
+    ]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+
+
+
+    header("Access-Control-Allow-Origin: http://localhost:4201");
+
+    if (!empty($_GET['id_extension'])) {
+        $idExtension = $_GET['id_extension'];
+
+        $sql = $pdo->prepare("DELETE FROM extension_universitaria WHERE id = ?;");
+        $sql->execute([$idExtension]);
+    
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    
+
+    }
+
+
+}
 
 
 

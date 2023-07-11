@@ -1,47 +1,48 @@
 <app-navegacion></app-navegacion>
 
-<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1  class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
-         
-          <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="dataForm">
-            <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Codigo:</label>
-                <input type="text" class="form-control" id="recipient-name" formControlName="codigo">
-              </div>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" id="recipient-name" formControlName="nombre">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar unidad académica</h1>
+
+                <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
-          </form>
+            <div class="modal-body">
+                <form [formGroup]="dataForm">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Codigo:</label>
+                        <input type="text" class="form-control" id="recipient-name" formControlName="codigo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="recipient-name" formControlName="nombre">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button (click)="closeModal()" type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button (click)="guardar()" type="button" class="btn btn-primary"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button (click)="guardar()" type="button" class="btn btn-primary"data-bs-dismiss="modal"  >Guardar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <div class="container my-5 text-center">
 
     <div class="row my-3">
-        <h1>{{unidad.codigo}} - {{unidad.nombre}}</h1>
-        <h1>{{extension.codigo}} - {{extension.nombre}}</h1>
-        <h1>{{carrera.codigo}} - {{carrera.nombre}}</h1>
-        <hr>
-        <h2>Asignaturas</h2>
+        <h1>Unidades Académicas</h1>
         <hr>
     </div>
 
     <div class="row">
         <div class="col" style="text-align: center;">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar asignatura</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Agregar unidad academica</button>
 
         </div>
     </div>
@@ -59,11 +60,11 @@
 
             </thead>
             <tbody>
-                <tr *ngFor="let asignatura of asignaturas">
-                    <td>{{asignatura.codigo_asignatura}}</td>
-                    <td>{{asignatura.nombre}}</td>
+                <tr *ngFor="let unidad of unidades">
+                    <td>{{unidad.codigo}}</td>
+                    <td>{{unidad.nombre}}</td>
                     <td>
-                        <button  type="button" class="btn btn-outline-warning mr-3"  >
+                        <button type="button" class="btn btn-outline-warning mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path
@@ -72,7 +73,7 @@
                             </svg>
                         </button>
 
-                        <button (click)="deleteAsignatura(asignatura.id)"  type="button" class="btn btn-outline-danger mr-3">
+                        <button (click)="deleteUnidad(unidad.id)" type="button" class="btn btn-outline-danger mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash" viewBox="0 0 16 16">
                                 <path
@@ -83,8 +84,8 @@
                                 </path>
                             </svg>
                         </button>
-                        <button  type="button" class="btn btn-outline-primary">
-                            EQUIVALENCIAS 
+                        <button (click)="goExtensiones(unidad.id)" type="button" class="btn btn-outline-primary">
+                            EXTENSIONES 
                         </button>
                     </td>
                 </tr>

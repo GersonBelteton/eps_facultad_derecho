@@ -61,11 +61,11 @@
                             Configuración
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="nav-item p-3 py-md-1"><a class=" nav-link" routerLink="/configuracion-usuario">Usuarios</a></li>
+                            <li *ngIf="admin.permiso_usuarios == 1" class="nav-item p-3 py-md-1"><a class=" nav-link" routerLink="/configuracion-usuario">Usuarios</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li class="nav-item p-3 py-md-1"><a class=" nav-link" href="#">Equivalencias</a></li>
+                            <li *ngIf="admin.permiso_equivalencias == 1" class="nav-item p-3 py-md-1"><a class=" nav-link" routerLink="/configuracion-unidades">Equivalencias</a></li>
                         </ul>
                     </li>
                     <li class="nav-item p-3 py-md-1">

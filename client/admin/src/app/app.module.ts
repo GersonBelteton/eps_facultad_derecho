@@ -19,6 +19,8 @@ import { AsignaturasComponent } from './components/administrador/configuracion/a
 import { EquivalenciasComponent } from './components/administrador/configuracion/equivalencias/equivalencias.component';
 import { FormsModule } from '@angular/forms';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { UnidadesComponent } from './components/administrador/configuracion/unidades/unidades.component';
+import { ExtensionesComponent } from './components/administrador/configuracion/extensiones/extensiones.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import {  ReactiveFormsModule } from '@angular/forms';
     ListaProcesosTerminadosComponent,
     ProcesoTerminadoComponent,
     AsignaturasComponent,
-    EquivalenciasComponent
+    EquivalenciasComponent,
+    UnidadesComponent,
+    ExtensionesComponent
   ],
   imports: [
     BrowserModule,

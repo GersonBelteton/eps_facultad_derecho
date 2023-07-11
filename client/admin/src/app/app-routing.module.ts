@@ -5,7 +5,8 @@ import {InicioComponent} from './components/administrador/inicio/inicio.componen
 import {ProcesoActivoComponent} from './components/administrador/proceso-activo/proceso-activo.component'
 import {ProcesoTerminadoComponent} from './components/administrador/proceso-terminado/proceso-terminado.component'
 import {UsuariosComponent} from './components/administrador/configuracion/usuarios/usuarios.component'
-import {CentrosComponent} from './components/administrador/configuracion/centros/centros.component'
+import {UnidadesComponent} from './components/administrador/configuracion/unidades/unidades.component'
+import {ExtensionesComponent} from './components/administrador/configuracion/extensiones/extensiones.component'
 import {CarrerasComponent} from './components/administrador/configuracion/carreras/carreras.component'
 import {AsignaturasComponent} from './components/administrador/configuracion/asignaturas/asignaturas.component'
 import {EquivalenciasComponent} from './components/administrador/configuracion/equivalencias/equivalencias.component'
@@ -36,8 +37,12 @@ const routes: Routes = [
     component: UsuariosComponent
   },
   {
-    path: 'configuracion-centros',
-    component: CentrosComponent
+    path: 'configuracion-unidades',
+    component: UnidadesComponent
+  },
+  {
+    path: 'configuracion-extensiones',
+    component: ExtensionesComponent
   },
   {
     path: 'configuracion-carreras',

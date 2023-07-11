@@ -1,10 +1,24 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
+header("Allow: *");
+
+
 include 'conexion.php';
 
 $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    // header("Access-Control-Allow-Origin: http://localhost:4200");
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
+
+    if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
+    {  
+        header("Access-Control-Allow-Origin: $http_origin");
+    }
+
 
     if(!empty($_GET['unidad_academica'])){
 
@@ -12,6 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
         $sql =$pdo->prepare("select * from unidad_academica where codigo = ?");
+        $sql->execute([$unidad]);
+
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+
+
+    }
+    else if(!empty($_GET['id'])){
+
+        $unidad = $_GET['id'];
+
+
+        $sql =$pdo->prepare("select * from unidad_academica where id = ?");
         $sql->execute([$unidad]);
 
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -36,6 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header("HTTP/1.1 200 OK");
         echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
     
+    }else{
+       
+
+
+        $sql =$pdo->prepare("select * from unidad_academica");
+        $sql->execute();
+
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
     }
 
 
@@ -62,18 +100,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    header("Access-Control-Allow-Origin: http://localhost:4200");
-    header("Access-Control-Allow-Headers: *");
+
+    header("Access-Control-Allow-Origin: http://localhost:4201");
+
     $json = json_decode(file_get_contents("php://input"));
     if (!$json) {
         exit("No hay datos");
     }
-    $sentencia = $pdo->prepare("INSERT INTO centro_universitario (nombre, unidad_academica, extension_universitaria, abreviatura) VALUES(?,?,?,?)");
-    $resultado = $sentencia->execute([$json->nombre, $json->unidad_academica, $json->extension, $json->abreviatura]);
+    $sentencia = $pdo->prepare("INSERT INTO unidad_academica (codigo, nombre) VALUES(?,?)");
+    $resultado = $sentencia->execute([$json->codigo, $json->nombre]);
     echo json_encode([
         "resultado" => $resultado,
         "id" => $pdo->lastInsertId()
     ]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+
+
+
+    header("Access-Control-Allow-Origin: http://localhost:4201");
+
+    if (!empty($_GET['id_unidad'])) {
+        $idUnidad = $_GET['id_unidad'];
+
+        $sql = $pdo->prepare("DELETE FROM unidad_academica WHERE id = ?;");
+        $sql->execute([$idUnidad]);
+    
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    
+
+    }
+
+
 }
 
 

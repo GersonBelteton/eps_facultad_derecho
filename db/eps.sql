@@ -300,6 +300,8 @@ inner join unidad_academica on unidad_academica.id = extension_universitaria.id_
 where carrera.id = 1;
 
 
+select * from asignatura  where codigo_carrera = 1;
+
 select *
 from carrera inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
 inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
