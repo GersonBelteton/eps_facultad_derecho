@@ -125,6 +125,10 @@ export class AsignaturasComponent implements OnInit {
       })
   }
 
+  goEquivalencias(id:any){
+    localStorage.setItem("conf-as",id)
+    this._router.navigate(['configuracion-equivalencias'])
+  }
 
 
   guardar() {

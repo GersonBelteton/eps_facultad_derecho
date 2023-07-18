@@ -31,11 +31,12 @@
 <div class="container my-5 text-center">
 
     <div class="row my-3">
-        <h1>{{unidad.codigo}} - {{unidad.nombre}}</h1>
-        <h1>{{extension.codigo}} - {{extension.nombre}}</h1>
-        <h1>{{carrera.codigo}} - {{carrera.nombre}}</h1>
+        <h1>Asignaturas</h1>
+        <h4>{{unidad.codigo}} - {{unidad.nombre}}</h4>
+        <h4>{{extension.codigo}} - {{extension.nombre}}</h4>
+        <h4>{{carrera.codigo}} - {{carrera.nombre}}</h4>
         <hr>
-        <h2>Asignaturas</h2>
+        
         <hr>
     </div>
 
@@ -83,7 +84,7 @@
                                 </path>
                             </svg>
                         </button>
-                        <button  type="button" class="btn btn-outline-primary">
+                        <button (click)="goEquivalencias(asignatura.id)"  type="button" class="btn btn-outline-primary">
                             EQUIVALENCIAS 
                         </button>
                     </td>

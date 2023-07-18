@@ -273,9 +273,41 @@ delete from solicitud where id = 1;
 select * from unidad_academica where codigo != '04';
 select * from unidad_academica where codigo = '04';
 
-(select * from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.codigo where codigo_asignatura1 = 4 and codigo_carrera = 1)
+(select * from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.id where codigo_asignatura1 = 4 and codigo_carrera = 1)
 union
-(select * from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.codigo where codigo_asignatura2 = 4 and codigo_carrera = 1);
+(select * from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.id where codigo_asignatura2 = 4 and codigo_carrera = 1);
+
+select * from asignatura inner join carrera on asignatura.codigo_carrera = carrera.id;
+
+insert into equivalencia (codigo_asignatura1, codigo_asignatura2) values(1,8),(2,9);
+insert into equivalencia (codigo_asignatura1, codigo_asignatura2) values(11,1);
+select * from equivalencia;
+
+
+
+select asignatura.id, nombre, codigo_carrera, codigo_asignatura from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.id 
+where codigo_asignatura1 = 1 and codigo_carrera = 2
+union
+select asignatura.id, nombre, codigo_carrera, codigo_asignatura from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.id 
+where codigo_asignatura2 = 1 and codigo_carrera = 2;
+
+select * from asignatura where codigo_carrera = 2 
+and nombre not in(
+select  nombre from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.id 
+where codigo_asignatura1 = 1 and codigo_carrera = 2
+union
+select  nombre  from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.id 
+where codigo_asignatura2 = 1 and codigo_carrera = 2
+)
+
+
+
+
+
+
+
+
+
 select * from solicitud where registro_academico = '201807228';
 select * from solicitud;
 select * from detalle_solicitud;
@@ -301,6 +333,7 @@ where carrera.id = 1;
 
 
 select * from asignatura  where codigo_carrera = 1;
+select * from asignatura where id = 1;
 
 select *
 from carrera inner join extension_universitaria on carrera.id_eu = extension_universitaria.id

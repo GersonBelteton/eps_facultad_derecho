@@ -1,5 +1,5 @@
 <app-navegacion></app-navegacion>
-<div style="padding-top: 10%; width: 100%;  text-align: center;">
+<!-- <div style="padding-top: 10%; width: 100%;  text-align: center;">
 
     <h2>Configuracion</h2>
 
@@ -102,4 +102,112 @@
         </div>
 
     </div>
+</div> -->
+
+
+
+<div class="container my-5 text-center">
+
+    <div class="row my-3">
+        <h1>Equivalencias</h1>
+        <h4>{{unidad.codigo}}- {{unidad.nombre}}</h4>
+        <h4>{{extension.codigo}} - {{extension.nombre}}</h4>
+        <h4>{{carrera.codigo}} - {{carrera.nombre}}</h4>
+        <h4>{{asignatura.codigo_asignatura}} - {{asignatura.nombre}}</h4>
+        <hr>
+
+        <hr>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col" style="text-align: center;">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar asignatura</button>
+
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <select #unidades (change)="onSelectedUnidades(unidades.value)" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Unidad académica</option>
+            <option *ngFor="let unidad of selectUnidades" [value]="unidad.id">{{unidad.nombre}}</option>
+        </select>
+
+        <select  #extensiones (change)="onSelectedExtensiones(extensiones.value)" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Extensión Universitaria</option>
+            <option *ngFor="let extension of selectExtensiones" [value]="extension.id">{{extension.nombre}}</option>
+        </select>
+
+        <select #carreras (change)="onSelectedCarreras(carreras.value)" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Carrera</option>
+            <option *ngFor="let carrera of selectCarreras" [value]="carrera.id">{{carrera.nombre}}</option>
+
+        </select>
+    </div>
+
+    <div class="row my-3">
+        <h4>Asignaturas Equivalentes</h4>
+    </div>
+
+    <div class="row mt-3">
+        <table class="table border border-primary tabla">
+            <thead>
+
+
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Opciones</th>
+                <th></th>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let asignatura of asignaturasEquivalentes">
+                    <td>{{asignatura.codigo_asignatura}}</td>
+                    <td>{{asignatura.nombre}}</td>
+                    <td>
+                        <button (click)="deleteEquivalencia(asignatura.id_equivalencia)" type="button" class="btn btn-outline-danger mr-3">
+                            Quitar Equivalencia
+                        </button>
+
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row my-3">
+        <h4>Asignaturas No Equivalentes</h4>
+    </div>
+
+    <div class="row mt-3">
+        <table class="table border border-primary tabla">
+            <thead>
+
+
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Opciones</th>
+                <th></th>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let asignatura of asignaturasNoEquivalentes">
+                    <td>{{asignatura.codigo_asignatura}}</td>
+                    <td>{{asignatura.nombre}}</td>
+                    <td>
+                        <button (click)="createAsignatura(asignatura.id)" type="button" class="btn btn-outline-success mr-3">
+                            Agregar Equivalencia
+                        </button>
+
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+
 </div>

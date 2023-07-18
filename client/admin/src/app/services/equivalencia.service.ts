@@ -127,6 +127,14 @@ export class EquivalenciaService {
     )
   }
 
+  getAsignatura(id:any) : Observable<any>{
+    let url = `${environment.basePath}asignatura.php?id_asignatura=${id}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   getAsignaturas(id:any) : Observable<any>{
     let url = `${environment.basePath}asignatura.php?id_carrera=${id}`;
     return this.http.get(url)
@@ -145,6 +153,38 @@ export class EquivalenciaService {
 
   deleteAsignatura(id:any):Observable<any>{
     let url = `${environment.basePath}asignatura.php?id_asignatura=${id}`;
+    return this.http.delete(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getEquivalentes(id_asignatura:any, id_carrera:any) : Observable<any>{
+    let url = `${environment.basePath}equivalencia.php?id_asignatura=${id_asignatura}&id_carrera=${id_carrera}&equivalente=1`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getNoEquivalentes(id_asignatura:any, id_carrera:any) : Observable<any>{
+    let url = `${environment.basePath}equivalencia.php?id_asignatura=${id_asignatura}&id_carrera=${id_carrera}&equivalente=0`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  createEquivalencia(data:any) : Observable<any>{
+    let url = `${environment.basePath}equivalencia.php`;
+    return this.http.post(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  deleteEquivalencia(id:any):Observable<any>{
+    let url = `${environment.basePath}equivalencia.php?id_equivalencia=${id}`;
     return this.http.delete(url)
     .pipe(
       catchError(this.handleError)
