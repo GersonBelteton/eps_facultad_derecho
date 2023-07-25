@@ -37,5 +37,29 @@ export class SolicitudService {
     )
   }
 
+  getSolicitud(id:any) : Observable<any>{
+    let url = `${environment.basePath}solicitud.php?id_solicitud=${id}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getCarreraExtensionUnidad(id_carrera:any):Observable<any>{
+    let url = `${environment.basePath}index.php?id_carrera=${id_carrera}`
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  reporte(data:any):Observable<any>{
+    let url = `${environment.basePath}reporte.php`;
+    return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
 }

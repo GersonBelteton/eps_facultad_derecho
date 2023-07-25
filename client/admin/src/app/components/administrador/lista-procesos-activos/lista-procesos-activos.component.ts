@@ -31,7 +31,8 @@ export class ListaProcesosActivosComponent implements OnInit {
     })
   }
 
-  goVer(){
+  goVer(id:any){
+    localStorage.setItem('sol-id',id)
     this._router.navigate(['proceso-activo'])
   }
 
