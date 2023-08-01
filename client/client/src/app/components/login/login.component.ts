@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   carreras: any = {}
   token: string|undefined;
 
+  codigo_unidad: any
+  codigo_extension: any
+  codigo_carrera:any
+
   constructor(
     private _router: Router,
     private estudianteService: EstudianteService,
@@ -49,25 +53,30 @@ export class LoginComponent implements OnInit {
 
 
   selectedUnidad = '';
-  onSelected(value: string): void {
+  onSelected(value: any): void {
     this.selectedUnidad = value;
     console.log(this.selectedUnidad)
-    this.getExtensiones(this.selectedUnidad)
+    let array = this.selectedUnidad.split("-")
+    this.codigo_unidad = array[1]
+    this.getExtensiones(array[0])
   }
 
 
   selectedExtension = '';
-  onSelected2(value: string): void {
+  onSelected2(value: any): void {
     this.selectedExtension = value;
     console.log(this.selectedExtension)
-    this.getCarreras(this.selectedExtension)
+    let array = this.selectedExtension.split("-")
+    this.codigo_extension = array[1]
+    this.getCarreras(array[0])
   }
 
   selectedCarrera = '';
   onSelected3(value: string): void {
     this.selectedCarrera = value;
     console.log(this.selectedCarrera)
-    localStorage.setItem("id_carrera_destino", this.selectedCarrera)
+    let array = this.selectedCarrera.split("-")
+    this.codigo_carrera = array[1]
   }
 
   public send(form: NgForm): void {
@@ -139,19 +148,24 @@ export class LoginComponent implements OnInit {
     let estudiante = {
 
       registro_academico: data.registro_academico,
-      unidad_academica: this.selectedUnidad,
-      extension_universitaria: this.selectedExtension,
-      carrera: this.selectedCarrera
+      unidad_academica: this.codigo_unidad,
+      extension_universitaria: this.codigo_extension,
+      carrera: this.codigo_carrera
     }
 
+    console.log(estudiante)
     this.estudianteService.getEstudiante(estudiante)
     .subscribe((res)=>{
       if(res.status == 1){
 
-        this.estudiante=res
+        this.estudiante.nombre=res.datos.nombre
+        this.estudiante.registro_academico = res.datos.carnet
+        this.estudiante.unidad_academica = this.codigo_unidad
+        this.estudiante.extension_universitaria = this.codigo_extension
+        this.estudiante.carrera = this.codigo_carrera
         console.log(this.estudiante)
   
-        //this.goInicio();
+        this.goInicio();
       }else{
         alert(res.msg)
       }

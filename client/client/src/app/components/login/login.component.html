@@ -46,7 +46,7 @@
                 class="form-select mt-3 col-sm-10 font-weight-bold " aria-label="Disabled select example">
                 <option selected>Unidad Académica</option>
 
-                <option *ngFor="let unidad of unidades_academicas" [value]="unidad.id">
+                <option *ngFor="let unidad of unidades_academicas" [value]="unidad.id+'-'+unidad.codigo">
 
                   <div class="row justify-content-around">
                     <div class="col-2">
@@ -64,7 +64,7 @@
               <select #teams2 (change)="onSelected2(teams2.value)" class="form-select mt-3 col-sm-10 "
                 aria-label="Disabled select example">
                 <option selected>Extension</option>
-                <option *ngFor="let extension of extensiones_universitarias" [value]="extension.id">
+                <option *ngFor="let extension of extensiones_universitarias" [value]="extension.id+'-'+extension.codigo">
                   {{extension.codigo}}
                   {{extension.nombre}}</option>
                 <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
@@ -76,7 +76,7 @@
               <select #teams3 (change)="onSelected3(teams3.value)" class="form-select mt-3 col-sm-10 "
                 aria-label="Disabled select example">
                 <option selected>Carrera</option>
-                <option *ngFor="let carrera of carreras" [value]="carrera.id">{{carrera.codigo}}
+                <option *ngFor="let carrera of carreras" [value]="carrera.id+'-'+carrera.codigo">{{carrera.codigo}}
                   {{carrera.nombre}}</option>
                 <!-- <option value="1">Licenciatura en ciencias jurídicas</option> -->
 

@@ -24,8 +24,8 @@ export class EstudianteService {
 
 
   getEstudiante(data:any):Observable<any>{
-    let url = `${environment.basePath}wsRye.php`;
-    return this.http.post(data,url)
+    let url = `${environment.basePath}wsrye.php`;
+    return this.http.post(url, data)
     .pipe(
       catchError(this.handleError)
     )
