@@ -23,9 +23,9 @@ export class EstudianteService {
   };
 
 
-  getEstudiante(registro_academico:any, pin:any):Observable<any>{
-    let url = `${environment.basePath}estudiante.php?registro_academico=${registro_academico}&pin=${pin}`;
-    return this.http.get(url)
+  getEstudiante(data:any):Observable<any>{
+    let url = `${environment.basePath}wsRye.php`;
+    return this.http.post(data,url)
     .pipe(
       catchError(this.handleError)
     )

@@ -13,9 +13,9 @@ http://rye.usac.edu.gt/WS/verificadatosRyEWebService1.php?wsdl
 
 <PWD>a1021a89f5ead5615f16a5dcad38b38c91f5a197</PWD>
 
-<CARNET></CARNET>
+<CARNET>202042708</CARNET>
 
-<CICLO></CICLO>
+<CICLO>2023</CICLO>
 
 </VERIFICAR_INSCRITO>
 
@@ -28,3 +28,24 @@ respuesta del mensaje
 <STATUS>1</STATUS>
 <MSG>Estudiante Inscrito</MSG>
 </RESP_VERIFICAR_INSCRITO>
+
+
+
+	         <m:VERIFICAR_INSCRITO>
+				<m:DEPENDENCIA>UA04</m:DEPENDENCIA>
+				
+				<m:UNIDAD_ACADEMICA>04</m:UNIDAD_ACADEMICA>
+				
+				<m:EXTENSION>00</m:EXTENSION>
+				
+				<m:CARRERA>01</m:CARRERA>
+				
+				<m:LOGIN>S1s04D3r3ch0</m:LOGIN>
+				
+				<m:PWD>a1021a89f5ead5615f16a5dcad38b38c91f5a197</m:PWD>
+				
+				<m:CARNET>202042708</m:CARNET>
+				
+				<m:CICLO>2023</m:CICLO>
+			
+			</m:VERIFICAR_INSCRITO>

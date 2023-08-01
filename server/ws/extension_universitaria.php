@@ -10,8 +10,12 @@ include 'conexion.php';
 $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
 
+    if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
+    {  
+        header("Access-Control-Allow-Origin: $http_origin");
+    }
     if(!empty($_GET['extension']) && !empty($_GET['unidad_academica'])){
 
         $extension = $_GET['extension'];
