@@ -12,7 +12,7 @@ $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: http://localhost:4200");
 
     $json = json_decode(file_get_contents('php://input'));
     if (!$json) {
@@ -25,8 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $carrera = $json->carrera;
     $carnet = $json->registro_academico;
 
+    date_default_timezone_set('America/Mexico_City');
+    $año = date('Y');
+    $ciclo = $año;
+    $ciclo = intval($ciclo);
 
-    $response = consulta_RYE($unidad, $extension, $carrera, $carnet);
+    do{
+        $response = consulta_RYE($unidad, $extension, $carrera, $carnet, $ciclo);
+        $ciclo = $ciclo -1;
+    }while($response->STATUS == 2 && $ciclo > 2010);
+    
 
 
     header("HTTP/1.1 200 OK");
@@ -35,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "msg" => (string)$response->MSG,
         "datos"=>[
             "nombre"=>$response->DATOS->NOMBRES." ".$response->DATOS->APELLIDOS,
-            "CUI_PASAPORTE"=>(string)$response->DATOS->CUI_PASAPORTE
+            "cui_pasaporte"=>(string)$response->DATOS->CUI_PASAPORTE,
+            "carnet" => (string)$response->DATOS->CARNET
         ]
     ],JSON_PRETTY_PRINT);
 
@@ -43,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
-function consulta_RYE($unidad, $extension, $carrera, $carnet){
+function consulta_RYE($unidad, $extension, $carrera, $carnet, $ciclo){
 
     $location = "https://registro.usac.edu.gt/WS/verificadatosRyEWebService1.php?wsdl";
     $request = "<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:nus=\"http://rye.usac.edu.gt/nusoap\">
@@ -60,7 +69,7 @@ function consulta_RYE($unidad, $extension, $carrera, $carnet){
                          <LOGIN>S1s04D3r3ch0</LOGIN>
                          <PWD>a1021a89f5ead5615f16a5dcad38b38c91f5a197</PWD>
                          <CARNET>".$carnet."</CARNET>
-                         <CICLO>2023</CICLO>
+                         <CICLO>".$ciclo."</CICLO>
                      </VERIFICAR_INSCRITO>
                   ]]>
              </xml_RegistraDatos>

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   codigo_extension: any
   codigo_carrera:any
 
+  active_spinner:boolean = false
   constructor(
     private _router: Router,
     private estudianteService: EstudianteService,
@@ -80,6 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   public send(form: NgForm): void {
+    this.active_spinner = true;
     if (form.invalid) {
       for (const control of Object.keys(form.controls)) {
         form.controls[control].markAsTouched();
@@ -167,11 +169,13 @@ export class LoginComponent implements OnInit {
   
         this.goInicio();
       }else{
+        this.active_spinner = false
         alert(res.msg)
       }
 
     },
     (error)=>{
+      this.active_spinner = false
       alert('usuario incorrecto')
       console.error(error)
       

@@ -96,9 +96,13 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-sm-12 mb-2">
-                      <button type="button" class="btn btn-primary px-5" (click)="send(form)">INICIAR SESIÓN</button>
+
+                      <button type="button" class="btn btn-primary px-5" (click)="send(form)">
+                        <span *ngIf="active_spinner" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        INICIAR SESIÓN</button>
                     </div>
                   </div>
                 </form>
