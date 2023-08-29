@@ -48,7 +48,36 @@ if ($method == 'GET') {
             "solicitud" => $res,
             "asignaturas" => $asignaturas
         ], JSON_PRETTY_PRINT);
-    }else{
+
+    }else if(!empty($_GET['conteo_solicitudes'])){
+
+        $sql = $pdo->prepare('(select "NO" as "finalizado", count(*) as cantidad from solicitud where resultado IS NULL)
+        union
+        (select "SI" as "finalizado", count(*) as cantidad from solicitud where resultado IS NOT NULL);');
+        $sql->execute();
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $sql->fetchAll();
+        echo json_encode($res, JSON_PRETTY_PRINT);
+
+    }else if(!empty($_GET['finalizadas'])){
+
+        $finalizada = $_GET['finalizadas'];
+        if($finalizada=='SI'){
+            $sql = $pdo->prepare('select * from solicitud where resultado IS NOT NULL;');
+            $sql->execute();
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+            $res = $sql->fetchAll();
+            echo json_encode($res, JSON_PRETTY_PRINT);
+        }else if($finalizada=='NO'){
+            $sql = $pdo->prepare('select * from solicitud where resultado IS NULL;');
+            $sql->execute();
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+            $res = $sql->fetchAll();
+            echo json_encode($res, JSON_PRETTY_PRINT);
+        }
+
+    }
+    else{
         $sql = $pdo->prepare('select * from solicitud;');
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -65,7 +94,7 @@ if ($method == 'POST') {
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     header('Content-Type: application/json');
 */
-
+    header("Access-Control-Allow-Origin: http://localhost:4200");
     
 
     $json = json_decode(file_get_contents('php://input'));
@@ -76,6 +105,7 @@ if ($method == 'POST') {
 
     $estudiante = $json->estudiante;
     $registro = $json->registro_academico;
+    $cui_pasaporte = $json->cui_pasaporte;
     $tipo = $json->tipo;
     $carrera = $json->codigo_carrera;
     $asignaturas = $json->asignaturas;
@@ -100,9 +130,9 @@ if ($method == 'POST') {
 
 
 
-    $sql = $pdo->prepare("insert into solicitud (estudiante, registro_academico, tipo, estado, ruta_certificado_cursos, fecha_inicio, codigo_carrera)
-    values (?,?,?,'PI',?,now(), ?)");
-    $sql->execute([$estudiante, $registro, $tipo, "http://localhost".$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
+    $sql = $pdo->prepare("insert into solicitud (estudiante, registro_academico, cui_pasaporte, tipo, estado, ruta_certificado_cursos, fecha_inicio, codigo_carrera)
+    values (?,?,?,?,'PI',?,now(), ?)");
+    $sql->execute([$estudiante, $registro, $cui_pasaporte, $tipo, "http://localhost".$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
     $id_solicitud = $pdo->lastInsertId();
     $res = [];
     $cont = 0;

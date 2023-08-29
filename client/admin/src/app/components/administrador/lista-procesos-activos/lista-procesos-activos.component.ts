@@ -21,7 +21,7 @@ export class ListaProcesosActivosComponent implements OnInit {
   }
 
   getSolicitudes(){
-    this.solicitudService.getSolicitudes()
+    this.solicitudService.getSolicitudesFinalizadas('NO')
     .subscribe((res)=>{
       this.solicitudes = res
       console.log(this.solicitudes)

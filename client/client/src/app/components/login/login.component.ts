@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       pin: ['']
     });
   }
-
   dataForm = this.fb.group({
     registro_academico: [''],
     pin: ['']
@@ -96,11 +95,15 @@ export class LoginComponent implements OnInit {
   }
 
   goInicio() {
+    //localStorage.setItem("estudiante",'{"nombre":"'+this.estudiante.nombre+'","registro_academico":"'+this.estudiante.registro_academico+'", "cui_pasaporte":"'+this.estudiante.cui_pasaporte+'"}')
     localStorage.setItem("nombre_est",this.estudiante.nombre)
     localStorage.setItem("registro_est",this.estudiante.registro_academico)
+    localStorage.setItem("cui_est",this.estudiante.cui_pasaporte)
     localStorage.setItem("ua_est",this.estudiante.unidad_academica)
-    localStorage.setItem("ext_est",this.estudiante.extension)
+    localStorage.setItem("ext_est",this.estudiante.extension_universitaria)
     localStorage.setItem("carrera_est", this.estudiante.carrera)
+
+    console.log("VE A INICIO")
     this._router.navigate(['inicio'])
   }
 
@@ -156,12 +159,13 @@ export class LoginComponent implements OnInit {
     }
 
     console.log(estudiante)
-    this.estudianteService.getEstudiante(estudiante)
+    this.estudianteService.auth(estudiante)
     .subscribe((res)=>{
       if(res.status == 1){
 
         this.estudiante.nombre=res.datos.nombre
         this.estudiante.registro_academico = res.datos.carnet
+        this.estudiante.cui_pasaporte = res.datos.cui_pasaporte
         this.estudiante.unidad_academica = this.codigo_unidad
         this.estudiante.extension_universitaria = this.codigo_extension
         this.estudiante.carrera = this.codigo_carrera
@@ -184,11 +188,12 @@ export class LoginComponent implements OnInit {
 
 
   estudiante : any = {
-    nombre:"Luis Alberto Escobar Fernandez",
-    registro_academico:"201807225",
-    unidad_academica:"00",
-    extension:"00",
-    carrera:"8"
+    nombre:"",
+    registro_academico:"",
+    cui_pasaporte:"",
+    unidad_academica:"",
+    extensiones_universitarias:"",
+    carrera:""
   }
 
 

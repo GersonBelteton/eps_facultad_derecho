@@ -4,8 +4,8 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1  class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
-         
+          <h1 *ngIf="!updateModal"  class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
+          <h1 *ngIf="updateModal" class="modal-title fs-5" id="exampleModalLabel">Actualizar asignatura</h1>
           <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -42,7 +42,7 @@
 
     <div class="row">
         <div class="col" style="text-align: center;">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar asignatura</button>
+            <button (click)="openCreateModal()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar asignatura</button>
 
         </div>
     </div>
@@ -64,7 +64,7 @@
                     <td>{{asignatura.codigo_asignatura}}</td>
                     <td>{{asignatura.nombre}}</td>
                     <td>
-                        <button  type="button" class="btn btn-outline-warning mr-3"  >
+                        <button (click)="openUpdateModal(asignatura.id)"  type="button" class="btn btn-outline-warning mr-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path

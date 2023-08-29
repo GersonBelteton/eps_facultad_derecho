@@ -43,6 +43,8 @@ class PDF extends FPDF
             $idSolicitud = $_GET['id_solicitud'];
             //$idCarrera = $json->idCarrera;
 
+
+
             $sql = $pdo->prepare("select * from solicitud where id = ?");
             $sql->execute([$idSolicitud]);
             $resultado= $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -50,10 +52,25 @@ class PDF extends FPDF
             $resultado=$sql->fetchAll();
             header("HTTP/1.1 200 OK");
 
+            $sql2 = $pdo->prepare('select distinct unidad_academica.nombre as unidad_nombre, carrera.id, carrera.nombre as carrera_nombre, carrera.codigo from carrera 
+            inner join asignatura on asignatura.codigo_carrera = carrera.id
+            inner join detalle_solicitud on detalle_solicitud.codigo_asignatura = asignatura.id
+            inner join solicitud on solicitud.id = detalle_solicitud.id_solicitud 
+            inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
+            inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
+            where solicitud.id = ?;');
+            $sql2->execute([$idSolicitud]);
+            $resultado2= $sql2->setFetchMode(PDO::FETCH_ASSOC);
+
+            $resultado2=$sql2->fetchAll();
+            header("HTTP/1.1 200 OK");
             //echo($resultado[0]['estudiante']);
 
             $nombre = $resultado[0]['estudiante'];
             $registro_academico = $resultado[0]['registro_academico'];
+            $cui_pasaporte = $resultado[0]['cui_pasaporte'];
+            $unidad_academica = $resultado2[0]['unidad_nombre'];
+            $carrera = $resultado2[0]['carrera_nombre'];
             date_default_timezone_set('America/Mexico_City');
             $año = date('Y');
             $dia = date('d');
@@ -90,7 +107,7 @@ class PDF extends FPDF
       $this->SetTextColor(0, 0, 0);
       $this->Cell(70); // Movernos a la derecha
       $this->SetFont('Arial', '', 9); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
-      $this->MultiCell(110, 5, utf8_decode("ASUNTO: Información de Br.".$nombre.", Registro Académico No. ".$registro_academico.", CUI: XXXX XXXXX XXXX y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro  Universitario de XXX (CUNXXX)."),1,'J',false);
+      $this->MultiCell(110, 5, utf8_decode("ASUNTO: Información de Br.".$nombre.", Registro Académico No. ".$registro_academico.", CUI: ".$cui_pasaporte." y estudiante de la carrera de ".$carrera." de ".$unidad_academica."."),1,'J',false);
       $this->Ln(2);
 
       $this->Cell(130); // Movernos a la derecha
@@ -121,12 +138,12 @@ class PDF extends FPDF
 
       $this->Cell(20); // Movernos a la derecha
       $this->SetFont('Arial', '', 9); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
-      $this->MultiCell(160, 5, utf8_decode("    A requerimiento de la Secretaría Académica de la Facultad de Ciencias Jurídicas y Sociales de la Universidad de San Carlos de Guatemala y con base a la solicitud de equivalencia de cursos formulada por Información de Br. NOMBRE COMPLETO, Registro Académico No. XXXX- XXXXX, CUI: XXXX XXXXX XXXX y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXX (CUNXXX); respetuosamente me dirijo a ustedes con el objeto de trasladar información de la situación académico-administrativa del solicitante, conforme a la información consultada en el Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala. "),0,'J',false);
+      $this->MultiCell(160, 5, utf8_decode("    A requerimiento de la Secretaría Académica de la Facultad de Ciencias Jurídicas y Sociales de la Universidad de San Carlos de Guatemala y con base a la solicitud de equivalencia de cursos formulada por Información de Br. ".$nombre.", Registro Académico No. ".$registro_academico.", CUI: ".$cui_pasaporte." y estudiante de la carrera de ".$carrera." de ".$unidad_academica."; respetuosamente me dirijo a ustedes con el objeto de trasladar información de la situación académico-administrativa del solicitante, conforme a la información consultada en el Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala. "),0,'J',false);
       $this->Ln(2);
 
       $this->Cell(20); // Movernos a la derecha
       $this->SetFont('Arial', '', 9); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
-      $this->MultiCell(160, 5, utf8_decode("    En este sentido, me permito indicar NOMBRE COMPLETO, Registro Académico No. XXXX- XXXXX, CUI: XXXX XXXXX XXXX y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXX (CUNXXX); pertenece a la COHORTE 20XX de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXXX (CUNXXX) la cual de conformidad con la legislación universitaria sí se encuentra autorizada según Punto XXXX, inciso XX.X del Acta XX-XXXX, de la sesión celebrada por el Consejo Superior Universitario, el XX de noviembre de XXXX."),0,'J',false);
+      $this->MultiCell(160, 5, utf8_decode("    En este sentido, me permito indicar ".$nombre.", Registro Académico No. ".$registro_academico.", CUI: ".$cui_pasaporte." y estudiante de la carrera de ".$carrera." de ".$unidad_academica."; pertenece a la COHORTE 20XX de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXXX (CUNXXX) la cual de conformidad con la legislación universitaria sí se encuentra autorizada según Punto XXXX, inciso XX.X del Acta XX-XXXX, de la sesión celebrada por el Consejo Superior Universitario, el XX de noviembre de XXXX."),0,'J',false);
       $this->Ln(5);
 
       $this->Cell(30); // Movernos a la derecha

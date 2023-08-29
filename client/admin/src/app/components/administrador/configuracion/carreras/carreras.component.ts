@@ -16,6 +16,8 @@ export class CarrerasComponent implements OnInit {
   id_ua: any
   id_eu: any
   carreras: any = []
+  updateModal: boolean = false
+  carrera: any
 
   constructor(
     private _router: Router,
@@ -102,6 +104,22 @@ export class CarrerasComponent implements OnInit {
       )
   }
 
+  updateCarrera(){
+    const data = this.dataForm.value
+    let carrera ={
+      id:this.carrera.id,
+      nombre:data.nombre,
+      codigo:data.codigo
+    }
+
+    this.equivalenciaService.updateCarrera(carrera)
+    .subscribe((res)=>{
+      console.log(res)
+      this.getCarreras()
+    },(error)=>{
+      console.error(error)
+    })
+  }
   deleteCarrera(id: any) {
     this.equivalenciaService.deleteCarrera(id)
       .subscribe((res) => {
@@ -119,9 +137,45 @@ export class CarrerasComponent implements OnInit {
 
 
   guardar() {
-    this.createCarrera()
+    if(this.updateModal){
+      this.updateCarrera()
+    }else{
+      this.createCarrera()
+    }
+    
   }
 
+
+  openUpdateModal(id:any){
+    this.updateModal = true
+
+    this.equivalenciaService.getCarrera(id)
+    .subscribe((res)=>{
+      console.log(res)
+      this.carrera = res[0]
+      this.dataForm.patchValue(
+
+        {
+          nombre: this.carrera.nombre,
+          codigo: this.carrera.codigo,
+        }
+      )
+    },(error)=>{
+      console.error(error)
+    })
+  }
+
+  openCreateModal(){
+    this.updateModal = false
+
+    this.dataForm.patchValue(
+
+      {
+        nombre: '',
+        codigo: '',
+      }
+    )
+  }
   closeModal() {
 
   }

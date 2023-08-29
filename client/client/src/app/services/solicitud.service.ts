@@ -53,4 +53,14 @@ export class SolicitudService {
       catchError(this.handleError)
     )
   }
+
+  getPrevios(id_solicitud: any) : Observable<any>{
+    let url = `${environment.basePath}previo.php?id_solicitud=${id_solicitud}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
 }

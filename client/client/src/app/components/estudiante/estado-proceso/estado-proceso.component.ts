@@ -9,21 +9,39 @@ export class EstadoProcesoComponent implements OnInit {
 
   activo: any = true;
   solicitud: any;
-
+  previos:any = []
   estado: any
+  id_solicitud:any
+  mostrarCuadroPrevios:boolean = false
   constructor(
     private solicitudService: SolicitudService
 
   ) { }
 
   ngOnInit(): void {
+    this.id_solicitud = localStorage.getItem("id_sol")
     this.getSolicitud()
+    this.getPrevios()
   }
 
+
+
+  getPrevios(){
+    this.solicitudService.getPrevios(this.id_solicitud)
+    .subscribe((res)=>{
+      console.log(res)
+      this.previos = res
+      if(this.previos.length > 0){
+        this.mostrarCuadroPrevios = true
+      }
+    },(error)=>{
+      console.error(error)
+    })
+  }
   getSolicitud() {
 
-    var id_solicitud = localStorage.getItem("id_sol")
-    this.solicitudService.getSolicitud(id_solicitud)
+    
+    this.solicitudService.getSolicitud(this.id_solicitud)
       .subscribe((res) => {
         console.log(res)
         this.solicitud = res

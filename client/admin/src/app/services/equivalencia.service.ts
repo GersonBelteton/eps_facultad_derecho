@@ -55,6 +55,14 @@ export class EquivalenciaService {
     )
   }
 
+  updateUnidad(data:any) : Observable<any>{
+    let url = `${environment.basePath}unidad_academica.php`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   deleteUnidad(id:any):Observable<any>{
     let url = `${environment.basePath}unidad_academica.php?id_unidad=${id}`;
     return this.http.delete(url)
@@ -82,6 +90,14 @@ export class EquivalenciaService {
   createExtension(data:any) : Observable<any>{
     let url = `${environment.basePath}extension_universitaria.php`;
     return this.http.post(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updateExtension(data:any) : Observable<any>{
+    let url = `${environment.basePath}extension_universitaria.php`;
+    return this.http.put(url,data)
     .pipe(
       catchError(this.handleError)
     )
@@ -119,6 +135,14 @@ export class EquivalenciaService {
     )
   }
 
+  updateCarrera(data:any) : Observable<any>{
+    let url = `${environment.basePath}carrera.php`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   deleteCarrera(id:any):Observable<any>{
     let url = `${environment.basePath}carrera.php?id_carrera=${id}`;
     return this.http.delete(url)
@@ -146,6 +170,14 @@ export class EquivalenciaService {
   createAsignatura(data:any) : Observable<any>{
     let url = `${environment.basePath}asignatura.php`;
     return this.http.post(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updateAsignatura(data:any) : Observable<any>{
+    let url = `${environment.basePath}asignatura.php`;
+    return this.http.put(url,data)
     .pipe(
       catchError(this.handleError)
     )

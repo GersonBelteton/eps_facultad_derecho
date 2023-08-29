@@ -18,6 +18,8 @@ export class AsignaturasComponent implements OnInit {
   id_eu: any
   id_ca: any
   asignaturas: any = []
+  asignatura: any
+  updateModal: boolean = false
 
   constructor(
     private _router: Router,
@@ -115,6 +117,24 @@ export class AsignaturasComponent implements OnInit {
       )
   }
 
+  updateAsignatura(){
+    const data = this.dataForm.value
+
+    let asignatura = {
+      id:this.asignatura.id,
+      nombre:data.nombre,
+      codigo:data.codigo
+    }
+
+    this.equivalenciaService.updateAsignatura(asignatura)
+    .subscribe((res)=>{
+      console.log(res)
+      this.getAsignaturas()
+    },(error)=>{
+      console.error(error)
+    })
+  }
+
   deleteAsignatura(id: any) {
     this.equivalenciaService.deleteAsignatura(id)
       .subscribe((res) => {
@@ -132,9 +152,45 @@ export class AsignaturasComponent implements OnInit {
 
 
   guardar() {
-    this.createAsignatura()
+    if(this.updateModal){
+      this.updateAsignatura()
+    }else{
+      this.createAsignatura()
+    }
+
   }
 
+  openUpdateModal(id:any){
+    this.updateModal = true
+
+    this.equivalenciaService.getAsignatura(id)
+    .subscribe((res) => {
+      console.log(res)
+      this.asignatura = res[0]
+      this.dataForm.patchValue(
+
+        {
+          nombre: this.asignatura.nombre,
+          codigo: this.asignatura.codigo_asignatura,
+        }
+      )
+    }, (error) => {
+      console.error(error)
+    })
+
+  }
+
+  openCreateModal(){
+    this.updateModal = false
+
+    this.dataForm.patchValue(
+
+      {
+        nombre: '',
+        codigo: '',
+      }
+    )
+  }
   closeModal(){
 
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AdministradorService} from '../../../services/administrador.service'
-
+import {SolicitudService} from '../../../services/solicitud.service'
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -10,18 +10,30 @@ import {AdministradorService} from '../../../services/administrador.service'
 export class InicioComponent implements OnInit {
 
 
+  solicitudesFinalizadas: any
+  solicitudesNoFinalizadas:any
   constructor(
     private _router:Router,
-    private administradorServie:AdministradorService
+    private administradorService:AdministradorService,
+    private solicitudService:SolicitudService
 
   ) { }
 
   ngOnInit(): void {
-
+    this.conteoSolicitudes()
   }
 
 
-
+  conteoSolicitudes(){
+    this.solicitudService.getCountSolicitudes()
+    .subscribe((res)=>{
+      console.log(res)
+      this.solicitudesFinalizadas = res[1].cantidad
+      this.solicitudesNoFinalizadas = res[0].cantidad
+    },(error)=>{
+      console.error(error)
+    })
+  }
   
 
   goListaProcesosNuevos(){

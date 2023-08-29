@@ -6,21 +6,23 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
                     <ul id="progressbar" class="text-center">
+                        <!-- <li  class="active step0"></li>
                         <li  class="active step0"></li>
                         <li  class="active step0"></li>
                         <li  class="active step0"></li>
-                        <li  class="active step0"></li>
-                        <li  class="active step0"></li>
-                        
+                        <li  class="active step0"></li> -->
 
-                        <!-- <li *ngIf="estadoPI" class="active step0"></li>
+
+                        <li *ngIf="estadoPI" class="active step0"></li>
                         <li *ngIf="!estadoPI" class=" step0"></li>
                         <li *ngIf="estadoEA" class="active step0"></li>
                         <li *ngIf="!estadoEA" class=" step0"></li>
                         <li *ngIf="estadoER" class="active step0"></li>
                         <li *ngIf="!estadoER" class=" step0"></li>
                         <li *ngIf="estadoPF" class="active step0"></li>
-                        <li *ngIf="!estadoPF" class=" step0"></li> -->
+                        <li *ngIf="!estadoPF" class=" step0"></li>
+                        <li *ngIf="estadoPF" class="active step0"></li>
+                        <li *ngIf="!estadoPF" class=" step0"></li>
 
                     </ul>
                 </div>
@@ -82,16 +84,31 @@
                 </div>
             </div>
 
-            <div *ngIf="estadoDPP" class="row justify-content-center">
-                <div class="card border-danger mb-3" style="max-width: 50rem;">
-                    <div class="card-body text-danger">
-                        <h5 class="card-title">Proceso detenido por previos</h5>
-                        <p class="card-text">1. Se han seleccionado cursos que no aparecen en el certificado.</p>
+            <div *ngIf="mostrarCuadroPrevios" class="row">
+                <div class="row justify-content-center">
+                    <div class="card border-danger mb-3" style="max-width: 50rem;">
+                        <div class="card-body text-danger">
+                            <h5 class="card-title">Proceso detenido por previos</h5>
 
-                        <div class="text-center">
-                            <button  type="button" class="btn btn-danger">Corregir</button>
+                            <!-- <p class="card-text">1. Se han seleccionado cursos que no aparecen en el certificado.</p> -->
+
+
+                            <ul class="list-group">
+                                <li *ngFor="let previo of previos" class="list-group-item">
+
+                                    <div class="row">
+
+                                        {{previo.previo_id}} - {{previo.descripcion}}
+
+                                    </div>
+
+
+                                </li>
+
+
+                            </ul>
+
                         </div>
-                        
                     </div>
                 </div>
             </div>

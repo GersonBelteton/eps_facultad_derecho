@@ -1,0 +1,196 @@
+// playground requires you to assign document definition to a variable called dd
+
+var dd = {
+	content: [
+	    {
+
+	            columns:
+                    [
+                        {
+                            image: 'sampleImage.jpg',
+            			    width: 150
+                        },
+                        {
+                            
+                        },
+                        {
+                            text:[
+                                '\n',
+                                {text:'SUPERVISIÓN ACADÉMICA DE LAS ESCUELAS DE DERECHO DEPARTAMENTALES\n', fontSize: 9, bold: true},
+                                {text:'Oficina 233, 2º. Nivel del Edificio S-7. Ciudad Universitaria, zona 12. Teléfonos. 2418-8422 y 2418-8400; Ext. 85086\n', fontSize: 7},
+                                {text:'__________________________________________________________________', bold:true}
+                            ],
+            
+                            width: 400,
+                            alignment: 'center'
+                        }
+                    ]
+	        
+	    },
+	    {
+	        text:'\n\nSAEDD-000-2023',
+	        alignment:'right',
+	        color: '#310000',
+	        bold:true
+	    },
+	    {text:'\n', fontSize:5},
+	    {
+	       	columns:[
+    	        {
+    	            
+    	        },
+    	        {
+    	            width:320,
+    	            alignment:'justify',
+        			table: {
+        			    widths: [320],
+        				body: [
+        					[
+        					   { 
+        					       text:[
+        					        {text:'ASUNTO: ',fontSize:10,decoration: 'underline',},
+        					         {text:'Información de ',fontSize:10},
+        					         {text:'Br. NOMBRE COMPLETO, ',fontSize:10,bold:true}, 
+        					         {text:'Registro Académico No. ',fontSize:10},
+        					         {text:'XXXX- XXXXX',fontSize:10,bold:true},
+        					         {text:', CUI: ',fontSize:10},
+        					         {text:'XXXX XXXXX XXXX',fontSize:10,bold:true},
+        					         {text:' y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXX (CUNXXX).',fontSize:10},
+        					       ]
+        					       
+        					   }
+
+        					],
+        				]
+        			}
+    	         }
+	           ] 
+	    },
+	   	{text:'\n', fontSize:10},     
+	    {
+	        text:'Guatemala, XX de febrero de 2023',
+	        alignment:'right',
+
+		},
+	    {text:'\n\n\n', fontSize:10},     
+		{
+		    text:'Señores Miembros de ',
+	        alignment:'left',
+	        fontSize:10
+		},
+		{
+		    text:'JUNTA DIRECTIVA',
+	        alignment:'left',
+	        fontSize:10,
+	        bold:true
+		},
+		{
+		    text:'Facultad de Ciencias Jurídicas y Sociales.',
+	        alignment:'left',
+	        fontSize:10
+		},
+		{
+		    text:'Ciudad Universitaria, zona 12.',
+	        alignment:'left',
+	        fontSize:10
+		},
+		{text:'\n\n', fontSize:10},   
+		{
+		    text:'Honorable Junta Directiva:',
+	        alignment:'left',
+	        fontSize:10
+		},
+		{text:'\n\n', fontSize:10},   
+		{
+		    alignment:'justify',
+		    text:[
+		        {text:'\t\t\tA requerimiento de la Secretaría Académica de la Facultad de Ciencias Jurídicas y Sociales de la Universidad de San Carlos de Guatemala y con base a la solicitud de equivalencia de cursos formulada por Información de ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'Br. NOMBRE COMPLETO, ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'Registro Académico No. ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'XXXX- XXXXX, ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'CUI: ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'XXXX XXXXX XXXX ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXX (CUNXXX); respetuosamente me dirijo a ustedes con el objeto de trasladar información de la situación académico-administrativa del solicitante, conforme a la información consultada en el Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala. ', preserveLeadingSpaces: true,fontSize:10},
+		        
+		  ]
+		},
+	    {text:'\n', fontSize:10},   
+	    {
+		    alignment:'justify',
+		    text:[
+		        {text:'\t\t\tEn este sentido, me permito indicar ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'NOMBRE COMPLETO, ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'Registro Académico No. ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'XXXX- XXXXX, ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'CUI: ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'XXXX XXXXX XXXX ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		        {text:'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXX (CUNXXX); pertenece a la COHORTE 20XX de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado del Centro Universitario de XXXX (CUNXXX) la cual de conformidad con la legislación universitaria ', preserveLeadingSpaces: true,fontSize:10},
+		        {text:'sí se encuentra autorizada ', preserveLeadingSpaces: true,fontSize:10,bold:true,decoration: 'underline'},
+		        {text:'según Punto XXXX, inciso XX.X del Acta XX-XXXX, de la sesión celebrada por el Consejo Superior Universitario, el XX de noviembre de XXXX.', preserveLeadingSpaces: true,fontSize:10},
+		        
+		        
+		  ]
+		},
+		{text:'\n', fontSize:10},   
+		{
+		    text:'\t\t\t\tAtentamente, ',
+	        alignment:'left',
+	        fontSize:10,
+	        preserveLeadingSpaces: true
+		},
+		{text:'\n', fontSize:10},   
+		{
+		    text:'"ID Y ENSEÑAD A TODOS"',
+	        alignment:'center',
+	        fontSize:10,
+	        bold:true,
+	        preserveLeadingSpaces: true
+		},
+		{text:'\n\n\n\n\n\n', fontSize:10},   
+		{
+		    text:'Licda. Valeska Ivonné Ruiz Echeverría',
+	        alignment:'center',
+	        fontSize:10,
+	        bold:true,
+	        preserveLeadingSpaces: true
+		},
+		{
+		    text:'Supervisora Académica de las',
+	        alignment:'center',
+	        fontSize:9,
+		},
+		{
+		    text:'Escuelas de Derecho Departamentales',
+	        alignment:'center',
+	        fontSize:9,
+		},
+		{
+		    text:'c.c. Correlativo SAEDD',
+	        alignment:'left',
+	        fontSize:6,
+		},
+		{
+		    text:'SAEDD/vire 2023',
+	        alignment:'left',
+	        fontSize:6,
+		},
+		{
+		    text:'__________________________________________',
+	        alignment:'left',
+	        bold:true,
+	        fontSize:10,
+		},
+		{text:'\n', fontSize:10},   
+		{
+		    text:[
+		        {text:'ADJUNTO: ', preserveLeadingSpaces: true,fontSize:10,bold:true},
+		         {text:'Consulta electrónica realizada al Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala con fecha XX de febrero de 2023 y expediente de mérito (378 folios).', preserveLeadingSpaces: true,fontSize:10},
+		        
+		  ]
+		}
+
+	    
+
+	]
+	
+}

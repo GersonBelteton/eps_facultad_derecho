@@ -12,6 +12,8 @@ import { EquivalenciaService } from '../../../../services/equivalencia.service'
 export class UnidadesComponent implements OnInit {
 
   unidades: any = []
+  unidad:any
+  updateModal: boolean = false
   constructor(
     private _router: Router,
     private equivalenciaService: EquivalenciaService,
@@ -37,13 +39,49 @@ export class UnidadesComponent implements OnInit {
     this.getUnidades()
   }
 
+  openUpdateModal(id:any){
+    this.updateModal = true
+
+    this.equivalenciaService.getUnidad(id)
+    .subscribe((res)=>{
+      console.log(res)
+      this.unidad=res[0]
+
+      this.dataForm.patchValue(
+
+        {
+          nombre: this.unidad.nombre,
+          codigo: this.unidad.codigo,
+        }
+      )
+    },(error)=>{
+      console.error(error)
+    })
+  }
+
+  openCreateModal(){
+    this.updateModal = false
+
+    this.dataForm.patchValue(
+
+      {
+        nombre: '',
+        codigo: '',
+      }
+    )
+  }
   closeModal() {
 
   }
 
   guardar() {
 
-    this.createUnidad()
+    if(this.updateModal){
+      this.updateUnidad()
+    }else if(!this.updateModal){
+      this.createUnidad()
+    }
+
   }
 
   goExtensiones(id:any){
@@ -51,6 +89,26 @@ export class UnidadesComponent implements OnInit {
     this._router.navigate(['configuracion-extensiones'])
   }
 
+  updateUnidad(){
+    const data = this.dataForm.value;
+
+    let unidad = {
+      id: this.unidad.id,
+      codigo: data.codigo,
+      nombre: data.nombre
+    }
+
+    this.equivalenciaService.updateUnidad(unidad)
+      .subscribe(
+        (res) => {
+          console.log(res)
+          this.getUnidades()
+        },
+        (error) => {
+          console.error(error)
+        }
+      )
+  }
   createUnidad() {
     const data = this.dataForm.value;
 

@@ -45,6 +45,21 @@ export class SolicitudService {
     )
   }
 
+  getCountSolicitudes(): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?conteo_solicitudes=1`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getSolicitudesFinalizadas(finalizadas:any): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?finalizadas=${finalizadas}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
   getCarreraExtensionUnidad(id_carrera:any):Observable<any>{
     let url = `${environment.basePath}index.php?id_carrera=${id_carrera}`
     return this.http.get(url)
@@ -56,6 +71,54 @@ export class SolicitudService {
   reporte(data:any):Observable<any>{
     let url = `${environment.basePath}reporte.php`;
     return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getAllPrevios():Observable<any>{
+    let url = `${environment.basePath}previo.php`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPrevios(id_solicitud:any):Observable<any>{
+    let url = `${environment.basePath}previo.php?id_solicitud=${id_solicitud}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  createPrevio(data:any):Observable<any>{
+    let url = `${environment.basePath}previo.php`;
+    return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  createDetallePrevio(data:any):Observable<any>{
+    let url = `${environment.basePath}previo.php?detalle_previo=1`;
+    return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  deletePrevio(id_previo:any):Observable<any>{
+    let url = `${environment.basePath}previo.php?id_previo=${id_previo}`;
+    return this.http.delete(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  deleteDetallePrevio(id_detalle_previo:any):Observable<any>{
+    let url = `${environment.basePath}previo.php?id_detalle_previo=${id_detalle_previo}`;
+    return this.http.delete(url)
     .pipe(
       catchError(this.handleError)
     )

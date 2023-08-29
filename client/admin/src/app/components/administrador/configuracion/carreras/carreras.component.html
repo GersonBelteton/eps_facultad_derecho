@@ -1,32 +1,36 @@
 <app-navegacion></app-navegacion>
 
-<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1  class="modal-title fs-5" id="exampleModalLabel">Agregar carrera</h1>
-         
-          <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="dataForm">
-            <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Codigo:</label>
-                <input type="text" class="form-control" id="recipient-name" formControlName="codigo">
-              </div>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" id="recipient-name" formControlName="nombre">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="!updateModal" class="modal-title fs-5" id="exampleModalLabel">Agregar carrera</h1>
+                <h1 *ngIf="updateModal" class="modal-title fs-5" id="exampleModalLabel">Actualizar carrera</h1>
+                <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
-          </form>
+            <div class="modal-body">
+                <form [formGroup]="dataForm">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Codigo:</label>
+                        <input type="text" class="form-control" id="recipient-name" formControlName="codigo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="recipient-name" formControlName="nombre">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button (click)="closeModal()" type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button (click)="guardar()" type="button" class="btn btn-primary"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button (click)="guardar()" type="button" class="btn btn-primary"data-bs-dismiss="modal"  >Guardar</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <div class="container my-5 text-center">
 
@@ -34,13 +38,14 @@
         <h1>Carreras</h1>
         <h4>{{unidad.codigo}} - {{unidad.nombre}}</h4>
         <h4>{{extension.codigo}} - {{extension.nombre}}</h4>
-        
+
         <hr>
     </div>
 
     <div class="row">
         <div class="col" style="text-align: center;">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar carrera</button>
+            <button (click)="openCreateModal()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Agregar carrera</button>
 
         </div>
     </div>
@@ -62,7 +67,7 @@
                     <td>{{carrera.codigo}}</td>
                     <td>{{carrera.nombre}}</td>
                     <td>
-                        <button  type="button" class="btn btn-outline-warning mr-3"  >
+                        <button (click)="openUpdateModal(carrera.id)" type="button" class="btn btn-outline-warning mr-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path
@@ -71,7 +76,7 @@
                             </svg>
                         </button>
 
-                        <button (click)="deleteCarrera(carrera.id)"  type="button" class="btn btn-outline-danger mr-3">
+                        <button (click)="deleteCarrera(carrera.id)" type="button" class="btn btn-outline-danger mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash" viewBox="0 0 16 16">
                                 <path
@@ -82,8 +87,8 @@
                                 </path>
                             </svg>
                         </button>
-                        <button (click)="goAsignaturas(carrera.id)"  type="button" class="btn btn-outline-primary">
-                            ASIGNATURAS 
+                        <button (click)="goAsignaturas(carrera.id)" type="button" class="btn btn-outline-primary">
+                            ASIGNATURAS
                         </button>
                     </td>
                 </tr>

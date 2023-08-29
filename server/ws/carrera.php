@@ -92,6 +92,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ]);
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+
+    header("Access-Control-Allow-Origin: http://localhost:4201");
+
+    $json = json_decode(file_get_contents("php://input"));
+    if (!$json) {
+        exit("No hay datos");
+    }
+    $sql = $pdo->prepare("UPDATE carrera SET codigo = ?, nombre = ? WHERE id = ?");
+    $sql->execute([$json->codigo, $json->nombre, $json->id]);
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 

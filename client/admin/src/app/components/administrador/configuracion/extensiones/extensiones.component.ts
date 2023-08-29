@@ -14,6 +14,8 @@ export class ExtensionesComponent implements OnInit {
   extensiones: any = []
   unidad: any
   id_ua: any
+  updateModal:boolean = false
+  extension:any
   constructor(
     private _router: Router,
     private equivalenciaService: EquivalenciaService,
@@ -42,17 +44,72 @@ export class ExtensionesComponent implements OnInit {
   }
 
 
+  openUpdateModal(id:any){
+    this.updateModal = true;
+
+    this.equivalenciaService.getExtension(id)
+    .subscribe((res)=>{
+      console.log(res)
+      this.extension=res[0]
+      this.dataForm.patchValue(
+
+        {
+          nombre: this.extension.nombre,
+          codigo: this.extension.codigo,
+        }
+      )
+    },(error)=>{
+      console.error(error)
+    })
+  }
+
+  openCreateModal(){
+    this.updateModal = false
+
+    this.dataForm.patchValue(
+
+      {
+        nombre: '',
+        codigo: '',
+      }
+    )
+  }
+
   closeModal(){
 
   }
 
   guardar(){
-    this.createExtension()
+    if(this.updateModal){
+      this.updateExtension()
+    }else{
+      this.createExtension()
+    }
+
   }
 
   goCarreras(id:any){
     localStorage.setItem('conf-eu',id)
     this._router.navigate(['configuracion-carreras'])
+  }
+
+  updateExtension(){
+
+    const data = this.dataForm.value
+
+    let extension = {
+      id: this.extension.id,
+      codigo: data.codigo,
+      nombre: data.nombre
+    }
+
+    this.equivalenciaService.updateExtension(extension)
+    .subscribe((res)=>{
+      console.log(res)
+      this.getExtensiones()
+    },(error)=>{
+      console.error(error)
+    })
   }
 
   createExtension() {

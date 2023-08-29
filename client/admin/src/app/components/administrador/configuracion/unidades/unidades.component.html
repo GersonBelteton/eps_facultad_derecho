@@ -5,7 +5,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar unidad académica</h1>
+                <h1 *ngIf="!updateModal" class="modal-title fs-5" id="exampleModalLabel">Agregar unidad académica</h1>
+                <h1 *ngIf="updateModal" class="modal-title fs-5" id="exampleModalLabel">Actualizar unidad académica</h1>
 
                 <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
@@ -25,8 +26,10 @@
             <div class="modal-footer">
                 <button (click)="closeModal()" type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">Cancelar</button>
+
                 <button (click)="guardar()" type="button" class="btn btn-primary"
                     data-bs-dismiss="modal">Guardar</button>
+
             </div>
         </div>
     </div>
@@ -41,8 +44,8 @@
 
     <div class="row">
         <div class="col" style="text-align: center;">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo">Agregar unidad academica</button>
+            <button (click)="openCreateModal()" type="button" class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar unidad academica</button>
 
         </div>
     </div>
@@ -64,7 +67,8 @@
                     <td>{{unidad.codigo}}</td>
                     <td>{{unidad.nombre}}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-warning mr-3">
+                        <button (click)="openUpdateModal(unidad.id)" type="button" class="btn btn-outline-warning mr-3"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path
@@ -85,7 +89,7 @@
                             </svg>
                         </button>
                         <button (click)="goExtensiones(unidad.id)" type="button" class="btn btn-outline-primary">
-                            EXTENSIONES 
+                            EXTENSIONES
                         </button>
                     </td>
                 </tr>

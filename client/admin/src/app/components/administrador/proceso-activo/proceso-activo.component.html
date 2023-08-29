@@ -5,6 +5,188 @@
 
 <div class="container">
 
+    <div class="modal fade" id="modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Generar reporte</h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div [formGroup]="dataFormReporte" class="modal-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="nombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Registro Académico</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="carnet">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">CUI</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="cui">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Centro universitario</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                    formControlName="centro"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="cohorte">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Punto</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="punto">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Inciso</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="inciso">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Acta</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="acta">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="exampleFormControlInput1" class="form-label">SESIÓN CELEBRADA EL </label>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Dia</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="diaSesion">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Mes</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="mesSesion">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Año</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="anioSesion">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button (click)="crearPDF()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Generar
+                        Reporte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar previo</h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div [formGroup]="dataForm" class="modal-body">
+
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Crear nuevo previo</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                            formControlName="previo"></textarea>
+                    </div>
+
+                    <button (click)="crearPrevio()" type="button" class="btn btn-success">Crear</button>
+
+                    <hr>
+                    <ul class="list-group">
+                        <div *ngFor="let previo of previos" class="form-check">
+
+                            <div class="row">
+                                <div class="col-10">
+                                    <input #teams (change)="fieldsChange($event)" [checked]="getStatusPrevio(previo.id)"
+                                        value="angular" class="form-check-input" type="checkbox" [value]="previo.id"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{previo.id}} - {{previo.descripcion}}
+                                    </label>
+                                </div>
+                                <div class="col-2">
+
+                                    <button (click)="borrarPrevio(previo.id)" type="button" class="btn btn-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button (click)="enviarPrevios()" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -59,6 +241,7 @@
 
                 <h5 class="card-title"> <b>Estudiante:</b> {{solicitud.solicitud[0].estudiante}}</h5>
                 <h5 class="card-title"><b>Registro Académico:</b> {{solicitud.solicitud[0].registro_academico}}</h5>
+                <h5 class="card-title"><b>CUI / pasaporte:</b> {{solicitud.solicitud[0].cui_pasaporte}}</h5>
                 <!-- <h5 class="card-title">CUI: 3025302980224</h5> -->
             </div>
         </div>
@@ -149,9 +332,10 @@
                         Mostrar Cursos equivalentes
                     </button>
 
-                
-                    <a [href]="urlReporte" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-outline-primary mt-3">
+
+
+                    <button type="button" class="btn btn-outline-primary mt-3" data-bs-toggle="modal"
+                        data-bs-target="#modal4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
                             <path
@@ -160,11 +344,89 @@
                                 d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z" />
                         </svg>
                         Generar reporte
-                    </a>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger mt-3 ms-3" data-bs-toggle="modal"
+                        data-bs-target="#modal3">
+
+                        Generar previo
+                    </button>
 
                 </div>
             </div>
         </div>
+    </div>
+
+
+
+    <div *ngIf="mostrarCuadroPrevios" class="row">
+        <div class="row justify-content-center">
+            <div class="card border-danger mb-3" style="max-width: 50rem;">
+                <div class="card-body text-danger">
+                    <h5 class="card-title">Proceso detenido por previos</h5>
+
+                    <!-- <p class="card-text">1. Se han seleccionado cursos que no aparecen en el certificado.</p> -->
+
+
+                    <ul class="list-group">
+                        <li *ngFor="let previo of previos_estudiante" class="list-group-item">
+
+                            <div class="row">
+                                <div class="col-10">
+                                    {{previo.previo_id}} - {{previo.descripcion}}
+                                </div>
+                                <div class="col-2">
+                                    <button (click)="borrarPrevioEstudiante(previo.detalle_id)" type="button"
+                                        class="btn btn-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-around">
+        <div class="col-4">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Aprobrado
+                </label>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    No aprobado
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row justify-content-center my-3">
+        <div class="col-4" style="text-align: center;">
+            <button type="button" class="btn btn-success">FINALIZAR PROCESO</button>
+        </div>
+
     </div>
 
 </div>

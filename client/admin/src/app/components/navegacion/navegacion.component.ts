@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
 export class NavegacionComponent implements OnInit {
 
   admin:any
+  idAdmin:any
   constructor(
     private _router:Router,
     private administradorServie:AdministradorService
   ) { }
 
   ngOnInit(): void {
+    this.idAdmin = localStorage.getItem("current_id")
     this.getAdministrador()
   }
 
@@ -23,8 +25,8 @@ export class NavegacionComponent implements OnInit {
   }
   
   getAdministrador(){
-    var idAdmin = localStorage.getItem("current_id")
-    this.administradorServie.getAdministrador(idAdmin)
+
+    this.administradorServie.getAdministrador(this.idAdmin)
     .subscribe(
       (res)=>{
         console.log(res)

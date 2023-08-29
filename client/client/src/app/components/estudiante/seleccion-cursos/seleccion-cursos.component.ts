@@ -245,6 +245,7 @@ export class SeleccionCursosComponent implements OnInit {
       let data:any = {
         estudiante: localStorage.getItem("nombre_est"),
         registro_academico: localStorage.getItem("registro_est"),
+        cui_pasaporte: localStorage.getItem("cui_est"),
         tipo:"equivalencia",
         codigo_carrera:parseInt(id_carrera, 10),
         archivo:this.file,

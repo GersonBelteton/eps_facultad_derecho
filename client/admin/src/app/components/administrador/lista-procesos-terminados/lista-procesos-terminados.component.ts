@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import {SolicitudService} from '../../../services/solicitud.service'
 @Component({
   selector: 'app-lista-procesos-terminados',
   templateUrl: './lista-procesos-terminados.component.html',
@@ -7,12 +8,32 @@ import {Router} from '@angular/router'
 })
 export class ListaProcesosTerminadosComponent implements OnInit {
 
-  constructor(private _router:Router) { }
+  solicitudes : any = []
+
+
+  constructor(
+    private _router:Router,
+    private solicitudService:SolicitudService) { }
 
   ngOnInit(): void {
+    this.getSolicitudes()
   }
 
-  goVer(){
+  getSolicitudes(){
+    this.solicitudService.getSolicitudesFinalizadas('SI')
+    .subscribe((res)=>{
+      this.solicitudes = res
+      console.log(this.solicitudes)
+    },
+    (error)=>{
+      console.error(error)
+    })
+  }
+
+  goVer(id:any){
+    localStorage.setItem('sol-id',id)
     this._router.navigate(['proceso-terminado'])
   }
+
+
 }
