@@ -57,6 +57,7 @@ export class EstadoProcesoComponent implements OnInit {
   estadoPI: any
   estadoEA: any
   estadoER: any
+  estadoGR: any
   estadoPF: any
   estadoDPP:any
   setEstados() {
@@ -64,30 +65,42 @@ export class EstadoProcesoComponent implements OnInit {
       this.estadoPI=true
       this.estadoEA=false
       this.estadoER=false
+      this.estadoGR=false
       this.estadoPF=false
       this.estadoDPP=false
     }else if(this.estado == "EA"){
       this.estadoPI=true
       this.estadoEA=true
       this.estadoER=false
+      this.estadoGR=false
       this.estadoPF=false
       this.estadoDPP=false
     }else if(this.estado == "ER"){
       this.estadoPI=true
       this.estadoEA=true
       this.estadoER=true
+      this.estadoGR=false
+      this.estadoPF=false
+      this.estadoDPP=false
+    }else if(this.estado == "GR"){
+      this.estadoPI=true
+      this.estadoEA=true
+      this.estadoER=true
+      this.estadoGR=true
       this.estadoPF=false
       this.estadoDPP=false
     }else if(this.estado == "PF"){
       this.estadoPI=true
       this.estadoEA=true
       this.estadoER=true
+      this.estadoGR=true
       this.estadoPF=true
       this.estadoDPP=false
     }else if(this.estado == "DPP"){
       this.estadoPI=true
       this.estadoEA=true
       this.estadoER=true
+      this.estadoGR=false
       this.estadoPF=false
       this.estadoDPP=true
     }

@@ -170,7 +170,7 @@ if ($method == 'DELETE') {
 
 
 if ($method == 'PUT') {
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    header("Access-Control-Allow-Origin: http://localhost:4201");
     header("Access-Control-Allow-Headers: *");
 
 
@@ -179,31 +179,51 @@ if ($method == 'PUT') {
         exit('no hay datos');
     }
 
+    if(!empty($_GET['estado'])){
 
-
-    $codigo_carrera = $json->codigo_carrera;
-    $asignaturas = $json->asignaturas;
-    $id_solicitud = $json->id_solicitud;
-
-    $sql = $pdo->prepare("update solicitud set codigo_carrera = ? where id = ?");
-    $sql->execute([$codigo_carrera, $id_solicitud]);
-
-    $sql = $pdo->prepare("delete from detalle_solicitud where id_solicitud = ?");
-    $sql->execute([$id_solicitud]);
-
-    $res = [];
-    $cont = 0;
-    foreach ($asignaturas as $asignatura) {
-
-        $sql = $pdo->prepare("insert into detalle_solicitud (id_solicitud, codigo_asignatura)
-        values (?,?)");
-        $res[$cont] = $sql->execute([$id_solicitud, $asignatura->codigo]);
-        $cont++;
-
+        $estado = $_GET['estado'];
+        $id_solicitud = $json->id_solicitud;
+        $sql = $pdo->prepare("update solicitud set estado = ? where id = ?");
+        $sql->execute([$estado, $id_solicitud]);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    }else if(!empty($_GET['resultado'])){
+        $resultado = $json->resultado;
+        $id_solicitud = $json->id_solicitud;
+        $estado = $json->estado;
+        $sql = $pdo->prepare("update solicitud set resultado = ?, estado = ?, fecha_final = now() where id = ?");
+        $sql->execute([$resultado,$estado, $id_solicitud]);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    }else{
+        $codigo_carrera = $json->codigo_carrera;
+        $asignaturas = $json->asignaturas;
+        $id_solicitud = $json->id_solicitud;
+    
+        $sql = $pdo->prepare("update solicitud set codigo_carrera = ? where id = ?");
+        $sql->execute([$codigo_carrera, $id_solicitud]);
+    
+        $sql = $pdo->prepare("delete from detalle_solicitud where id_solicitud = ?");
+        $sql->execute([$id_solicitud]);
+    
+        $res = [];
+        $cont = 0;
+        foreach ($asignaturas as $asignatura) {
+    
+            $sql = $pdo->prepare("insert into detalle_solicitud (id_solicitud, codigo_asignatura)
+            values (?,?)");
+            $res[$cont] = $sql->execute([$id_solicitud, $asignatura->codigo]);
+            $cont++;
+    
+        }
+    
+        echo json_encode($res);
+    
     }
 
-    echo json_encode($res);
-
+    
 }
 
 

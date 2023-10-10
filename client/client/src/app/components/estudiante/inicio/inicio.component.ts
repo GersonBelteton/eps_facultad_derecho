@@ -34,7 +34,8 @@ export class InicioComponent implements OnInit {
     this._router.navigate(['revisar-activo'])
   }
 
-  goRevisarTerminado() {
+  goRevisarTerminado(id_solicitud:any) {
+    localStorage.setItem("id_sol", id_solicitud)
     this._router.navigate(['revisar-terminado'])
   }
 

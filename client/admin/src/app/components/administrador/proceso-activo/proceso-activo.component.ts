@@ -95,6 +95,30 @@ export class ProcesoActivoComponent implements OnInit {
 
   }
 
+  finalizar(){
+    var res;
+    var status;
+    if(this.previos_estudiante > 0){
+      res = "No Aprobado"
+      status = "DPP"
+    }else{
+      res = "Aprobado",
+      status = "PF"
+    }
+    let body = {
+      id_solicitud: this.idSolicitud,
+      resultado: res,
+      estado: status,
+    }
+
+    this.solicitudService.finalizarSolicitud(body)
+    .subscribe((res)=>{
+      console.log(res)
+      this._router.navigate(['/inicio'])
+    },(error)=>{
+      console.error(error)
+    })
+  }
   previosMarcados: any = []
   fieldsChange(values: any): void {
     console.log(values.currentTarget.checked);
@@ -390,9 +414,23 @@ export class ProcesoActivoComponent implements OnInit {
     return cuiF
   }
 
+
+  modificarEstadoSolicitud(){
+    let data = {
+      id_solicitud:this.idSolicitud
+    }
+    this.solicitudService.updateEstadoSolicitud(data,"GR")
+    .subscribe((res)=>{
+      console.log(res)
+    },(error)=>{
+      console.error(error)
+    })
+  }
   margin: any = [30, 0]
 
   async crearPDF() {
+
+    this.modificarEstadoSolicitud();
 
     const data = this.dataFormReporte.value;
     var date = new Date()

@@ -60,6 +60,23 @@ export class SolicitudService {
       catchError(this.handleError)
     )
   }
+
+  updateEstadoSolicitud(data:any,estado:any): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?estado=${estado}`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
+  finalizarSolicitud(data:any): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?resultado=1`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
   getCarreraExtensionUnidad(id_carrera:any):Observable<any>{
     let url = `${environment.basePath}index.php?id_carrera=${id_carrera}`
     return this.http.get(url)
