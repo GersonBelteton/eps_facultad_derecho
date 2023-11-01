@@ -98,7 +98,7 @@ export class ProcesoActivoComponent implements OnInit {
   finalizar(){
     var res;
     var status;
-    if(this.previos_estudiante > 0){
+    if(this.previos_estudiante.length > 0){
       res = "No Aprobado"
       status = "DPP"
     }else{

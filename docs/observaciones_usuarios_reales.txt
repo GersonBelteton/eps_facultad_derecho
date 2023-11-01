@@ -27,4 +27,23 @@ Valeska Ruiz20:23
 
 
 201110567   inscrita por ultima vez en 2022 04-00-01
+
+
+
+cambiar palabras, desde, hacia
+mayúsculas al inicio de las palabras
+
+nota hasta presentar los documentos físicos y en original.
+
+
+SAEDD-APP-200-2023
+
+quitar tildes si todas en mayúsculas
+
+agregar cohorte, acta, inciso, punto
            
+Del lado del cliente, se pretende utilizar un servidor denominado Frontend, utilizando
+la herramienta de Angular, la cual permite realizar el diseño mediante distintas librerias 
+de css e integrar con la lógica de programación de manera sencilla con un sistema de componentes. 
+y on
+

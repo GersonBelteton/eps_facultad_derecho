@@ -25,6 +25,7 @@ export class InicioComponent implements OnInit {
   }
 
   goProcesoNuevo() {
+    console.log("go proceso nuevo")
     this._router.navigate(['proceso-nuevo'])
   }
 
@@ -70,6 +71,12 @@ export class InicioComponent implements OnInit {
         this.hayProcesoActivo = false
       }
     });
+
+    if(!this.hayProcesoActivo){
+      if(localStorage.getItem("act_pr")!=null){
+        localStorage.removeItem("act_pr")
+      }
+    }
 
 
 

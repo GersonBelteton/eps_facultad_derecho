@@ -75,6 +75,7 @@ create table solicitud (
 	id int primary key auto_increment,
     estudiante varchar(100) not null,
     registro_academico varchar(10) not null,
+    cui_pasaporte varchar(15),
     tipo varchar(50), -- equivalencia o convalidacion
     estado varchar(50), -- activo, revisado o no revisado
     ruta_certificado_cursos varchar(500), -- ruta almacenamiento de documento
@@ -123,6 +124,21 @@ create table detalle_permiso (
     foreign key(id_permiso) references permiso(id)
     ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(id_administrador) references administrador(id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table previo(
+	id int primary key auto_increment,
+    descripcion varchar(500)
+);
+
+create table detalle_previo(
+	id int primary key auto_increment,
+    id_previo int not null,
+    id_solicitud int not null,
+	foreign key(id_previo) references previo(id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    foreign key(id_solicitud) references solicitud(id)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -265,7 +281,7 @@ insert into administrador(nombre_completo, usuario, contrasena) values ("Roberto
 select * from administrador;
 
 update solicitud set resultado='aprobado', fecha_final=now() where id = 1;
-update solicitud set estado='PI' where id = 1;
+update solicitud set estado='DPP' where id = 2;
 
 
 delete from solicitud where id = 1;
@@ -283,8 +299,14 @@ insert into equivalencia (codigo_asignatura1, codigo_asignatura2) values(1,8),(2
 insert into equivalencia (codigo_asignatura1, codigo_asignatura2) values(11,1);
 select * from equivalencia;
 
+insert into previo (descripcion) value("No cargó certificado de cursos"),("seleccion de cursos erronea");
+insert into previo (descripcion) value("certificado de cursos no actualizado");
 
-
+select previo.id, previo.descripcion from previo inner join detalle_previo on detalle_previo.id_previo = previo.id
+        inner join solicitud on solicitud.id = detalle_previo.id_solicitud  where solicitud.id = 2;
+        
+select * from previo;
+select * from detalle_previo;
 select asignatura.id, nombre, codigo_carrera, codigo_asignatura from equivalencia inner join asignatura on codigo_asignatura2 = asignatura.id 
 where codigo_asignatura1 = 1 and codigo_carrera = 2
 union
@@ -298,10 +320,16 @@ where codigo_asignatura1 = 1 and codigo_carrera = 2
 union
 select  nombre  from equivalencia inner join asignatura on codigo_asignatura1 = asignatura.id 
 where codigo_asignatura2 = 1 and codigo_carrera = 2
-)
+);
 
-
-
+-- obtener carrera actual del estudiante
+select distinct unidad_academica.nombre as unidad_nombre, carrera.id, carrera.nombre as carrera_nombre, carrera.codigo from carrera 
+inner join asignatura on asignatura.codigo_carrera = carrera.id
+inner join detalle_solicitud on detalle_solicitud.codigo_asignatura = asignatura.id
+inner join solicitud on solicitud.id = detalle_solicitud.id_solicitud 
+inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
+inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
+where solicitud.id = 1;
 
 
 
@@ -339,6 +367,18 @@ select *
 from carrera inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
 inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
 where carrera.id = 1;
+
+update solicitud set resultado = "aprobado" where id = 3;
+select * from solicitud;
+delete from solicitud where id = 7;
+-- conteo solicitudes
+(select "NO" as "finalizado", count(*) from solicitud where resultado IS NULL)
+union
+(select "SI" as "finalizado", count(*) from solicitud where resultado IS NOT NULL);
+
+select * from solicitud where resultado IS NULL;
+select * from solicitud where resultado IS NOT NULL;
+
 drop table detalle_solicitud;
 drop table solicitud;
 drop table equivalencia;
@@ -354,3 +394,5 @@ drop table permiso;
 drop table administrador;
 truncate table solicitud;
 truncate table detalle_solicitud;
+truncate table detalle_previo;
+truncate table previo;
