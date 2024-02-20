@@ -1,0 +1,101 @@
+<!-- <app-navegacion></app-navegacion> -->
+<nav class="navbar navbar fixed-top" style="background-color: rgb(43, 43, 56);">
+    <div class="container-fluid">
+        <img src="https://res.cloudinary.com/dst1u4bij/image/upload/v1680705089/logousac3_seqnfy.png" alt="Logo"
+            width="200" height="60" class="d-inline-block align-text-top">
+
+
+    </div>
+
+</nav>
+
+
+
+
+<div style="padding-top: 10%; width: 100%;  text-align: center;">
+
+    <h2>ESTADO DE PROCESO DE EQUIVALENCIAS</h2>
+
+</div>
+
+<hr>
+
+
+
+<div class="container">
+
+
+
+    <div class="row">
+
+        <div class="card tarjeta mb-3" style="max-width: 80rem;">
+            <div class="card-body">
+
+                <h5 class="card-title"> <b>Estudiante:</b> {{solicitud.solicitud[0].estudiante}}</h5>
+                <h5 class="card-title"><b>Registro Académico:</b> {{solicitud.solicitud[0].registro_academico}}</h5>
+                <h5 class="card-title"><b>CUI / pasaporte:</b> {{solicitud.solicitud[0].cui_pasaporte}}</h5>
+                <!-- <h5 class="card-title">CUI: 3025302980224</h5> -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h4 class="my-5"> Proceso Iniciado: {{solicitud.solicitud[0].fecha_inicio}}</h4>
+    </div>
+    <div class="row justify-content-between text-center">
+        <div class="col-5">
+
+            <h4 class="mb-3"> Aprobé los Cursos En: </h4>
+            <div class="card tarjeta mb-3" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{carreraActual.unidad_codigo}}-{{carreraActual.extension_codigo}}-{{carreraActual.carrera_codigo}}
+                    </h5>
+                    <h5 class="card-title">{{carreraActual.unidad_nombre}}
+                        ({{carreraActual.extension_nombre}})</h5>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">{{carreraActual.carrera_nombre}}.</p>
+
+                
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-5">
+
+            <h4 class="mb-3"> Solicito Equivalencias En: </h4>
+            <div class="card tarjeta mb-3" style="max-width: 30rem;">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{carreraDestino.unidad_codigo}}-{{carreraDestino.extension_codigo}}-{{carreraDestino.carrera_codigo}}
+                    </h5>
+                    <h5 class="card-title">{{carreraDestino.unidad_nombre}}
+                        ({{carreraDestino.extension_nombre}})</h5>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">{{carreraDestino.carrera_nombre}}.</p>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-5">
+        <div class="col">
+            <h4> Estado del Proceso:</h4>
+        </div>
+    </div>
+
+    <app-estado-proceso [id_sol]="id_sol"></app-estado-proceso>
+
+</div>

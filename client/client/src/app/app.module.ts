@@ -16,6 +16,7 @@ import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSet
 import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 import { environment } from '../environments/environment';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { QrRevisarProcesoComponent } from './components/estudiante/qr-revisar-proceso/qr-revisar-proceso.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     RevisarProcesoActivoComponent,
     RevisarProcesoTerminadoComponent,
     EstadoProcesoComponent,
-    RecaptchaComponent
+    RecaptchaComponent,
+    QrRevisarProcesoComponent
   ],
   imports: [
     BrowserModule,

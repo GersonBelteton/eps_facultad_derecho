@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { UnidadesComponent } from './components/administrador/configuracion/unidades/unidades.component';
 import { ExtensionesComponent } from './components/administrador/configuracion/extensiones/extensiones.component';
+import { AutorizacionComponent } from './components/administrador/configuracion/autorizacion/autorizacion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { ExtensionesComponent } from './components/administrador/configuracion/e
     AsignaturasComponent,
     EquivalenciasComponent,
     UnidadesComponent,
-    ExtensionesComponent
+    ExtensionesComponent,
+    AutorizacionComponent
   ],
   imports: [
     BrowserModule,

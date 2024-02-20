@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             "select carrera.codigo as carrera_codigo, carrera.nombre as carrera_nombre, 
             extension_universitaria.codigo as extension_codigo, extension_universitaria.nombre as extension_nombre, 
-            unidad_academica.codigo as unidad_codigo, unidad_academica.nombre as unidad_nombre
+            unidad_academica.codigo as unidad_codigo, unidad_academica.nombre as unidad_nombre, unidad_academica.id as unidad_id
             from carrera inner join extension_universitaria on carrera.id_eu = extension_universitaria.id
             inner join unidad_academica on unidad_academica.id = extension_universitaria.id_ua
             where carrera.id = ?;"
@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $carrera = $sql->fetchAll();
         echo json_encode($carrera, JSON_PRETTY_PRINT);
+    }else{
+        echo "EQUIVALENCIAS DERECHO USAC";
     }
 }
 //Insertar registro

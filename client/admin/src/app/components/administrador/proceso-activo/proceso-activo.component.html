@@ -50,14 +50,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                    formControlName="cohorte">
-                            </div>
+
+                    <div class="row mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                formControlName="cohorte">
                         </div>
+                        <div class="col-6">
+                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary">
+                                Validar Autorización
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col">
+                            <label for="">Autorizacion</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedAut" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        </div>
+                        <div class="col">
+                            <label for="">Regularización</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegu"type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        </div>
+                        <div class="col">
+                            <label for="">Reglamentación</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegl" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        </div>
+
                     </div>
 
 

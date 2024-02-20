@@ -222,4 +222,29 @@ export class EquivalenciaService {
       catchError(this.handleError)
     )
   }
+
+
+  getAutorizaciones() : Observable<any>{
+    let url = `${environment.basePath}autorizacion.php`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  createAutorizacion(data:any) : Observable<any>{
+    let url = `${environment.basePath}autorizacion.php`;
+    return this.http.post(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getAutorizacion(id_unidad:any, cohorte:any) : Observable<any>{
+    let url = `${environment.basePath}autorizacion.php?id_unidad=${id_unidad}&cohorte=${cohorte}`;
+    return this.http.get(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }

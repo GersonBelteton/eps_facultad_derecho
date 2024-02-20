@@ -3,6 +3,7 @@
 
 class conexion extends PDO {
 
+
     private $host = 'localhost';
     private $name = 'epsProyect';
     private $user = 'root';

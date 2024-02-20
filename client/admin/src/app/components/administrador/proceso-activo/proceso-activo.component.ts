@@ -27,6 +27,12 @@ export class ProcesoActivoComponent implements OnInit {
   mostrarCuadroPrevios: boolean = false
   isChecked: boolean = false
 
+
+  isCheckedAut: boolean = false
+  isCheckedRegu: boolean = false
+  isCheckedRegl: boolean = false
+
+
   constructor(private _router: Router,
     private solicitudService: SolicitudService,
     private fb: FormBuilder,
@@ -87,13 +93,55 @@ export class ProcesoActivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idSolicitud = localStorage.getItem('sol-id')
-    this.urlReporte = `http://localhost/ws/reporte.php?id_solicitud=${this.idSolicitud}`
+   // this.urlReporte = `http://localhost/ws/reporte.php?id_solicitud=${this.idSolicitud}`
     this.getSolicitud()
     this.getPrevios()
     this.getPreviosEstudiante()
 
 
   }
+
+
+  validarAutorizacion(){
+    const data = this.dataFormReporte.value;
+
+    console.log(data)
+    console.log(this.carreraActual.unidad_id+" "+data.cohorte)
+    this.equivalenciaService.getAutorizacion(this.carreraActual.unidad_id, data.cohorte)
+    .subscribe((res)=>{
+      console.log(res)
+
+
+      var fecha = res.datos.fecha.split(" ");
+      this.dataFormReporte.patchValue(
+
+        {
+          punto: res.datos.punto,
+          inciso: res.datos.inciso,
+          acta: res.datos.acta,
+          diaSesion: fecha[0],
+          mesSesion: fecha[1],
+          anioSesion: fecha[2]
+        }
+      )
+
+      if(res.msg=="AUTORIZACION"){
+        console.log("marcar autorización")
+        this.isCheckedAut=true;
+        console.log("marcar regularizacion")
+      }else if(res.msg=="REGULARIZACION"){
+        this.isCheckedRegu=true;
+      }else if(res.msg=="REGLAMENTACION"){
+        this.isCheckedRegl=true;
+      }
+
+
+
+    },(error)=>{
+      console.error(error)
+    })
+  }
+
 
   finalizar(){
     var res;
@@ -468,11 +516,13 @@ export class ProcesoActivoComponent implements OnInit {
                 alignment: 'center',
                 opacity: 0.5
               }
-            ]
+            ],
+            margin: [-10,0]
 
+      
         },
         {
-          text: '\n\nSAEDD-000-2023',
+          text: `\n\nSAEDD-APP-${this.idSolicitud}-${anio}`,
           alignment: 'right',
           color: '#310000',
           bold: true

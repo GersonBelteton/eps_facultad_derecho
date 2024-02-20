@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   basePath: 'http://localhost/ws/',
+  frontPath: 'http://localhost:4200/',
   recaptcha: {
     siteKey: '6LdwVpclAAAAADp58Yoc-m2Y3k-WxuWgOfEF1bbO'
   },

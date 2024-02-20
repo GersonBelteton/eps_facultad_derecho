@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SolicitudService } from '../../../services/solicitud.service'
 @Component({
   selector: 'app-estado-proceso',
@@ -6,6 +6,7 @@ import { SolicitudService } from '../../../services/solicitud.service'
   styleUrls: ['./estado-proceso.component.css']
 })
 export class EstadoProcesoComponent implements OnInit {
+  @Input() id_sol: any;
 
   activo: any = true;
   solicitud: any;
@@ -13,13 +14,17 @@ export class EstadoProcesoComponent implements OnInit {
   estado: any
   id_solicitud:any
   mostrarCuadroPrevios:boolean = false
+
+
   constructor(
     private solicitudService: SolicitudService
 
   ) { }
 
   ngOnInit(): void {
-    this.id_solicitud = localStorage.getItem("id_sol")
+    console.log(this.id_sol)
+    //this.id_solicitud = localStorage.getItem("id_sol")
+    this.id_solicitud = this.id_sol
     this.getSolicitud()
     this.getPrevios()
   }

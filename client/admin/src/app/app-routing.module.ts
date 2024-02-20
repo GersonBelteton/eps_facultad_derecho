@@ -14,6 +14,7 @@ import {DashboardComponent} from './components/administrador/dashboard/dashboard
 import {ListaProcesosNuevosComponent} from './components/administrador/lista-procesos-nuevos/lista-procesos-nuevos.component'
 import {ListaProcesosActivosComponent} from './components/administrador/lista-procesos-activos/lista-procesos-activos.component'
 import {ListaProcesosTerminadosComponent} from './components/administrador/lista-procesos-terminados/lista-procesos-terminados.component'
+import {AutorizacionComponent} from './components/administrador/configuracion/autorizacion/autorizacion.component'
 const routes: Routes = [
 
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'configuracion-equivalencias',
     component: EquivalenciasComponent
+  },
+  {
+    path: 'configuracion-autorizacion',
+    component: AutorizacionComponent
   },
   {
     path: 'dashboard',

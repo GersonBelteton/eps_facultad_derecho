@@ -89,6 +89,13 @@ export class UnidadesComponent implements OnInit {
     this._router.navigate(['configuracion-extensiones'])
   }
 
+
+
+  goAutorizacion(){
+    this._router.navigate(['configuracion-autorizacion'])
+  }
+
+
   updateUnidad(){
     const data = this.dataForm.value;
 

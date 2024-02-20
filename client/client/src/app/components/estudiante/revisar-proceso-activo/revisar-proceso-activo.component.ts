@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SolicitudService } from '../../../services/solicitud.service'
 import { CarreraService } from '../../../services/carrera.service';
+import {environment} from 'src/environments/environment'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
@@ -18,7 +19,7 @@ export class RevisarProcesoActivoComponent implements OnInit {
   solicitud: any
   carreraActual: any
   carreraDestino: any
-
+  id_solicitud:any
 
 
   constructor(
@@ -34,8 +35,8 @@ export class RevisarProcesoActivoComponent implements OnInit {
 
   getSolicitud() {
 
-    var id_solicitud = localStorage.getItem("id_sol")
-    this.solicitudService.getSolicitud(id_solicitud)
+    this.id_solicitud = localStorage.getItem("id_sol")
+    this.solicitudService.getSolicitud(this.id_solicitud)
       .subscribe((res) => {
         console.log(res)
         this.solicitud = res
@@ -94,6 +95,133 @@ export class RevisarProcesoActivoComponent implements OnInit {
     var anio = date.split("-")[0]
     var mes = meses[Number(date.split("-")[1])-1]
     var dia = date.split("-")[2]
+
+    var dd2 = {
+      content: [
+        {
+          text: 'UNIVERSIDAD DE SAN CARLOS DE GUATEMALA',
+          style: 'header',
+          alignment: 'center'
+
+        },
+        {
+          text: 'DEPARTAMENTO DE REGISTRO Y ESTADISTICA',
+          style: 'header',
+          alignment: 'center'
+
+        },
+        { text: '\n', fontSize: 10 },
+        {
+
+
+          width: 80,
+          opacity: 0.5,
+          alignment: 'center',
+          image: await this.getBase64ImageFromURL(
+            "https://res.cloudinary.com/dst1u4bij/image/upload/v1680496240/logousac_fiqerk.jpg"
+          )
+
+
+        },
+        { text: '\n', fontSize: 10 },
+        {
+          text: 'SOLICITUD DE EQUIVALENCIAS',
+          fontSize: 16,
+          style: 'header',
+          alignment: 'center',
+          bold:true
+
+        },
+
+        { text: '\n', fontSize: 10 },
+        {
+          text: 'Guatemala, '+ dia+' de '+mes+' de '+anio+'                                                       Carnet: '+this.solicitud.solicitud[0].registro_academico,
+          style: 'header',
+          alignment: 'left'
+
+        },
+        { text: '\n', fontSize: 10 },
+
+        {text: 'Señor Jefe', alignment:'left', fontSize: 10},
+        {text: 'Departamento de Registro y Estadística', alignment:'left', fontSize: 10},
+        {text: 'Ciudad Universitaria, Zona 12', alignment:'left', fontSize: 10},
+        { text: '\n', fontSize: 5 },
+        { text: 'Atentamente solicito a usted dar el trámite correspondiente al presente expediente, de aucerdo a los datos siguientes: ', preserveLeadingSpaces: true, alignment: 'left', fontSize: 10},
+        { text: '\n', fontSize: 10 },
+        {
+          text: 'NOMBRE COMPLETO:   '+ this.solicitud.solicitud[0].estudiante,
+          style: 'header',
+          alignment: 'left'
+
+        },
+        { text: '\n', fontSize: 10 },
+        {
+          text: 'DIRECCIÓN:__________________________________   TELÉFONO:____________________________________',
+          style: 'header',
+          alignment: 'left'
+
+        },
+        { text: '\n', fontSize: 10 },
+        {
+          columns: [
+            {
+              width: 520,
+              alignment: 'justify',
+              table: {
+                widths: [520],
+                body: [
+                  [
+                    {
+                      text: [
+
+                        { text: 'APROBÉ LOS CURSOS EN: '},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: this.carreraActual.unidad_nombre+'        Universidad de San Carlos de Guatemala'},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: 'SOLICITO EQUIVALENCIA DE CURSOS EN: '},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: this.carreraDestino.unidad_nombre+'        Universidad de San Carlos de Guatemala'},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: 'NOMBRE DE LOS CURSOS APROBADOS: '},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: this.asignaturasToString()},
+                        { text: '\n', fontSize: 10 },
+                        { text: '\n', fontSize: 10 },
+                        { text: 'OBSERVACIONES: '},
+                      ],
+
+                    }
+
+                  ],
+                ]
+              }
+            }
+          ]
+        },
+        { text: '\n', fontSize: 10 },
+        { text: '\n', fontSize: 10 },
+        {
+          text: 'FIRMA DEL ESTUDIANTE:__________________________________',
+          style: 'header',
+          alignment: 'right'
+
+        },
+        { text: '\n', fontSize: 10 },
+        { text: '\n', fontSize: 5 },
+        { text: 'NOTA: De conformidad con los artículos 14o. y 47o. del Reglamento de Administración Estudiantil debe estar inscrito en el año que tramita sus equivalencias. ', alignment: 'left', fontSize: 10},
+        { text: '\n', fontSize: 10 },
+        { qr: environment.frontPath+'qr-revisar-activo?id_sol='+this.id_solicitud, fit: '100' },
+      ]
+    }
+
+
 
     var dd = {
       content: [
@@ -185,11 +313,25 @@ export class RevisarProcesoActivoComponent implements OnInit {
       ]
     }
 
-    const pdf = pdfMake.createPdf(dd);
+    const pdf = pdfMake.createPdf(dd2);
     pdf.open();
   }
 
 
+  asignaturasToString(){
+    var cont = 0
+    var asignaturaString = ''
+    this.solicitud.asignaturas.forEach(asignatura => {
+      asignaturaString += asignatura.codigo_asignatura+'-'+asignatura.nombre+', '
+      cont++;
+      if(cont== 1){
+        asignaturaString+='\n'
+        cont = 0
+      }
+    });
+
+    return asignaturaString
+  }
   getBase64ImageFromURL(url) {
     return new Promise((resolve, reject) => {
       var img = new Image();

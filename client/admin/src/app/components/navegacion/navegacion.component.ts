@@ -11,7 +11,7 @@ export class NavegacionComponent implements OnInit {
   admin:any
   idAdmin:any
   constructor(
-    private _router:Router,
+    //private _router:Router,
     private administradorServie:AdministradorService
   ) { }
 
