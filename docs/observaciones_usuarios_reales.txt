@@ -47,3 +47,14 @@ la herramienta de Angular, la cual permite realizar el diseño mediante distinta
 de css e integrar con la lógica de programación de manera sencilla con un sistema de componentes. 
 y on
 
+
+
+
+
+
+
+
+
+Poner nota en el documento de constancia de solicitud:
+
+Impresión de formulario de equivalencia para la presentación de su expediente original ante la oficina de Registro y Estadística de la Universidad de San Carlos de Guatemala

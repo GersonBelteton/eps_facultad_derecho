@@ -14,7 +14,6 @@ export class QrRevisarProcesoComponent {
   solicitud: any
   carreraActual: any
   carreraDestino: any
-
   urlTree: any
   id_sol:any
   constructor(

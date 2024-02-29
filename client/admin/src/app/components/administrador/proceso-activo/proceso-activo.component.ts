@@ -26,6 +26,7 @@ export class ProcesoActivoComponent implements OnInit {
   urlReporte: any
   mostrarCuadroPrevios: boolean = false
   isChecked: boolean = false
+  tipoAutorizacionSeleccionada: any
 
 
   isCheckedAut: boolean = false
@@ -93,7 +94,7 @@ export class ProcesoActivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idSolicitud = localStorage.getItem('sol-id')
-   // this.urlReporte = `http://localhost/ws/reporte.php?id_solicitud=${this.idSolicitud}`
+    // this.urlReporte = `http://localhost/ws/reporte.php?id_solicitud=${this.idSolicitud}`
     this.getSolicitud()
     this.getPrevios()
     this.getPreviosEstudiante()
@@ -102,56 +103,80 @@ export class ProcesoActivoComponent implements OnInit {
   }
 
 
-  validarAutorizacion(){
+
+
+  handleChangeAutorizacion() {
+    //doSelected(target);
+    console.log("hola, esta marcado autorización jejej")
+    this.tipoAutorizacionSeleccionada = "autorizada";
+  }
+
+  handleChangeRegularizacion() {
+
+    console.log("hola, esta marcado regularización jejej")
+    this.tipoAutorizacionSeleccionada = "regularizada";
+  }
+
+  handleChangeReglamentacion() {
+
+    console.log("hola, esta marcado reglamentación jejej")
+    this.tipoAutorizacionSeleccionada = "reglamentada";
+  }
+
+  validarAutorizacion() {
     const data = this.dataFormReporte.value;
 
     console.log(data)
-    console.log(this.carreraActual.unidad_id+" "+data.cohorte)
+    console.log(this.carreraActual.unidad_id + " " + data.cohorte)
     this.equivalenciaService.getAutorizacion(this.carreraActual.unidad_id, data.cohorte)
-    .subscribe((res)=>{
-      console.log(res)
+      .subscribe((res) => {
+        console.log(res)
 
 
-      var fecha = res.datos.fecha.split(" ");
-      this.dataFormReporte.patchValue(
+        var fecha = res.datos.fecha.split(" ");
+        this.dataFormReporte.patchValue(
 
-        {
-          punto: res.datos.punto,
-          inciso: res.datos.inciso,
-          acta: res.datos.acta,
-          diaSesion: fecha[0],
-          mesSesion: fecha[1],
-          anioSesion: fecha[2]
+          {
+            punto: res.datos.punto,
+            inciso: res.datos.inciso,
+            acta: res.datos.acta,
+            diaSesion: fecha[0],
+            mesSesion: fecha[1],
+            anioSesion: fecha[2]
+          }
+        )
+
+        if (res.msg == "AUTORIZACION") {
+          console.log("marcar autorización")
+          this.isCheckedAut = true;
+          this.tipoAutorizacionSeleccionada = "autorizada"
+          console.log("marcar regularizacion")
+          this.handleChangeRegularizacion()
+        } else if (res.msg == "REGULARIZACION") {
+          this.isCheckedRegu = true;
+          this.tipoAutorizacionSeleccionada = "regularizada"
+        } else if (res.msg == "REGLAMENTACION") {
+          this.isCheckedRegl = true;
+          this.tipoAutorizacionSeleccionada = "reglamentada"
         }
-      )
-
-      if(res.msg=="AUTORIZACION"){
-        console.log("marcar autorización")
-        this.isCheckedAut=true;
-        console.log("marcar regularizacion")
-      }else if(res.msg=="REGULARIZACION"){
-        this.isCheckedRegu=true;
-      }else if(res.msg=="REGLAMENTACION"){
-        this.isCheckedRegl=true;
-      }
 
 
 
-    },(error)=>{
-      console.error(error)
-    })
+      }, (error) => {
+        console.error(error)
+      })
   }
 
 
-  finalizar(){
+  finalizar() {
     var res;
     var status;
-    if(this.previos_estudiante.length > 0){
+    if (this.previos_estudiante.length > 0) {
       res = "No Aprobado"
       status = "DPP"
-    }else{
+    } else {
       res = "Aprobado",
-      status = "PF"
+        status = "PF"
     }
     let body = {
       id_solicitud: this.idSolicitud,
@@ -160,12 +185,12 @@ export class ProcesoActivoComponent implements OnInit {
     }
 
     this.solicitudService.finalizarSolicitud(body)
-    .subscribe((res)=>{
-      console.log(res)
-      this._router.navigate(['/inicio'])
-    },(error)=>{
-      console.error(error)
-    })
+      .subscribe((res) => {
+        console.log(res)
+        this._router.navigate(['/inicio'])
+      }, (error) => {
+        console.error(error)
+      })
   }
   previosMarcados: any = []
   fieldsChange(values: any): void {
@@ -463,16 +488,16 @@ export class ProcesoActivoComponent implements OnInit {
   }
 
 
-  modificarEstadoSolicitud(){
+  modificarEstadoSolicitud() {
     let data = {
-      id_solicitud:this.idSolicitud
+      id_solicitud: this.idSolicitud
     }
-    this.solicitudService.updateEstadoSolicitud(data,"GR")
-    .subscribe((res)=>{
-      console.log(res)
-    },(error)=>{
-      console.error(error)
-    })
+    this.solicitudService.updateEstadoSolicitud(data, "GR")
+      .subscribe((res) => {
+        console.log(res)
+      }, (error) => {
+        console.error(error)
+      })
   }
   margin: any = [30, 0]
 
@@ -483,7 +508,7 @@ export class ProcesoActivoComponent implements OnInit {
     const data = this.dataFormReporte.value;
     var date = new Date()
     var dia = date.getDate()
-    var meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
+    var meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
     var mes = meses[date.getMonth()]
     var anio = date.getFullYear()
     var dd = {
@@ -517,9 +542,9 @@ export class ProcesoActivoComponent implements OnInit {
                 opacity: 0.5
               }
             ],
-            margin: [-10,0]
+          margin: [-10, 0]
 
-      
+
         },
         {
           text: `\n\nSAEDD-APP-${this.idSolicitud}-${anio}`,
@@ -549,7 +574,7 @@ export class ProcesoActivoComponent implements OnInit {
                         { text: data.carnet, fontSize: 10, bold: true },
                         { text: ', CUI: ', fontSize: 10 },
                         { text: data.cui, fontSize: 10, bold: true },
-                        { text: ' y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de '+data.centro+'. ', fontSize: 10 },
+                        { text: ' y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + '. ', fontSize: 10 },
                       ]
 
                     }
@@ -562,7 +587,7 @@ export class ProcesoActivoComponent implements OnInit {
         },
         { text: '\n', fontSize: 10 },
         {
-          text: 'Guatemala, '+dia+' de '+mes+' de '+anio+'',
+          text: 'Guatemala, ' + dia + ' de ' + mes + ' de ' + anio + '',
           alignment: 'right',
           fontSize: 10
 
@@ -609,12 +634,12 @@ export class ProcesoActivoComponent implements OnInit {
           margin: this.margin,
           text: [
             { text: '\t\t\tA requerimiento de la Secretaría Académica de la Facultad de Ciencias Jurídicas y Sociales de la Universidad de San Carlos de Guatemala y con base a la solicitud de equivalencia de cursos formulada por Información de ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: 'Br. '+data.nombre+', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: 'Br. ' + data.nombre + ', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
             { text: 'Registro Académico No. ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: data.carnet+', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: data.carnet + ', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
             { text: 'CUI: ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: data.cui+' ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
-            { text: 'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de '+data.centro+'; respetuosamente me dirijo a ustedes con el objeto de trasladar información de la situación académico-administrativa del solicitante, conforme a la información consultada en el Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala. ', preserveLeadingSpaces: true, fontSize: 10 },
+            { text: data.cui + ' ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: 'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + '; respetuosamente me dirijo a ustedes con el objeto de trasladar información de la situación académico-administrativa del solicitante, conforme a la información consultada en el Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala. ', preserveLeadingSpaces: true, fontSize: 10 },
 
           ]
         },
@@ -624,14 +649,14 @@ export class ProcesoActivoComponent implements OnInit {
           margin: this.margin,
           text: [
             { text: '\t\t\tEn este sentido, me permito indicar ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: data.nombre+', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: data.nombre + ', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
             { text: 'Registro Académico No. ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: data.carnet+', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: data.carnet + ', ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
             { text: 'CUI: ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: data.cui+' ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
-            { text: 'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de '+data.centro+'; pertenece a la COHORTE '+data.cohorte+' de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de '+data.centro+' la cual de conformidad con la legislación universitaria ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: 'sí se encuentra autorizada ', preserveLeadingSpaces: true, fontSize: 10, bold: true, decoration: 'underline' },
-            { text: 'según Punto '+data.punto+', inciso '+data.inciso+' del Acta '+data.acta+', de la sesión celebrada por el Consejo Superior Universitario, el '+data.diaSesion+' de '+data.mesSesion+' de '+data.anioSesion+'.', preserveLeadingSpaces: true, fontSize: 10 },
+            { text: data.cui + ' ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
+            { text: 'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + '; pertenece a la COHORTE ' + data.cohorte + ' de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + ' la cual de conformidad con la legislación universitaria ', preserveLeadingSpaces: true, fontSize: 10 },
+            { text: 'sí se encuentra '+this.tipoAutorizacionSeleccionada+' ', preserveLeadingSpaces: true, fontSize: 10, bold: true, decoration: 'underline' },
+            { text: 'según Punto ' + data.punto + ', inciso ' + data.inciso + ' del Acta ' + data.acta + ', de la sesión celebrada por el Consejo Superior Universitario, el ' + data.diaSesion + ' de ' + data.mesSesion + ' de ' + data.anioSesion + '.', preserveLeadingSpaces: true, fontSize: 10 },
 
 
           ]
@@ -675,7 +700,7 @@ export class ProcesoActivoComponent implements OnInit {
           fontSize: 6,
         },
         {
-          text: 'SAEDD/vire '+anio,
+          text: 'SAEDD/vire ' + anio,
           alignment: 'left',
           fontSize: 6,
         },
@@ -689,7 +714,7 @@ export class ProcesoActivoComponent implements OnInit {
         {
           text: [
             { text: 'ADJUNTO: ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
-            { text: 'Consulta electrónica realizada al Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala con fecha '+dia+' de '+mes+' de '+anio+' y expediente de mérito (378 folios).', preserveLeadingSpaces: true, fontSize: 10 },
+            { text: 'Consulta electrónica realizada al Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala con fecha ' + dia + ' de ' + mes + ' de ' + anio + ' y expediente de mérito (378 folios).', preserveLeadingSpaces: true, fontSize: 10 },
 
           ]
         }
