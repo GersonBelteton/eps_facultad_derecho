@@ -22,6 +22,7 @@ export class RevisarProcesoActivoComponent implements OnInit {
   id_solicitud: any
 
 
+
   constructor(
     private _router: Router,
     private solicitudService: SolicitudService,
@@ -179,40 +180,40 @@ export class RevisarProcesoActivoComponent implements OnInit {
                 widths: [520],
                 body: [
 
-                  [{ text: 'APROBÉ LOS CURSOS EN: ', bold:true, alignment:'center'}],
+                  [{ text: 'APROBÉ LOS CURSOS EN: ', bold: true, alignment: 'center' }],
                   [{ text: this.carreraActual.unidad_nombre + '        Universidad de San Carlos de Guatemala' },],
-                  [{ text: 'SOLICITO EQUIVALENCIA DE CURSOS EN: ',bold:true, alignment:'center'}],
+                  [{ text: 'SOLICITO EQUIVALENCIA DE CURSOS EN: ', bold: true, alignment: 'center' }],
                   [{ text: this.carreraDestino.unidad_nombre + '        Universidad de San Carlos de Guatemala' }],
 
 
-                    // {
+                  // {
 
-                        
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                        
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                        
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: this.carreraDestino.unidad_nombre + '        Universidad de San Carlos de Guatemala' },
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                    //     //{ text: this.asignaturasToString()},
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: '\n', fontSize: 10 },
-                    //     { text: 'OBSERVACIONES: ' },
-                    
 
-                    // }
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
 
-                  
-                  [{ text: 'NOMBRE DE LOS CURSOS APROBADOS:\n ',bold:true, alignment:'center' }],
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: this.carreraDestino.unidad_nombre + '        Universidad de San Carlos de Guatemala' },
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+                  //     //{ text: this.asignaturasToString()},
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: '\n', fontSize: 10 },
+                  //     { text: 'OBSERVACIONES: ' },
+
+
+                  // }
+
+
+                  [{ text: 'NOMBRE DE LOS CURSOS APROBADOS: ', bold: true, alignment: 'center' }],
                   [
-                    
+
 
                     {
                       // text: [
@@ -234,8 +235,8 @@ export class RevisarProcesoActivoComponent implements OnInit {
                       ]
                     }
                   ],
-                  [{text: 'OBSERVACIONES: ',bold:true, alignment:'center'}],
-                  [{text:'\n\n\n'}]
+                  [{ text: 'OBSERVACIONES: ', bold: true, alignment: 'center' }],
+                  [{ text: '\n\n\n' }]
                 ]
               }
             }
@@ -253,8 +254,12 @@ export class RevisarProcesoActivoComponent implements OnInit {
         },
         { text: '\n', fontSize: 10 },
         { text: '\n', fontSize: 5 },
-        { text: 'NOTA: De conformidad con los artículos 14o. y 47o. del Reglamento de Administración Estudiantil debe estar inscrito en el año que tramita sus equivalencias. ', alignment: 'left', fontSize: 10 },
+        { text: 'NOTA: De conformidad con los artículos 14o. y 47o. del Reglamento de Administración Estudiantil debe estar inscrito en el año que tramita sus equivalencias. ', alignment: 'justify', fontSize: 8 },
         { text: '\n', fontSize: 10 },
+        { text: 'REQUISITOS PARA TRÁMITE DE EQUIVALENCIA DE CURSOS: ', alignment: 'justify', fontSize: 8 },
+        { text: '1. Solicitud en formulario impreso. ', alignment: 'justify', fontSize: 8 },
+        { text: '2. Certificación original de los cursos aprobados, extendida por la Unidad Académica, especificando punteo obtenido, fecha de examen y escala de calificaciones. ', alignment: 'justify', fontSize: 8 },
+        { text: '3. Programas oficiales de estudio del ciclo académico en que fueron aprobados los cursos o programas debidamente sellados y firmados, por la autoridad correspondiente. ', alignment: 'justify', fontSize: 8 },
 
       ]
     }
