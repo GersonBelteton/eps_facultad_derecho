@@ -57,11 +57,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Usted deberá imprimir este formulario de equivalencias de cursos para la presentación de su expediente original ante el
+                    <p>Usted deberá imprimir este formulario de equivalencias de cursos para la presentación de su
+                        expediente original ante el
                         Departamento de Registro y Estadística de la Universidad de San Carlos de Guatemala.</p>
                 </div>
                 <div class="modal-footer">
-                    <button (click)="crearPDF()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    <button (click)="crearPDF()" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Aceptar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
                 </div>
@@ -76,7 +78,7 @@
     <div class="row justify-content-between text-center">
         <div class="col-5">
 
-            <h4 class="mb-3"  style="color: darkblue;"> APROBÉ LOS CURSOS EN: </h4>
+            <h4 class="mb-3" style="color: darkblue;"> APROBÉ LOS CURSOS EN: </h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
                     <h5 class="card-title">
@@ -126,7 +128,7 @@
         </div> -->
         <div class="col-5">
 
-            <h4 class="mb-3"  style="color: darkblue;"> SOLICITO EQUIVALENCIAS EN: </h4>
+            <h4 class="mb-3" style="color: darkblue;"> SOLICITO EQUIVALENCIAS EN: </h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
                     <h5 class="card-title">
@@ -143,7 +145,7 @@
                 </div>
 
                 <div class="my-5">
-                    <button  type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                         data-bs-target="#modal3">
 
                         Generar Constancia de Solicitud
@@ -263,7 +265,8 @@
         </div>
     </div> -->
 
-    
+
+
 
     <app-estado-proceso [id_sol]="id_solicitud"></app-estado-proceso>
 
