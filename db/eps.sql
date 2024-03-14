@@ -88,9 +88,21 @@ create table solicitud (
     foreign key(codigo_carrera) references carrera(id)
     
 );
+alter table solicitud add SAEDD INTEGER;
+alter table solicitud drop SAEDD;
+select * from solicitud;
+update solicitud set SAEDD = 1 where id = 23;
+update solicitud set SAEDD = (select SAEDD +1 from solicitud order by SAEDD desc limit 1) where id = 25;
 
+DELIMITER $$
+CREATE PROCEDURE saedd(IN id_sol int)
+BEGIN
+	select @new_saedd = (SAEDD +1) from solicitud order by SAEDD desc limit 1;
+	update solicitud set SAEDD = @new_saedd where id = id_sol;
+END$$
 
-
+call saedd(25);
+drop procedure saedd;
 
 create table detalle_solicitud(
 	id int primary key auto_increment,
@@ -142,6 +154,29 @@ create table detalle_previo(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+drop table autorizacion;
+create table autorizacion(
+	id int primary key auto_increment,
+    tipo varchar(50) not null,
+    descripcion varchar(200),
+    punto_a varchar(25),
+    acta_a varchar(25),
+    inciso_a varchar(25),
+	punto_ia varchar(25),
+    acta_ia varchar(25),
+    inciso_ia varchar(25),
+    fecha_ia varchar(50),
+    fecha_a varchar(50),
+	id_unidad int not null,
+	foreign key(id_unidad) references unidad_academica(id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+truncate table autorizacion;
+insert into autorizacion (tipo, descripcion, punto_a, acta_a, inciso_a, punto_ia, acta_ia, inciso_ia, fecha_a, fecha_ia, id_unidad ) 
+values ("Reglamentación", " ", "DECIMO", "2008-2", "23", "DECIMO", "2008-2", "23", "23 de noviembre de 2015", "05 de octubre de 2008", 12);
+
+select * from autorizacion inner join unidad_academica on autorizacion.id_unidad = unidad_academica.id;
+select * from unidad_academica;
 insert into unidad_academica(codigo, nombre) values
 ("04","Facultad de ciencias jurídicas y sociales"              ),
 ("12","Centro universitario de occidente (CUNOC)"              ),
@@ -370,7 +405,8 @@ where carrera.id = 1;
 
 update solicitud set resultado = "aprobado" where id = 3;
 select * from solicitud;
-delete from solicitud where id = 7;
+delete from solicitud where id = 18;
+delete from solicitud where registro_academico = '201741610';
 -- conteo solicitudes
 (select "NO" as "finalizado", count(*) from solicitud where resultado IS NULL)
 union
