@@ -201,6 +201,17 @@ export class AutorizacionComponent implements OnInit {
         })
   }
 
+  deleteAutorizacion(id_autorizacion: any) {
+    this.equivalenciaService.deleteAutorizacion(id_autorizacion)
+      .subscribe((res) => {
+        alert("Se ha eliminado correctamente")
+        this.getAutorizaciones()
+      }, (error) => {
+        console.error(error)
+      }
+
+      )
+  }
   createAutorizacion() {
     const data = this.dataForm.value;
 
@@ -209,11 +220,11 @@ export class AutorizacionComponent implements OnInit {
       punto_ia: data.punto_ia,
       acta_ia: data.acta_ia,
       inciso_ia: data.inciso_ia,
-      fecha_ia: data.dia_ia+" "+data.mes_ia+" "+data.año_ia,
+      fecha_ia: data.dia_ia + " " + data.mes_ia + " " + data.año_ia,
       punto_a: data.punto_a,
       acta_a: data.acta_a,
       inciso_a: data.inciso_a,
-      fecha_a: data.dia_a+" "+data.mes_a+" "+data.año_a,
+      fecha_a: data.dia_a + " " + data.mes_a + " " + data.año_a,
       id_unidad: this.id_unidad
     }
 

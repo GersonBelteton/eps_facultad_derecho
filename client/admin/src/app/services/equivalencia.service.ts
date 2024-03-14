@@ -247,4 +247,12 @@ export class EquivalenciaService {
       catchError(this.handleError)
     )
   }
+
+  deleteAutorizacion(id:any):Observable<any>{
+    let url = `${environment.basePath}autorizacion.php?id_autorizacion=${id}`;
+    return this.http.delete(url)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
 }
