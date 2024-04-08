@@ -83,10 +83,26 @@ export class RevisarProcesoActivoComponent implements OnInit {
     this._router.navigate(['inicio'])
   }
 
+
+
+  modificarEstadoSolicitud(estado:any) {
+    let data = {
+      id_solicitud: this.id_solicitud
+    }
+    this.solicitudService.updateEstadoSolicitud(data, estado)
+      .subscribe((res) => {
+        console.log(res)
+      }, (error) => {
+        console.error(error)
+      })
+  }
+
+
+
   margin: any = [30, 0]
   async crearPDF() {
 
-
+    this.modificarEstadoSolicitud("PF");
 
     //var date = new Date()
     // var dia = date.getDate()

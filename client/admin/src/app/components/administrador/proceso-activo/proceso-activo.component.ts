@@ -492,7 +492,7 @@ export class ProcesoActivoComponent implements OnInit {
     let data = {
       id_solicitud: this.idSolicitud
     }
-    this.solicitudService.updateEstadoSolicitud(data, "GR")
+    this.solicitudService.updateEstadoSolicitud(data, "ER")
       .subscribe((res) => {
         console.log(res)
       }, (error) => {

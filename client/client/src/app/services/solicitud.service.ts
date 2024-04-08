@@ -54,6 +54,14 @@ export class SolicitudService {
     )
   }
 
+  updateEstadoSolicitud(data:any,estado:any): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?estado=${estado}`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   getPrevios(id_solicitud: any) : Observable<any>{
     let url = `${environment.basePath}previo.php?id_solicitud=${id_solicitud}`;
     return this.http.get(url)

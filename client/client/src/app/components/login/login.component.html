@@ -40,10 +40,10 @@
 
             <div class="row justify-content-center">
               <hr class="dropdown-divider">
-              <label for="staticEmail" style="text-align: center;" class="col-sm-10 col-form-label ">SELECCTIONA TU CARRERA ACTUAL</label>
+              <label for="staticEmail" style="text-align: center;" class="col-sm-10 col-form-label " >SELECCTIONA TU CARRERA ACTUAL</label>
 
               <select #teams (change)="onSelected(teams.value)"
-                class="form-select mt-3 col-sm-10 font-weight-bold " aria-label="Disabled select example">
+                class="form-select mt-3 col-sm-10 font-weight-bold " style="width: 80%;" aria-label="Disabled select example">
                 <option selected>Unidad Académica</option>
 
                 <option *ngFor="let unidad of unidades_academicas" [value]="unidad.id+'-'+unidad.codigo">
@@ -61,7 +61,7 @@
             </div>
 
             <div class="row justify-content-center">
-              <select #teams2 (change)="onSelected2(teams2.value)" class="form-select mt-3 col-sm-10 "
+              <select #teams2 (change)="onSelected2(teams2.value)" class="form-select mt-3 col-sm-10 " style="width: 80%;"
                 aria-label="Disabled select example">
                 <option selected>Extension</option>
                 <option *ngFor="let extension of extensiones_universitarias" [value]="extension.id+'-'+extension.codigo">
@@ -73,7 +73,7 @@
             </div>
 
             <div class="row justify-content-center">
-              <select #teams3 (change)="onSelected3(teams3.value)" class="form-select mt-3 col-sm-10 "
+              <select #teams3 (change)="onSelected3(teams3.value)" class="form-select mt-3 col-sm-10 " style="width: 80%;"
                 aria-label="Disabled select example">
                 <option selected>Carrera</option>
                 <option *ngFor="let carrera of carreras" [value]="carrera.id+'-'+carrera.codigo">{{carrera.codigo}}

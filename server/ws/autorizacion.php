@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
        
 
 
-        $sql =$pdo->prepare("select * from autorizacion inner join unidad_academica on autorizacion.id_unidad = unidad_academica.id;");
+        $sql =$pdo->prepare("select autorizacion.id, tipo, descripcion, punto_a, acta_a, inciso_a, punto_ia, acta_ia, inciso_ia, fecha_ia, fecha_a, nombre, codigo from autorizacion inner join unidad_academica on autorizacion.id_unidad = unidad_academica.id;");
         $sql->execute();
 
         $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -215,11 +215,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
     header("Access-Control-Allow-Origin: http://localhost:4201");
 
-    if (!empty($_GET['id_unidad'])) {
-        $idUnidad = $_GET['id_unidad'];
+    if (!empty($_GET['id_autorizacion'])) {
+        $idAutorizacion = $_GET['id_autorizacion'];
 
-        $sql = $pdo->prepare("DELETE FROM unidad_academica WHERE id = ?;");
-        $sql->execute([$idUnidad]);
+        $sql = $pdo->prepare("DELETE FROM autorizacion WHERE id = ?;");
+        $sql->execute([$idAutorizacion]);
     
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");

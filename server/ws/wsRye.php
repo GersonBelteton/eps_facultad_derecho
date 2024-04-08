@@ -12,7 +12,7 @@ $pdo = new conexion();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    header("Access-Control-Allow-Origin: * ");
 
     $json = json_decode(file_get_contents('php://input'));
     if (!$json) {

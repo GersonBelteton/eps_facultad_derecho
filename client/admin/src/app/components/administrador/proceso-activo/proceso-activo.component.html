@@ -383,7 +383,7 @@
 
     <div *ngIf="mostrarCuadroPrevios" class="row">
         <div class="row justify-content-center">
-            <div class="card border-danger mb-3" style="max-width: 50rem;">
+            <div class="card border-danger mb-1" style="max-width: 50rem;">
                 <div class="card-body text-danger">
                     <h5 class="card-title">Proceso Detenido por Previos</h5>
 
@@ -422,6 +422,8 @@
             </div>
         </div>
     </div>
+
+    <app-estado-proceso [id_sol]="idSolicitud"></app-estado-proceso>
 
     <div class="row justify-content-center my-3">
         <div class="col-4" style="text-align: center;">

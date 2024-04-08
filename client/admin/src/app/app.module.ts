@@ -22,6 +22,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { UnidadesComponent } from './components/administrador/configuracion/unidades/unidades.component';
 import { ExtensionesComponent } from './components/administrador/configuracion/extensiones/extensiones.component';
 import { AutorizacionComponent } from './components/administrador/configuracion/autorizacion/autorizacion.component';
+import {EstadoProcesoComponent} from './components/administrador/estado-proceso/estado-proceso.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import { AutorizacionComponent } from './components/administrador/configuracion/
     EquivalenciasComponent,
     UnidadesComponent,
     ExtensionesComponent,
-    AutorizacionComponent
+    AutorizacionComponent,
+    EstadoProcesoComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { AutorizacionComponent } from './components/administrador/configuracion/
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
