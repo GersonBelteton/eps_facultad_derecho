@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { EquivalenciaService } from '../../../../services/equivalencia.service'
 
 @Component({
@@ -23,7 +23,7 @@ export class EquivalenciasComponent implements OnInit {
   constructor(
     private _router: Router,
     private equivalenciaService: EquivalenciaService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) { }
 
   id_ua:any

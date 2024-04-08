@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { EquivalenciaService } from '../../../../services/equivalencia.service'
 
 @Component({
@@ -17,7 +17,7 @@ export class UnidadesComponent implements OnInit {
   constructor(
     private _router: Router,
     private equivalenciaService: EquivalenciaService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     this.dataForm = this.fb.group({
       nombre: [''],
@@ -29,9 +29,9 @@ export class UnidadesComponent implements OnInit {
     nombre: [''],
     codigo: [''],
   });
-  formData: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    codigo: new FormControl(''),
+  formData: UntypedFormGroup = new UntypedFormGroup({
+    nombre: new UntypedFormControl(''),
+    codigo: new UntypedFormControl(''),
 
   });
 

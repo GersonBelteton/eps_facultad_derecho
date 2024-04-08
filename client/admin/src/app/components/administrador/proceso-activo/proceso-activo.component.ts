@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SolicitudService } from '../../../services/solicitud.service'
 import { EquivalenciaService } from '../../../services/equivalencia.service'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
@@ -36,7 +36,7 @@ export class ProcesoActivoComponent implements OnInit {
 
   constructor(private _router: Router,
     private solicitudService: SolicitudService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private equivalenciaService: EquivalenciaService) {
     this.dataForm = this.fb.group({
       previo: [''],
@@ -61,8 +61,8 @@ export class ProcesoActivoComponent implements OnInit {
   dataForm = this.fb.group({
     previo: [''],
   });
-  formData: FormGroup = new FormGroup({
-    previo: new FormControl(''),
+  formData: UntypedFormGroup = new UntypedFormGroup({
+    previo: new UntypedFormControl(''),
   });
 
   dataFormReporte = this.fb.group({
@@ -78,18 +78,18 @@ export class ProcesoActivoComponent implements OnInit {
     mesSesion: [''],
     anioSesion: [''],
   });
-  formDataReporte: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    carnet: new FormControl(''),
-    cui: new FormControl(''),
-    centro: new FormControl(''),
-    cohorte: new FormControl(''),
-    punto: new FormControl(''),
-    inciso: new FormControl(''),
-    acta: new FormControl(''),
-    diaSesion: new FormControl(''),
-    mesSesion: new FormControl(''),
-    anioSesion: new FormControl(''),
+  formDataReporte: UntypedFormGroup = new UntypedFormGroup({
+    nombre: new UntypedFormControl(''),
+    carnet: new UntypedFormControl(''),
+    cui: new UntypedFormControl(''),
+    centro: new UntypedFormControl(''),
+    cohorte: new UntypedFormControl(''),
+    punto: new UntypedFormControl(''),
+    inciso: new UntypedFormControl(''),
+    acta: new UntypedFormControl(''),
+    diaSesion: new UntypedFormControl(''),
+    mesSesion: new UntypedFormControl(''),
+    anioSesion: new UntypedFormControl(''),
   });
 
   ngOnInit(): void {

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SolicitudService } from '../../../services/solicitud.service'
 import { EquivalenciaService } from '../../../services/equivalencia.service'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class ProcesoTerminadoComponent implements OnInit {
 
   constructor(private _router: Router,
     private solicitudService: SolicitudService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private equivalenciaService: EquivalenciaService) {
     this.dataForm = this.fb.group({
       previo: [''],
@@ -37,8 +37,8 @@ export class ProcesoTerminadoComponent implements OnInit {
   dataForm = this.fb.group({
     previo: [''],
   });
-  formData: FormGroup = new FormGroup({
-    previo: new FormControl(''),
+  formData: UntypedFormGroup = new UntypedFormGroup({
+    previo: new UntypedFormControl(''),
   });
 
 

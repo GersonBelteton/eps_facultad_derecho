@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { EquivalenciaService } from '../../../../services/equivalencia.service'
 @Component({
   selector: 'app-autorizacion',
@@ -17,7 +17,7 @@ export class AutorizacionComponent implements OnInit {
   constructor(
     private _router: Router,
     private equivalenciaService: EquivalenciaService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     this.dataForm = this.fb.group({
       punto_a: [''],
@@ -52,21 +52,21 @@ export class AutorizacionComponent implements OnInit {
     dia_ia: [''],
     id_unidad: ['']
   });
-  formData: FormGroup = new FormGroup({
+  formData: UntypedFormGroup = new UntypedFormGroup({
 
-    punto_a: new FormControl(''),
-    acta_a: new FormControl(''),
-    inciso_a: new FormControl(''),
-    año_a: new FormControl(''),
-    mes_a: new FormControl(''),
-    dia_a: new FormControl(''),
-    punto_ia: new FormControl(''),
-    acta_ia: new FormControl(''),
-    inciso_ia: new FormControl(''),
-    año_ia: new FormControl(''),
-    mes_ia: new FormControl(''),
-    dia_ia: new FormControl(''),
-    id_unidad: new FormControl('')
+    punto_a: new UntypedFormControl(''),
+    acta_a: new UntypedFormControl(''),
+    inciso_a: new UntypedFormControl(''),
+    año_a: new UntypedFormControl(''),
+    mes_a: new UntypedFormControl(''),
+    dia_a: new UntypedFormControl(''),
+    punto_ia: new UntypedFormControl(''),
+    acta_ia: new UntypedFormControl(''),
+    inciso_ia: new UntypedFormControl(''),
+    año_ia: new UntypedFormControl(''),
+    mes_ia: new UntypedFormControl(''),
+    dia_ia: new UntypedFormControl(''),
+    id_unidad: new UntypedFormControl('')
 
   });
 

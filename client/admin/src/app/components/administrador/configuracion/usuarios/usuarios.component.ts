@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { AdministradorService } from '../../../../services/administrador.service'
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +19,7 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private _router: Router,
     private administradorService: AdministradorService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     this.dataForm = this.fb.group({
       nombre: [''],
@@ -33,10 +33,10 @@ export class UsuariosComponent implements OnInit {
     usuario: [''],
     contrasena: ['']
   });
-  formData: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    usuario: new FormControl(''),
-    contrasena: new FormControl('')
+  formData: UntypedFormGroup = new UntypedFormGroup({
+    nombre: new UntypedFormControl(''),
+    usuario: new UntypedFormControl(''),
+    contrasena: new UntypedFormControl('')
 
   });
 
