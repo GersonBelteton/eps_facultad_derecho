@@ -131,7 +131,7 @@ if ($method == 'POST') {
 
 
     $sql = $pdo->prepare("insert into solicitud (estudiante, registro_academico, cui_pasaporte, tipo, estado, ruta_certificado_cursos, fecha_inicio, codigo_carrera)
-    values (?,?,?,?,'PI',?,now(), ?)");
+    values (?,?,?,?,'ES',?,now(), ?)");
     $sql->execute([$estudiante, $registro, $cui_pasaporte, $tipo, "http://localhost".$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
     $id_solicitud = $pdo->lastInsertId();
     $res = [];

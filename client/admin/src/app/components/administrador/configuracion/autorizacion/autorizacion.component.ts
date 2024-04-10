@@ -82,7 +82,7 @@ export class AutorizacionComponent implements OnInit {
     this.selectedUnidad = value;
     console.log(this.selectedUnidad)
     let array = this.selectedUnidad.split("-")
-    this.id_unidad = array[0]
+    this.id_unidad = array[0];
 
   }
 

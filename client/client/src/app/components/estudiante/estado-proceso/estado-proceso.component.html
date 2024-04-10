@@ -16,14 +16,14 @@
                         <li  class="active step0"></li> -->
 
 
-                        <li *ngIf="estadoPI" class="active step0"></li>
-                        <li *ngIf="!estadoPI" class=" step0"></li>
+                        <li *ngIf="estadoES" class="active step0"></li>
+                        <li *ngIf="!estadoES" class=" step0"></li>
                         <li *ngIf="estadoEA" class="active step0"></li>
                         <li *ngIf="!estadoEA" class=" step0"></li>
-                        <li *ngIf="estadoER" class="active step0"></li>
-                        <li *ngIf="!estadoER" class=" step0"></li>
-                        <li *ngIf="estadoGR" class="active step0"></li>
-                        <li *ngIf="!estadoGR" class=" step0"></li>
+                        <li *ngIf="estadoVI" class="active step0"></li>
+                        <li *ngIf="!estadoVI" class=" step0"></li>
+                        <li *ngIf="estadoIF" class="active step0"></li>
+                        <li *ngIf="!estadoIF" class=" step0"></li>
 
 
                     </ul>
@@ -110,9 +110,11 @@
 
             <div *ngIf="mostrarCuadroPrevios" class="row">
                 <div class="row justify-content-center">
-                    <div class="card border-danger mb-3" style="max-width: 50rem;">
+                    <div class="card border-danger mb-3" style="max-width: 50rem; background-color:white;">
                         <div class="card-body text-danger">
-                            <h5 class="card-title">Proceso detenido por previos</h5>
+                            <div class="text-center">
+                                <h5 class="card-title">PROCESO DETENIDO POR PREVIOS</h5>
+                            </div>
 
                             <!-- <p class="card-text">1. Se han seleccionado cursos que no aparecen en el certificado.</p> -->
 

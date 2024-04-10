@@ -70,15 +70,21 @@
 
                         <div class="col">
                             <label for="">Autorizacion</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedAut" (change)="handleChangeAutorizacion()" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input ml-3" [checked]="isCheckedAut"
+                                (change)="handleChangeAutorizacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1">
                         </div>
                         <div class="col">
                             <label for="">Regularización</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedRegu" (change)="handleChangeRegularizacion()" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegu"
+                                (change)="handleChangeRegularizacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault2">
                         </div>
                         <div class="col">
                             <label for="">Reglamentación</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedRegl" (change)="handleChangeReglamentacion()" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegl"
+                                (change)="handleChangeReglamentacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault3">
                         </div>
 
                     </div>
@@ -417,6 +423,17 @@
 
 
                     </ul>
+
+
+                    <div (click)="finalizar()" class="justify-content-center text-center">
+                        <button type="button" class="btn btn-outline-danger mt-3 ms-3 justify-content-center"
+                        ngbPopover="Solicitud se archivará en procesos finalizados, estudiante verá el listado de previos y deberá iniciar un nuevo proceso." 
+                        triggers="mouseenter:mouseleave" placement="bottom">
+
+                            FINALIZAR PROCESO
+                        </button>
+                    </div>
+
 
                 </div>
             </div>

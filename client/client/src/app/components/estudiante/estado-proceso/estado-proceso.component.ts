@@ -26,7 +26,7 @@ export class EstadoProcesoComponent implements OnInit {
     //this.id_solicitud = localStorage.getItem("id_sol")
     this.id_solicitud = this.id_sol
     this.getSolicitud()
-    this.getPrevios()
+    
   }
 
 
@@ -37,6 +37,7 @@ export class EstadoProcesoComponent implements OnInit {
       console.log(res)
       this.previos = res
       if(this.previos.length > 0){
+        if(this.estado == "DPP")
         this.mostrarCuadroPrevios = true
       }
     },(error)=>{
@@ -52,6 +53,8 @@ export class EstadoProcesoComponent implements OnInit {
         this.solicitud = res
         this.estado = this.solicitud.solicitud[0].estado
         this.setEstados()
+
+        this.getPrevios()
       },
         (error) => {
           console.log(error)
@@ -59,54 +62,43 @@ export class EstadoProcesoComponent implements OnInit {
   }
 
 
-  estadoPI: any
+  estadoES: any
   estadoEA: any
-  estadoER: any
-  estadoGR: any
-  estadoPF: any
+  estadoVI: any
+  estadoIF: any
   estadoDPP:any
   setEstados() {
-    if (this.estado == "PI") {
-      this.estadoPI=true
+    if (this.estado == "ES") {
+      this.estadoES=true
       this.estadoEA=false
-      this.estadoER=false
-      this.estadoGR=false
-      this.estadoPF=false
+      this.estadoVI=false
+      this.estadoIF=false
       this.estadoDPP=false
     }else if(this.estado == "EA"){
-      this.estadoPI=true
+      this.estadoES=true
       this.estadoEA=true
-      this.estadoER=false
-      this.estadoGR=false
-      this.estadoPF=false
+      this.estadoVI=false
+      this.estadoIF=false
       this.estadoDPP=false
-    }else if(this.estado == "ER"){
-      this.estadoPI=true
+    }else if(this.estado == "VI"){
+      this.estadoES=true
       this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=false
-      this.estadoPF=false
+      this.estadoVI=true
+      this.estadoIF=false
       this.estadoDPP=false
-    }else if(this.estado == "GR"){
-      this.estadoPI=true
+      this.estadoDPP=false
+    }else if(this.estado == "IF"){
+      this.estadoES=true
       this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=true
-      this.estadoPF=false
+      this.estadoVI=true
+      this.estadoIF=true
       this.estadoDPP=false
-    }else if(this.estado == "PF"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=true
-      this.estadoPF=true
-      this.estadoDPP=false
+
     }else if(this.estado == "DPP"){
-      this.estadoPI=true
+      this.estadoES=true
       this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=false
-      this.estadoPF=false
+      this.estadoVI=true
+      this.estadoIF=false
       this.estadoDPP=true
     }
   }

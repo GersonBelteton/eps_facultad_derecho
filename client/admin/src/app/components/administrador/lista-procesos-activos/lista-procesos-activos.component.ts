@@ -38,12 +38,7 @@ export class ListaProcesosActivosComponent implements OnInit {
     }
 
 
-    this.solicitudService.updateEstadoSolicitud(sol,"EA" )
-    .subscribe((res)=>{
-      console.log(res)
-    },(error)=>{
-      console.error(error)
-    })
+
     this._router.navigate(['proceso-activo'])
   }
 

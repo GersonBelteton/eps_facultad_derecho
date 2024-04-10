@@ -278,6 +278,9 @@ export class ProcesoActivoComponent implements OnInit {
       })
 
 
+      this.modificarEstadoSolicitud("VI")
+
+
   }
 
 
@@ -418,6 +421,10 @@ export class ProcesoActivoComponent implements OnInit {
         this.getCarreraActual()
         this.getCarreraDestino()
         this.getEquivalencias()
+
+        if(this.solicitud.solicitud[0].estado=="ES"){
+          this.modificarEstadoSolicitud("EA")
+        }
       },
         (error) => {
           console.error(error)
@@ -488,11 +495,11 @@ export class ProcesoActivoComponent implements OnInit {
   }
 
 
-  modificarEstadoSolicitud() {
+  modificarEstadoSolicitud(estado: any) {
     let data = {
       id_solicitud: this.idSolicitud
     }
-    this.solicitudService.updateEstadoSolicitud(data, "ER")
+    this.solicitudService.updateEstadoSolicitud(data, estado)
       .subscribe((res) => {
         console.log(res)
       }, (error) => {
@@ -503,7 +510,7 @@ export class ProcesoActivoComponent implements OnInit {
 
   async crearPDF() {
 
-    this.modificarEstadoSolicitud();
+    this.modificarEstadoSolicitud("VI");
 
     const data = this.dataFormReporte.value;
     var date = new Date()

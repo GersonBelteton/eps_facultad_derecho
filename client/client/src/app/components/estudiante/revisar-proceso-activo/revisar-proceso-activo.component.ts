@@ -102,7 +102,7 @@ export class RevisarProcesoActivoComponent implements OnInit {
   margin: any = [30, 0]
   async crearPDF() {
 
-    this.modificarEstadoSolicitud("PF");
+    this.modificarEstadoSolicitud("IF");
 
     //var date = new Date()
     // var dia = date.getDate()
