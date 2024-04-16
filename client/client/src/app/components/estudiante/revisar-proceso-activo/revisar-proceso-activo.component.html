@@ -145,13 +145,20 @@
                 </div>
 
                 <div class="my-5">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                        data-bs-target="#modal3">
+                    <button *ngIf="btnImpFormulario" type="button" class="btn btn-outline-success"
+                        data-bs-toggle="modal" data-bs-target="#modal3">
+
+                        <!-- Generar Constancia de Solicitud -->
+                        IMPRIMIR FORMULARIO DE SOLICITUD
+                    </button>
+
+                    <button *ngIf="!btnImpFormulario" (click)="alertaBtnFormulario()"  type="button" class="btn btn-outline-secondary">
 
                         <!-- Generar Constancia de Solicitud -->
                         IMPRIMIR FORMULARIO DE SOLICITUD
                     </button>
                 </div>
+
             </div>
         </div>
     </div>

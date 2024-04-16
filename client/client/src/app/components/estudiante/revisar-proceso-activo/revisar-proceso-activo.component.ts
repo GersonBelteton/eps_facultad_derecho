@@ -23,7 +23,7 @@ export class RevisarProcesoActivoComponent implements OnInit {
   carreraDestino: any
   id_solicitud: any
 
-
+  btnImpFormulario: boolean
 
   constructor(
     private _router: Router,
@@ -36,6 +36,10 @@ export class RevisarProcesoActivoComponent implements OnInit {
   }
 
 
+  alertaBtnFormulario(){
+    alert("Esta opción no es válida hasta que el expediente sea autorizado.")
+  }
+
   getSolicitud() {
 
     this.id_solicitud = localStorage.getItem("id_sol")
@@ -45,6 +49,12 @@ export class RevisarProcesoActivoComponent implements OnInit {
         this.solicitud = res
         this.getCarreraActual()
         this.getCarreraDestino()
+
+        if(this.solicitud.solicitud[0].estado == "IF"){
+          this.btnImpFormulario = true;
+        }else{
+          this.btnImpFormulario = false;
+        }
       },
         (error) => {
           console.log(error)

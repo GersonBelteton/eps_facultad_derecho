@@ -10,10 +10,10 @@ export class EstadoProcesoComponent implements OnInit {
 
   activo: any = true;
   solicitud: any;
-  previos:any = []
+  previos: any = []
   estado: any
-  id_solicitud:any
-  mostrarCuadroPrevios:boolean = false
+  id_solicitud: any
+  mostrarCuadroPrevios: boolean = false
 
 
   constructor(
@@ -31,21 +31,21 @@ export class EstadoProcesoComponent implements OnInit {
 
 
 
-  getPrevios(){
+  getPrevios() {
     this.solicitudService.getPrevios(this.id_solicitud)
-    .subscribe((res)=>{
-      console.log(res)
-      this.previos = res
-      if(this.previos.length > 0){
-        this.mostrarCuadroPrevios = true
-      }
-    },(error)=>{
-      console.error(error)
-    })
+      .subscribe((res) => {
+        console.log(res)
+        this.previos = res
+        if (this.previos.length > 0) {
+          this.mostrarCuadroPrevios = true
+        }
+      }, (error) => {
+        console.error(error)
+      })
   }
   getSolicitud() {
 
-    
+
     this.solicitudService.getSolicitud(this.id_solicitud)
       .subscribe((res) => {
         console.log(res)
@@ -59,59 +59,60 @@ export class EstadoProcesoComponent implements OnInit {
   }
 
 
-  estadoPI: any
   estadoEA: any
-  estadoER: any
+  estadoVI: any
+  estadoIF: any
   estadoGR: any
-  estadoPF: any
-  estadoDPP:any
+  estadoTJD: any
+  estadoDPP: any
   setEstados() {
-    if (this.estado == "PI") {
-      this.estadoPI=true
-      this.estadoEA=false
-      this.estadoER=false
-      this.estadoGR=false
-      this.estadoPF=false
-      this.estadoDPP=false
-    }else if(this.estado == "EA"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=false
-      this.estadoGR=false
-      this.estadoPF=false
-      this.estadoDPP=false
-    }else if(this.estado == "ER"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=false
-      this.estadoPF=false
-      this.estadoDPP=false
-    }else if(this.estado == "GR"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=true
-      this.estadoPF=false
-      this.estadoDPP=false
-    }else if(this.estado == "PF"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=true
-      this.estadoPF=true
-      this.estadoDPP=false
-    }else if(this.estado == "DPP"){
-      this.estadoPI=true
-      this.estadoEA=true
-      this.estadoER=true
-      this.estadoGR=false
-      this.estadoPF=false
-      this.estadoDPP=true
+    if (this.estado == "EA") {
+      this.estadoEA = true
+      this.estadoVI = false
+      this.estadoIF = false
+      this.estadoGR = false
+      this.estadoTJD = false
+      this.estadoDPP = false
+    } else if (this.estado == "VI") {
+      this.estadoEA = true
+      this.estadoVI = true
+      this.estadoIF = false
+      this.estadoGR = false
+      this.estadoTJD = false
+      this.estadoDPP = false
+    } else if (this.estado == "IF") {
+      this.estadoEA = true
+      this.estadoVI = true
+      this.estadoIF = true
+      this.estadoGR = false
+      this.estadoTJD = false
+      this.estadoDPP = false
+    } else if (this.estado == "GR") {
+      this.estadoEA = true
+      this.estadoVI = true
+      this.estadoIF = true
+      this.estadoGR = true
+      this.estadoTJD = false
+      this.estadoDPP = false
     }
+      else if (this.estado == "TJD") {
+        this.estadoEA = true
+        this.estadoVI = true
+        this.estadoIF = true
+        this.estadoGR = true
+        this.estadoTJD = true
+        this.estadoDPP = false
+      } else if (this.estado == "DPP") {
+        this.estadoEA = true
+        this.estadoVI = true
+        this.estadoIF = false
+        this.estadoGR = false
+        this.estadoTJD = false
+        this.estadoDPP = true
+      }
+    }
+
+
+
   }
-
-
-
-}
 

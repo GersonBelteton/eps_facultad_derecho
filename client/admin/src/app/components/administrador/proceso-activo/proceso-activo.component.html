@@ -60,8 +60,10 @@
                                 formControlName="cohorte">
                         </div>
                         <div class="col-6">
-                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary">
-                                Validar Autorización
+                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary"
+                                ngbPopover="Se completarán los campos inferiores con la información registrada en tabla de autorización"
+                                triggers="mouseenter:mouseleave" placement="bottom">
+                                Verificar datos de Autorización
                             </button>
                         </div>
 
@@ -146,6 +148,8 @@
 
                 </div>
                 <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button (click)="crearPDF()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Generar
                         Reporte</button>
@@ -253,6 +257,31 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">¿Desea Autorizar el expediente?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Esta opción permitirá al estudiante imprimir el formulario que deberá presentar a Registro y
+                    Estadística.
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button (click)="autorizarExpediente()" type="button" class="btn btn-primary"
+                    data-bs-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
                 </div>
             </div>
@@ -427,8 +456,8 @@
 
                     <div (click)="finalizar()" class="justify-content-center text-center">
                         <button type="button" class="btn btn-outline-danger mt-3 ms-3 justify-content-center"
-                        ngbPopover="Solicitud se archivará en procesos finalizados, estudiante verá el listado de previos y deberá iniciar un nuevo proceso." 
-                        triggers="mouseenter:mouseleave" placement="bottom">
+                            ngbPopover="Solicitud se archivará en procesos finalizados, estudiante verá el listado de previos y deberá iniciar un nuevo proceso."
+                            triggers="mouseenter:mouseleave" placement="bottom">
 
                             FINALIZAR PROCESO
                         </button>

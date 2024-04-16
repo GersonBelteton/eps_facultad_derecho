@@ -104,6 +104,10 @@ export class ProcesoActivoComponent implements OnInit {
 
 
 
+  autorizarExpediente(){
+    this.modificarEstadoSolicitud("IF")
+
+  }
 
   handleChangeAutorizacion() {
     //doSelected(target);
@@ -124,6 +128,7 @@ export class ProcesoActivoComponent implements OnInit {
   }
 
   validarAutorizacion() {
+    this.modificarEstadoSolicitud("VI")
     const data = this.dataFormReporte.value;
 
     console.log(data)
@@ -502,6 +507,7 @@ export class ProcesoActivoComponent implements OnInit {
     this.solicitudService.updateEstadoSolicitud(data, estado)
       .subscribe((res) => {
         console.log(res)
+        this.getSolicitud()
       }, (error) => {
         console.error(error)
       })
