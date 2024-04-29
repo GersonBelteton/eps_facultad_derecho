@@ -50,7 +50,8 @@ export class RevisarProcesoActivoComponent implements OnInit {
         this.getCarreraActual()
         this.getCarreraDestino()
 
-        if(this.solicitud.solicitud[0].estado == "IF"){
+        if(this.solicitud.solicitud[0].estado == "IF" || this.solicitud.solicitud[0].estado == "GR" 
+        || this.solicitud.solicitud[0].estado == "TJD"){
           this.btnImpFormulario = true;
         }else{
           this.btnImpFormulario = false;

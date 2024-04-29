@@ -94,6 +94,22 @@ export class EstadoProcesoComponent implements OnInit {
       this.estadoIF=true
       this.estadoDPP=false
 
+    }
+    else if(this.estado == "GR"){
+      this.estadoES=true
+      this.estadoEA=true
+      this.estadoVI=true
+      this.estadoIF=true
+      this.estadoDPP=false
+
+    }
+    else if(this.estado == "TJD"){
+      this.estadoES=true
+      this.estadoEA=true
+      this.estadoVI=true
+      this.estadoIF=true
+      this.estadoDPP=false
+
     }else if(this.estado == "DPP"){
       this.estadoES=true
       this.estadoEA=true

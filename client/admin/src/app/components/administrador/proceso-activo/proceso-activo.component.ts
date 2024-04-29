@@ -105,9 +105,19 @@ export class ProcesoActivoComponent implements OnInit {
 
 
   autorizarExpediente(){
-    this.modificarEstadoSolicitud("IF")
+    this.modificarEstadoSolicitud("VIA")
+    alert("Expediente autorizado")
+    this.getSolicitud()
 
   }
+
+
+  autorizarImpresionFormulario(){
+    this.modificarEstadoSolicitud("IF")
+    alert("Impresión de formulario autorizada")
+    this.getSolicitud()
+  }
+
 
   handleChangeAutorizacion() {
     //doSelected(target);
@@ -128,7 +138,7 @@ export class ProcesoActivoComponent implements OnInit {
   }
 
   validarAutorizacion() {
-    this.modificarEstadoSolicitud("VI")
+    //this.modificarEstadoSolicitud("VI")
     const data = this.dataFormReporte.value;
 
     console.log(data)
@@ -283,7 +293,7 @@ export class ProcesoActivoComponent implements OnInit {
       })
 
 
-      this.modificarEstadoSolicitud("VI")
+      this.modificarEstadoSolicitud("VIN")
 
 
   }
@@ -516,7 +526,7 @@ export class ProcesoActivoComponent implements OnInit {
 
   async crearPDF() {
 
-    this.modificarEstadoSolicitud("VI");
+    this.modificarEstadoSolicitud("GR");
 
     const data = this.dataFormReporte.value;
     var date = new Date()

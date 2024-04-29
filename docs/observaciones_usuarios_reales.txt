@@ -58,3 +58,24 @@ y on
 Poner nota en el documento de constancia de solicitud:
 
 Impresión de formulario de equivalencia para la presentación de su expediente original ante la oficina de Registro y Estadística de la Universidad de San Carlos de Guatemala
+
+
+
+
+
+
+
+ESTADOS DE SOLICITUD:
+
+ES = ENVIO DE SOLICITUD
+EA = EXPEDIENTE ABIERTO
+VI = VALIDACIÓN DE INFORMACIÓN
+
+	VIA = VALIDACIÓN DE INFORMACIÓN AUTORIZADO
+	VIN = VALIDACIÓN DE INFOMRACIÓN NO AUTORIZADO
+
+IF = IMPRESION DE FORMULARIO
+GR = GENERACIÓN DE REPORTE
+TJD = TRASLADO A JUNTA DIRECTIVA
+DPP = DETENIDO POR PREVIOS
+

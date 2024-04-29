@@ -5,6 +5,179 @@
 
 <div class="container">
 
+
+    <div class="modal fade" style="overflow-y: scroll;" id="modal7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Validación de Información</h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col">
+                            <button data-bs-toggle="modal" data-bs-target="#modal6" type="button"
+                                class="btn btn-success">Autorizar
+                                Expediente</button>
+                        </div>
+
+                        <div class="col">
+                            <p>
+                                Esta opción permitirá revisar, en base a la tabla de autorización registrada, si la información del estudiante es válida para continuar el proceso.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button data-bs-toggle="modal" data-bs-target="#modal3" type="button" class="btn btn-danger">Rechazar
+                                Expediente</button>
+                        </div>
+
+                        <div class="col">
+                            <p>
+                                Esta opción permitirá detener el proceso en base a los previos seleccionados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
+                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
+                        Expediente</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" style="overflow-y: scroll;" id="modal6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Autorización</h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div [formGroup]="dataFormReporte" class="modal-body">
+
+                    <div class="row mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                formControlName="cohorte">
+                        </div>
+                    </div>
+                    <div class="row mb-3 text-center">
+                        <div class="col">
+                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary"
+                                ngbPopover="Se completarán los campos inferiores con la información registrada en tabla de autorización"
+                                triggers="mouseenter:mouseleave" placement="bottom">
+                                Verificar datos de Autorización
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a href="http://localhost:4201/configuracion-autorizacion" target="_blank" type="button"
+                                class="btn btn-primary">
+                                Consultar Tabla de Autorización
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col">
+                            <label for="">Autorizacion</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedAut"
+                                (change)="handleChangeAutorizacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1">
+                        </div>
+                        <div class="col">
+                            <label for="">Regularización</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegu"
+                                (change)="handleChangeRegularizacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault2">
+                        </div>
+                        <div class="col">
+                            <label for="">Reglamentación</label>
+                            <input class="form-check-input ml-3" [checked]="isCheckedRegl"
+                                (change)="handleChangeReglamentacion()" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault3">
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Punto</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="punto">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Inciso</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="inciso">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Acta</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="acta">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="exampleFormControlInput1" class="form-label">SESIÓN CELEBRADA EL </label>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Dia</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="diaSesion">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Mes</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="mesSesion">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Año</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    formControlName="anioSesion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
+                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
+                        Expediente</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal fade" id="modal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -55,16 +228,24 @@
                         <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-6">
+                        <div class="col">
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 formControlName="cohorte">
                         </div>
-                        <div class="col-6">
+                    </div>
+                    <div class="row mb-3 text-center">
+                        <div class="col">
                             <button (click)="validarAutorizacion()" type="button" class="btn btn-primary"
                                 ngbPopover="Se completarán los campos inferiores con la información registrada en tabla de autorización"
                                 triggers="mouseenter:mouseleave" placement="bottom">
                                 Verificar datos de Autorización
                             </button>
+                        </div>
+                        <div class="col">
+                            <a href="http://localhost:4201/configuracion-autorizacion" target="_blank" type="button"
+                                class="btn btn-primary">
+                                Consultar Tabla de Autorización
+                            </a>
                         </div>
 
                     </div>
@@ -148,8 +329,9 @@
 
                 </div>
                 <div class="modal-footer">
-
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button>
+                    <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
+                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
+                        Expediente</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button (click)="crearPDF()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Generar
                         Reporte</button>
@@ -158,7 +340,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" style="overflow-y: scroll;" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -272,15 +454,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Esta opción permitirá al estudiante imprimir el formulario que deberá presentar a Registro y
+                    Esta opción permitirá al estudiante imprimir el formulario para presentarlo a Registro y
                     Estadística.
 
 
 
                 </div>
                 <div class="modal-footer">
-                    <button (click)="autorizarExpediente()" type="button" class="btn btn-primary"
-                    data-bs-dismiss="modal">Aceptar</button>
+                    <button (click)="autorizarImpresionFormulario()" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Aceptar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
                 </div>
@@ -311,7 +493,7 @@
     <div class="row justify-content-between text-center">
         <div class="col-5">
 
-            <h4 class="mb-3"> Aprobó los Cursos Desde: </h4>
+            <h4 class="mb-3" style="color: darkblue;"> APROBÓ LOS CURSOS EN: </h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
                     <h5 class="card-title">
@@ -361,7 +543,7 @@
         </div> -->
         <div class="col-5">
 
-            <h4 class="mb-3"> Solicitó Equivalencias Hacia: </h4>
+            <h4 class="mb-3" style="color: darkblue;"> SOLICITÓ EQUIVALENCIAS EN: </h4>
             <div class="card tarjeta mb-3" style="max-width: 30rem;">
                 <div class="card-header">
                     <h5 class="card-title">
@@ -468,6 +650,57 @@
             </div>
         </div>
     </div>
+
+    <div class="row text-center">
+        <div *ngIf="this.solicitud.solicitud[0].estado=='EA' || this.solicitud.solicitud[0].estado=='VIN'" class="col">
+
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal7">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                </svg>
+                Validación de información
+            </button>
+        </div>
+
+        <div *ngIf="this.solicitud.solicitud[0].estado=='VIA'" class="col">
+
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                </svg>
+                Impresión de formulario
+            </button>
+        </div>
+        <div *ngIf="this.solicitud.solicitud[0].estado=='IF'" class="col">
+
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                </svg>
+                Generación de reporte
+            </button>
+        </div>
+        <div *ngIf="this.solicitud.solicitud[0].estado=='GR'" class="col">
+
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                </svg>
+                Traslado a junta directiva
+            </button>
+        </div>
+
+
+    </div>
+
 
     <app-estado-proceso [id_sol]="idSolicitud"></app-estado-proceso>
 

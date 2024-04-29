@@ -73,14 +73,22 @@ export class EstadoProcesoComponent implements OnInit {
       this.estadoGR = false
       this.estadoTJD = false
       this.estadoDPP = false
-    } else if (this.estado == "VI") {
+    } else if (this.estado == "VIN") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = false
       this.estadoGR = false
       this.estadoTJD = false
       this.estadoDPP = false
-    } else if (this.estado == "IF") {
+    }else if (this.estado == "VIA") {
+      this.estadoEA = true
+      this.estadoVI = true
+      this.estadoIF = false
+      this.estadoGR = false
+      this.estadoTJD = false
+      this.estadoDPP = false
+    } 
+    else if (this.estado == "IF") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = true
