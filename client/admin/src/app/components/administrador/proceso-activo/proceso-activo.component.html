@@ -6,8 +6,8 @@
 <div class="container">
 
 
-    <div class="modal fade" style="overflow-y: scroll;" id="modal7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" style="overflow-y: scroll;" id="modal7" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19,22 +19,33 @@
 
 
                     <div class="row">
-                        <div class="col">
+                        <div *ngIf="this.previos_estudiante.length == 0" class="col">
                             <button data-bs-toggle="modal" data-bs-target="#modal6" type="button"
                                 class="btn btn-success">Autorizar
                                 Expediente</button>
                         </div>
 
+                        <div *ngIf="this.previos_estudiante.length > 0" class="col">
+                            <button type="button" class="btn btn-outline-secondary" type="button"
+                                [autoClose]="true"
+                                ngbPopover="Opción no válida hasta eliminar el listado de previos."
+                                placement="bottom"
+                                #popover3="ngbPopover">Autorizar
+                                Expediente</button>
+                        </div>
+
                         <div class="col">
                             <p>
-                                Esta opción permitirá revisar, en base a la tabla de autorización registrada, si la información del estudiante es válida para continuar el proceso.
+                                Esta opción permitirá revisar, en base a la tabla de autorización registrada, si la
+                                información del estudiante es válida para continuar el proceso.
                             </p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <button data-bs-toggle="modal" data-bs-target="#modal3" type="button" class="btn btn-danger">Rechazar
+                            <button data-bs-toggle="modal" data-bs-target="#modal3" type="button"
+                                class="btn btn-danger">Rechazar
                                 Expediente</button>
                         </div>
 
@@ -46,9 +57,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
-                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
-                        Expediente</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -58,8 +66,8 @@
 
 
 
-    <div class="modal fade" style="overflow-y: scroll;" id="modal6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" style="overflow-y: scroll;" id="modal6" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -253,19 +261,19 @@
 
                         <div class="col">
                             <label for="">Autorizacion</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedAut"
+                            <input class="form-check-input ml-3" 
                                 (change)="handleChangeAutorizacion()" type="radio" name="flexRadioDefault"
                                 id="flexRadioDefault1">
                         </div>
                         <div class="col">
                             <label for="">Regularización</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedRegu"
+                            <input class="form-check-input ml-3" 
                                 (change)="handleChangeRegularizacion()" type="radio" name="flexRadioDefault"
                                 id="flexRadioDefault2">
                         </div>
                         <div class="col">
                             <label for="">Reglamentación</label>
-                            <input class="form-check-input ml-3" [checked]="isCheckedRegl"
+                            <input class="form-check-input ml-3" 
                                 (change)="handleChangeReglamentacion()" type="radio" name="flexRadioDefault"
                                 id="flexRadioDefault3">
                         </div>
@@ -340,8 +348,8 @@
         </div>
     </div>
 
-    <div class="modal fade" style="overflow-y: scroll;" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" style="overflow-y: scroll;" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
