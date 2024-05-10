@@ -197,7 +197,16 @@ if ($method == 'PUT') {
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
         echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
-    }else{
+    }else if(!empty($_GET['cohorte'])){
+        $cohorte = $json->cohorte;
+        $id_solicitud = $json->id_solicitud;
+        $sql = $pdo->prepare("update solicitud set cohorte = ? where id = ?");
+        $sql->execute([$cohorte, $id_solicitud]);
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        header("HTTP/1.1 200 OK");
+        echo json_encode($sql->fetchAll(), JSON_PRETTY_PRINT);
+    }
+    else{
         $codigo_carrera = $json->codigo_carrera;
         $asignaturas = $json->asignaturas;
         $id_solicitud = $json->id_solicitud;

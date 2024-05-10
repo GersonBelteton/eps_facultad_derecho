@@ -4,6 +4,11 @@
 class conexion extends PDO {
 
 
+    // private $host = 'localhost';
+    // private $name = 'departamentales';
+    // private $user = 'user_sitio';
+    // private $password = 'xtech120904';
+
     private $host = 'localhost';
     private $name = 'epsProyect';
     private $user = 'root';

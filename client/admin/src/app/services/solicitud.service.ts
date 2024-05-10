@@ -69,6 +69,14 @@ export class SolicitudService {
     )
   }
 
+  updateCohorteSolicitud(data:any): Observable<any>{
+    let url = `${environment.basePath}solicitud.php?cohorte=1`;
+    return this.http.put(url,data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
   finalizarSolicitud(data:any): Observable<any>{
     let url = `${environment.basePath}solicitud.php?resultado=1`;

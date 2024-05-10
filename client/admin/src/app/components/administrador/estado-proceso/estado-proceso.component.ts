@@ -6,57 +6,24 @@ import { SolicitudService } from '../../../services/solicitud.service'
   styleUrls: ['./estado-proceso.component.css']
 })
 export class EstadoProcesoComponent implements OnInit {
-  @Input() id_sol: any;
+  @Input() estado_: any;
 
-  activo: any = true;
-  solicitud: any;
-  previos: any = []
+
   estado: any
-  id_solicitud: any
-  mostrarCuadroPrevios: boolean = false
-
-
-  constructor(
-    private solicitudService: SolicitudService
-
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.id_sol)
+    console.log(this.estado_)
     //this.id_solicitud = localStorage.getItem("id_sol")
-    this.id_solicitud = this.id_sol
-    this.getSolicitud()
-    this.getPrevios()
+    this.estado = this.estado_
+    this.setEstados()
+  }
+
+  ngOnChanges(): void {
+    this.setEstados();
   }
 
 
-
-  getPrevios() {
-    this.solicitudService.getPrevios(this.id_solicitud)
-      .subscribe((res) => {
-        console.log(res)
-        this.previos = res
-        if (this.previos.length > 0) {
-          this.mostrarCuadroPrevios = true
-        }
-      }, (error) => {
-        console.error(error)
-      })
-  }
-  getSolicitud() {
-
-
-    this.solicitudService.getSolicitud(this.id_solicitud)
-      .subscribe((res) => {
-        console.log(res)
-        this.solicitud = res
-        this.estado = this.solicitud.solicitud[0].estado
-        this.setEstados()
-      },
-        (error) => {
-          console.log(error)
-        })
-  }
 
 
   estadoEA: any
@@ -66,21 +33,21 @@ export class EstadoProcesoComponent implements OnInit {
   estadoTJD: any
   estadoDPP: any
   setEstados() {
-    if (this.estado == "EA") {
+    if (this.estado_ == "EA") {
       this.estadoEA = true
       this.estadoVI = false
       this.estadoIF = false
       this.estadoGR = false
       this.estadoTJD = false
       this.estadoDPP = false
-    } else if (this.estado == "VIN") {
+    } else if (this.estado_ == "VIN") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = false
       this.estadoGR = false
       this.estadoTJD = false
       this.estadoDPP = false
-    }else if (this.estado == "VIA") {
+    }else if (this.estado_ == "VIA") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = false
@@ -88,14 +55,14 @@ export class EstadoProcesoComponent implements OnInit {
       this.estadoTJD = false
       this.estadoDPP = false
     } 
-    else if (this.estado == "IF") {
+    else if (this.estado_ == "IF") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = true
       this.estadoGR = false
       this.estadoTJD = false
       this.estadoDPP = false
-    } else if (this.estado == "GR") {
+    } else if (this.estado_ == "GR") {
       this.estadoEA = true
       this.estadoVI = true
       this.estadoIF = true
@@ -103,14 +70,14 @@ export class EstadoProcesoComponent implements OnInit {
       this.estadoTJD = false
       this.estadoDPP = false
     }
-      else if (this.estado == "TJD") {
+      else if (this.estado_ == "TJD") {
         this.estadoEA = true
         this.estadoVI = true
         this.estadoIF = true
         this.estadoGR = true
         this.estadoTJD = true
         this.estadoDPP = false
-      } else if (this.estado == "DPP") {
+      } else if (this.estado_ == "DPP") {
         this.estadoEA = true
         this.estadoVI = true
         this.estadoIF = false

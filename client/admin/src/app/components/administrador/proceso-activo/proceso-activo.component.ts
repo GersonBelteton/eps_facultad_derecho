@@ -26,13 +26,16 @@ export class ProcesoActivoComponent implements OnInit {
   urlReporte: any
   mostrarCuadroPrevios: boolean = false
   isChecked: boolean = false
-  tipoAutorizacionSeleccionada: any
+  tipoAutorizacionSeleccionada: any = ""
 
 
   isCheckedAut: boolean = false
   isCheckedRegu: boolean = false
   isCheckedRegl: boolean = false
 
+  isCheckedAutGR: boolean = false
+  isCheckedReguGR: boolean = false
+  isCheckedReglGR: boolean = false
 
   constructor(private _router: Router,
     private solicitudService: SolicitudService,
@@ -104,15 +107,16 @@ export class ProcesoActivoComponent implements OnInit {
 
 
 
-  autorizarExpediente(){
+  autorizarExpediente() {
     this.modificarEstadoSolicitud("VIA")
     alert("Expediente autorizado")
+    this.modificarCohorte()
     this.getSolicitud()
 
   }
 
 
-  autorizarImpresionFormulario(){
+  autorizarImpresionFormulario() {
     this.modificarEstadoSolicitud("IF")
     alert("Impresión de formulario autorizada")
     this.getSolicitud()
@@ -137,13 +141,32 @@ export class ProcesoActivoComponent implements OnInit {
     this.tipoAutorizacionSeleccionada = "reglamentada";
   }
 
-  validarAutorizacion() {
-    //this.modificarEstadoSolicitud("VI")
+  modificarCohorte() {
+
     const data = this.dataFormReporte.value;
 
-    console.log(data)
-    console.log(this.carreraActual.unidad_id + " " + data.cohorte)
-    this.equivalenciaService.getAutorizacion(this.carreraActual.unidad_id, data.cohorte)
+    let body = {
+      id_solicitud: this.idSolicitud,
+      cohorte: data.cohorte
+    }
+    
+    this.solicitudService.updateCohorteSolicitud(body)
+      .subscribe((res) => {
+        console.log(res)
+        //this.getSolicitud()
+      }, (error) => {
+        console.error(error)
+      })
+  }
+
+  validarAutorizacion(cohorte: any) {
+    console.log("validar autorizacion adentro")
+    //this.modificarEstadoSolicitud("VI")
+
+
+    //const data = this.dataFormReporte.value;
+    console.log(this.carreraActual.unidad_id + " " +cohorte)
+    this.equivalenciaService.getAutorizacion(this.carreraActual.unidad_id, cohorte)
       .subscribe((res) => {
         console.log(res)
 
@@ -157,21 +180,26 @@ export class ProcesoActivoComponent implements OnInit {
             acta: res.datos.acta,
             diaSesion: fecha[0],
             mesSesion: fecha[1],
-            anioSesion: fecha[2]
+            anioSesion: fecha[2],
+            cohorte: cohorte
           }
         )
 
         if (res.msg == "AUTORIZACION") {
           console.log("marcar autorización")
           this.isCheckedAut = true;
+          this.isCheckedAutGR = true;
           this.tipoAutorizacionSeleccionada = "autorizada"
           console.log("marcar regularizacion")
           this.handleChangeRegularizacion()
         } else if (res.msg == "REGULARIZACION") {
+          if(!this.isCheckedRegu){}
           this.isCheckedRegu = true;
+          this.isCheckedReguGR = true;
           this.tipoAutorizacionSeleccionada = "regularizada"
         } else if (res.msg == "REGLAMENTACION") {
           this.isCheckedRegl = true;
+          this.isCheckedReglGR = true;
           this.tipoAutorizacionSeleccionada = "reglamentada"
         }
 
@@ -191,7 +219,7 @@ export class ProcesoActivoComponent implements OnInit {
       status = "DPP"
     } else {
       res = "Aprobado",
-        status = "PF"
+      status = "TJD"
     }
     let body = {
       id_solicitud: this.idSolicitud,
@@ -293,7 +321,7 @@ export class ProcesoActivoComponent implements OnInit {
       })
 
 
-      this.modificarEstadoSolicitud("VIN")
+    this.modificarEstadoSolicitud("VIN")
 
 
   }
@@ -341,6 +369,7 @@ export class ProcesoActivoComponent implements OnInit {
         console.error(error)
       })
   }
+
 
 
   getEquivalencias() {
@@ -406,6 +435,11 @@ export class ProcesoActivoComponent implements OnInit {
             centro: this.carreraActual.unidad_nombre
           }
         )
+
+        if(this.solicitud.solicitud[0].cohorte > 0){
+          console.log("validar aut"+this.solicitud.solicitud[0].cohorte)
+          this.validarAutorizacion(this.solicitud.solicitud[0].cohorte)
+        }
       },
         (error) => {
           console.error(error)
@@ -437,9 +471,11 @@ export class ProcesoActivoComponent implements OnInit {
         this.getCarreraDestino()
         this.getEquivalencias()
 
-        if(this.solicitud.solicitud[0].estado=="ES"){
+        if (this.solicitud.solicitud[0].estado == "ES") {
           this.modificarEstadoSolicitud("EA")
         }
+
+
       },
         (error) => {
           console.error(error)
@@ -678,7 +714,7 @@ export class ProcesoActivoComponent implements OnInit {
             { text: 'CUI: ', preserveLeadingSpaces: true, fontSize: 10 },
             { text: data.cui + ' ', preserveLeadingSpaces: true, fontSize: 10, bold: true },
             { text: 'y estudiante de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + '; pertenece a la COHORTE ' + data.cohorte + ' de la carrera de Licenciatura en Ciencias Jurídicas y Sociales, Abogacía y Notariado de ' + data.centro + ' la cual de conformidad con la legislación universitaria ', preserveLeadingSpaces: true, fontSize: 10 },
-            { text: 'sí se encuentra '+this.tipoAutorizacionSeleccionada+' ', preserveLeadingSpaces: true, fontSize: 10, bold: true, decoration: 'underline' },
+            { text: 'sí se encuentra ' + this.tipoAutorizacionSeleccionada + ' ', preserveLeadingSpaces: true, fontSize: 10, bold: true, decoration: 'underline' },
             { text: 'según Punto ' + data.punto + ', inciso ' + data.inciso + ' del Acta ' + data.acta + ', de la sesión celebrada por el Consejo Superior Universitario, el ' + data.diaSesion + ' de ' + data.mesSesion + ' de ' + data.anioSesion + '.', preserveLeadingSpaces: true, fontSize: 10 },
 
 

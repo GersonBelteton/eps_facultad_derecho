@@ -6,6 +6,28 @@
 <div class="container">
 
 
+    <div class="modal fade" id="modal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Trasladar a Junta Directiva</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Se ha trasladado el reporte a Junta Directiva, por lo cual, se da por finalizado el proceso con resultados satisfactorios.
+
+                </div>
+                <div class="modal-footer">
+                    <button (click)="finalizar()" type="button" class="btn btn-primary" data-bs-dismiss="modal">FINALIZAR PROCESO</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="modal fade" style="overflow-y: scroll;" id="modal7" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -88,7 +110,7 @@
                     </div>
                     <div class="row mb-3 text-center">
                         <div class="col">
-                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary"
+                            <button (click)="validarAutorizacion(this.dataFormReporte.value.cohorte)" type="button" class="btn btn-primary"
                                 ngbPopover="Se completarán los campos inferiores con la información registrada en tabla de autorización"
                                 triggers="mouseenter:mouseleave" placement="bottom">
                                 Verificar datos de Autorización
@@ -177,7 +199,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
-                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
+                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success" data-bs-dismiss="modal">Autorizar
                         Expediente</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
@@ -232,52 +254,14 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <label for="exampleFormControlInput1" class="form-label">COHORTE</label>
+                    <div *ngIf="this.tipoAutorizacionSeleccionada != 'undefined'" class="row mt-3">
+                        <label for="exampleFormControlInput1" class="form-label">COHORTE {{this.tipoAutorizacionSeleccionada.toUpperCase()}}</label>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 formControlName="cohorte">
                         </div>
-                    </div>
-                    <div class="row mb-3 text-center">
-                        <div class="col">
-                            <button (click)="validarAutorizacion()" type="button" class="btn btn-primary"
-                                ngbPopover="Se completarán los campos inferiores con la información registrada en tabla de autorización"
-                                triggers="mouseenter:mouseleave" placement="bottom">
-                                Verificar datos de Autorización
-                            </button>
-                        </div>
-                        <div class="col">
-                            <a href="http://localhost:4201/configuracion-autorizacion" target="_blank" type="button"
-                                class="btn btn-primary">
-                                Consultar Tabla de Autorización
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="row">
-
-                        <div class="col">
-                            <label for="">Autorizacion</label>
-                            <input class="form-check-input ml-3" 
-                                (change)="handleChangeAutorizacion()" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault1">
-                        </div>
-                        <div class="col">
-                            <label for="">Regularización</label>
-                            <input class="form-check-input ml-3" 
-                                (change)="handleChangeRegularizacion()" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault2">
-                        </div>
-                        <div class="col">
-                            <label for="">Reglamentación</label>
-                            <input class="form-check-input ml-3" 
-                                (change)="handleChangeReglamentacion()" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault3">
-                        </div>
-
                     </div>
 
 
@@ -338,8 +322,6 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"data-bs-target="#modal5">Autorizar Expediente</button> -->
-                    <button (click)="autorizarExpediente()" type="button" class="btn btn-success">Autorizar
-                        Expediente</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button (click)="crearPDF()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Generar
                         Reporte</button>
@@ -581,7 +563,7 @@
                     </button>
 
 
-
+<!-- 
                     <button type="button" class="btn btn-outline-primary mt-3" data-bs-toggle="modal"
                         data-bs-target="#modal4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -597,7 +579,7 @@
                         data-bs-target="#modal3">
 
                         Generar Previo
-                    </button>
+                    </button> -->
 
                 </div>
             </div>
@@ -696,7 +678,7 @@
         </div>
         <div *ngIf="this.solicitud.solicitud[0].estado=='GR'" class="col">
 
-            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal4">
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#modal8">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                     class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
                     <path
@@ -710,7 +692,7 @@
     </div>
 
 
-    <app-estado-proceso [id_sol]="idSolicitud"></app-estado-proceso>
+    <app-estado-proceso [estado_]="this.solicitud.solicitud[0].estado"></app-estado-proceso>
 
     <div class="row justify-content-center my-3">
         <div class="col-4" style="text-align: center;">
