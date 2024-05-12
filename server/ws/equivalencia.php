@@ -14,7 +14,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'GET') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
     if (empty($_GET['id_carrera']) || empty($_GET['id_asignatura'])) {
         
         exit('no hay datos de suficientes');
@@ -56,7 +56,7 @@ if ($method == 'GET') {
 
 
 }else if($method == 'POST'){
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
 
     $json = json_decode(file_get_contents("php://input"));
     if (!$json) {
@@ -69,7 +69,7 @@ if ($method == 'GET') {
         "id" => $pdo->lastInsertId()
     ]);
 }else if($method == 'DELETE'){
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
 
     if (!empty($_GET['id_equivalencia'])) {
         $idEquivalencia = $_GET['id_equivalencia'];

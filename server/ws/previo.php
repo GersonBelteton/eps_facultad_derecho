@@ -13,12 +13,15 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'GET') {
 
-    $http_origin = $_SERVER['HTTP_ORIGIN'];
+    // $http_origin = $_SERVER['HTTP_ORIGIN'];
 
-    if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
-    {  
-        header("Access-Control-Allow-Origin: $http_origin");
-    }
+    // if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
+    // {  
+    //     header("Access-Control-Allow-Origin: $http_origin");
+    // }
+
+
+    header("Access-Control-Allow-Origin: *");
 
     if (!empty($_GET['id_solicitud'])) {
 
@@ -44,7 +47,7 @@ if ($method == 'GET') {
 if ($method == 'POST') {
    
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
     
 
     $json = json_decode(file_get_contents('php://input'));
@@ -83,8 +86,7 @@ if ($method == 'POST') {
 
 }
 if ($method == 'DELETE') {
-    header("Access-Control-Allow-Origin: http://localhost:4200");
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
 
     if (!empty($_GET['id_previo'])) {

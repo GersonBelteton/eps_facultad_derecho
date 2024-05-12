@@ -13,14 +13,16 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'GET') {
 
-    $http_origin = $_SERVER['HTTP_ORIGIN'];
+    // $http_origin = $_SERVER['HTTP_ORIGIN'];
 
-    if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
-    {  
-        header("Access-Control-Allow-Origin: $http_origin");
-    }
+    // if ($http_origin == "http://localhost:4200" || $http_origin == "http://localhost:4201")
+    // {  
+    //     header("Access-Control-Allow-Origin: $http_origin");
+    // }
     //header("Access-Control-Allow-Origin:[http://localhost:4200, http://localhost:4201]");
     //header("Access-Control-Allow-Origin: http://localhost:4201");
+
+    header("Access-Control-Allow-Origin: *");
     if (!empty($_GET['registro_academico'])) {
 
         $registro = $_GET['registro_academico'];
@@ -94,7 +96,7 @@ if ($method == 'POST') {
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     header('Content-Type: application/json');
 */
-    header("Access-Control-Allow-Origin: http://localhost:4200");
+    header("Access-Control-Allow-Origin: *");
     
 
     $json = json_decode(file_get_contents('php://input'));
@@ -112,7 +114,7 @@ if ($method == 'POST') {
     $nombre_archivo = $json->archivo->fileName;
     $archivo = $json->archivo->base64textString;
     $archivo = base64_decode($archivo);
-    $path = "/WS/documentos/certificados_cursos/".$registro."_".$nombre_archivo;
+    $path = dirname($_SERVER['PHP_SELF'])."/documentos/certificados_cursos/".$registro."_".$nombre_archivo;
     $filePath = $_SERVER['DOCUMENT_ROOT'].$path;
 
 
@@ -120,19 +122,22 @@ if ($method == 'POST') {
     while(file_exists($filePath)){
      $nombre_archivo="($i)".$nombre_archivo;
      $i++;
-     $filePath = $_SERVER['DOCUMENT_ROOT']."/WS/documentos/certificados_cursos/".$registro."_".$nombre_archivo;
+     $filePath = $_SERVER['DOCUMENT_ROOT'].dirname($_SERVER['PHP_SELF'])."/documentos/certificados_cursos/".$registro."_".$nombre_archivo;;
     }
 
 
     file_put_contents($filePath, $archivo);
 
+    $protocolo = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 
+    // Nombre del host
+    $host = $_SERVER['HTTP_HOST'];
 
 
 
     $sql = $pdo->prepare("insert into solicitud (estudiante, registro_academico, cui_pasaporte, tipo, estado, ruta_certificado_cursos, fecha_inicio, codigo_carrera)
     values (?,?,?,?,'ES',?,now(), ?)");
-    $sql->execute([$estudiante, $registro, $cui_pasaporte, $tipo, "http://localhost".$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
+    $sql->execute([$estudiante, $registro, $cui_pasaporte, $tipo, $protocolo."://".$host.$path, $carrera]);/// colocar url del servidor backend en la parte de gethostbyname//gethostbyname( gethostname())
     $id_solicitud = $pdo->lastInsertId();
     $res = [];
     $cont = 0;
@@ -151,8 +156,7 @@ if ($method == 'POST') {
 
 
 if ($method == 'DELETE') {
-    header("Access-Control-Allow-Origin: http://localhost:4200");
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
 
     if (empty($_GET['id_solicitud'])) {
@@ -170,7 +174,7 @@ if ($method == 'DELETE') {
 
 
 if ($method == 'PUT') {
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: *");
 
 

@@ -15,13 +15,14 @@ $host = $env->getHost();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // header("Access-Control-Allow-Origin: http://localhost:4200");
-    $http_origin = $_SERVER['HTTP_ORIGIN'];
+    // $http_origin = $_SERVER['HTTP_ORIGIN'];
 
-    if ($http_origin == $host.":4200" || $http_origin == $host.":4200" )
-    {  
-        header("Access-Control-Allow-Origin: $http_origin");
-    }
+    // if ($http_origin == $host.":4200" || $http_origin == $host.":4200" )
+    // {  
+    //     header("Access-Control-Allow-Origin: $http_origin");
+    // }
 
+    header("Access-Control-Allow-Origin: *");
 
     if(!empty($_GET['unidad_academica'])){
 
@@ -104,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    header("Access-Control-Allow-Origin: ".$host.":4201");
+    header("Access-Control-Allow-Origin: *");
 
     $json = json_decode(file_get_contents("php://input"));
     if (!$json) {
@@ -120,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
 
     $json = json_decode(file_get_contents("php://input"));
     if (!$json) {
@@ -137,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 
 
-    header("Access-Control-Allow-Origin: http://localhost:4201");
+    header("Access-Control-Allow-Origin: *");
 
     if (!empty($_GET['id_unidad'])) {
         $idUnidad = $_GET['id_unidad'];
