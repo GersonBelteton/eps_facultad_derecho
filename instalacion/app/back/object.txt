@@ -1,0 +1,159 @@
+DOMDocument Object ( 
+    [config] => 
+    [doctype] => 
+    [implementation] => (object value omitted) 
+    [documentElement] => (object value omitted) 
+    [actualEncoding] => ISO-8859-1 
+    [encoding] => ISO-8859-1 
+    [xmlEncoding] => ISO-8859-1 
+    [standalone] => 1 
+    [xmlStandalone] => 1 
+    [version] => 1.0 
+    [xmlVersion] => 1.0 
+    [strictErrorChecking] => 1 
+    [documentURI] => file:/C:/xampp/htdocs/ws/ 
+    [formatOutput] => 
+    [validateOnParse] => 
+    [resolveExternals] => 
+    [preserveWhiteSpace] => 1 
+    [recover] => 
+    [substituteEntities] => 
+    [firstElementChild] => (object value omitted) 
+    [lastElementChild] => (object value omitted) 
+    [childElementCount] => 1 
+    [nodeName] => #document 
+    [nodeValue] => 
+    [nodeType] => 9 
+    [parentNode] => 
+    [childNodes] => (object value omitted) 
+    [firstChild] => (object value omitted) 
+    [lastChild] => (object value omitted) 
+    [previousSibling] => 
+    [nextSibling] => 
+    [attributes] => 
+    [ownerDocument] => 
+    [namespaceURI] => 
+    [prefix] => 
+    [localName] => 
+    [baseURI] => file:/C:/xampp/htdocs/ws/ 
+    [textContent] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+    )
+
+
+    DOMElement Object ( 
+        [schemaTypeInfo] => [tagName] => SOAP-ENV:Envelope 
+        [firstElementChild] => (object value omitted) 
+        [lastElementChild] => (object value omitted) 
+        [childElementCount] => 1 
+        [previousElementSibling] => [nextElementSibling] => [nodeName] => SOAP-ENV:Envelope 
+        [nodeValue] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+        [nodeType] => 1 
+        [parentNode] => (object value omitted) 
+        [childNodes] => (object value omitted) 
+        [firstChild] => (object value omitted) 
+        [lastChild] => (object value omitted) 
+        [previousSibling] => [nextSibling] => [attributes] => (object value omitted) 
+        [ownerDocument] => (object value omitted) 
+        [namespaceURI] => http://schemas.xmlsoap.org/soap/envelope/ 
+        [prefix] => SOAP-ENV 
+        [localName] => Envelope 
+        [baseURI] => file:/C:/xampp/htdocs/ws/ 
+        [textContent] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+        )
+
+
+
+        DOMElement Object ( 
+            [schemaTypeInfo] => [tagName] => SOAP-ENV:Body 
+            [firstElementChild] => (object value omitted) 
+            [lastElementChild] => (object value omitted) 
+            [childElementCount] => 1 
+            [previousElementSibling] => [nextElementSibling] => [nodeName] => SOAP-ENV:Body 
+            [nodeValue] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+            [nodeType] => 1 
+            [parentNode] => (object value omitted) 
+            [childNodes] => (object value omitted) 
+            [firstChild] => (object value omitted) 
+            [lastChild] => (object value omitted) 
+            [previousSibling] => [nextSibling] => [attributes] => (object value omitted) 
+            [ownerDocument] => (object value omitted) 
+            [namespaceURI] => http://schemas.xmlsoap.org/soap/envelope/ 
+            [prefix] => SOAP-ENV 
+            [localName] => Body 
+            [baseURI] => file:/C:/xampp/htdocs/ws/ 
+            [textContent] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+            )
+
+        DOMElement Object ( 
+            [schemaTypeInfo] => 
+            [tagName] => return 
+            [firstElementChild] => 
+            [lastElementChild] => 
+            [childElementCount] => 0 
+            [previousElementSibling] => 
+            [nextElementSibling] => 
+            [nodeName] => return 
+            [nodeValue] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+            [nodeType] => 1 
+            [parentNode] => (object value omitted) 
+            [childNodes] => (object value omitted) 
+            [firstChild] => (object value omitted) 
+            [lastChild] => (object value omitted) 
+            [previousSibling] => 
+            [nextSibling] => 
+            [attributes] => (object value omitted) 
+            [ownerDocument] => (object value omitted) 
+            [namespaceURI] => 
+            [prefix] => 
+            [localName] => return 
+            [baseURI] => file:/C:/xampp/htdocs/ws/ 
+            [textContent] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+            )
+
+
+
+
+            SimpleXMLElement Object ( 
+                [SOAP-ENV:Body] => SimpleXMLElement Object ( ) )
+
+
+            SimpleXMLElement Object ( 
+                [Body] => SimpleXMLElement Object ( 
+                    [ns1:VerificaNuevosResponse] => SimpleXMLElement Object ( 
+                        [return] => 1consulta exitosa202380005C028755422021060194Romero VelasquezSergio Gabriel1987-02-22132NICARAGUENSE1Guatemala1Ciudad de Guatemala 
+                        )
+                    ) 
+                )
+
+
+SimpleXMLElement Object ( 
+    [Body] => SimpleXMLElement Object ( 
+        [ns1:VerificaNuevosResponse] => SimpleXMLElement Object ( 
+            [return] => SimpleXMLElement Object ( 
+                [RESP_VERIFICAR_INSCRITO] => SimpleXMLElement Object ( 
+                    [STATUS] => 1 
+                    [MSG] => consulta exitosa 
+                    [DATOS] => SimpleXMLElement Object ( 
+                        [CARNET] => 202380005 
+                        [CUI_PASAPORTE] => C02875542 
+                        [NOV] => 2021060194 
+                        [APELLIDOS] => Romero Velasquez 
+                        [NOMBRES] => Sergio Gabriel 
+                        [FECHA_NACIMIENTO] => 1987-02-22 
+                        [SEXO] => 1 
+                        [TELEFONO] => SimpleXMLElement Object ( ) 
+                        [CELULAR] => SimpleXMLElement Object ( ) 
+                        [CORREO] => SimpleXMLElement Object ( ) 
+                        [CODIGO_NACIONALIDAD] => 32 
+                        [NACIONALIDAD] => NICARAGUENSE 
+                        [DIRECCION] => SimpleXMLElement Object ( ) 
+                        [DEPTO_RECIDENCIA] => 1 
+                        [DEPARTAMENTO_RECIDENCIA] => Guatemala 
+                        [MUNI_RECIDENCIA] => 1 
+                        [MUNICIPIO_RECIDENCIA] => Ciudad de Guatemala 
+                    ) 
+                ) 
+            ) 
+        ) 
+    ) 
+)

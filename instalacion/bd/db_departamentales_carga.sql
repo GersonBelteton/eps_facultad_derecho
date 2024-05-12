@@ -1,0 +1,87 @@
+
+use departamentales; 
+
+insert into unidad_academica(codigo, nombre) values
+("04","Facultad de ciencias jurídicas y sociales"              ),
+("12","Centro universitario de occidente (CUNOC)"              ),
+("17","Centro universitario del norte (CUNOR)"                 ),
+("19","Centro universitario de oriente (CUNORI)"               ),
+("20","Centro universitario de noroccidente (CUNOROC)"         ),
+("21","Centro universitario del sur (CUNSUR)"                  ),
+("22","Centro universitario del sur-occidente (CUNSUROC)"      ),
+("23","Centro universitario del sur-oriente (CUNSURORI)"       ),
+("25","Centro universitario de San Marcos (CUSAM)"             ),
+("27","Centro universitario de Izabal (CUNIZAB)"               ),
+("32","Centro universitario de Santa Rosa (CUNSARO)"           ),
+("34","Centro universitario de Jutiapa (JUSAC)"                ),
+("35","Centro universitario de Chimaltenango (CUNDECH)"        ),
+("37","Centro universitario de Baja Verapaz (CUNBAV)"          ),
+("38","Centro universitario de El Progreso (CUN Progreso)"     ),
+("39","Centro universitario de Totonicapán (CUNTOTO)"          ),
+("40","Centro universitario de El Quiché (CUSACQ)"             ),
+("41","Centro universitario de Zacapa (CUNZAC)"                ),
+("42","Centro universitario de Sololá (CUNSOL)"                ),
+("44","Centro universitario de Sacatepequez (CUNSAC)"		   );
+
+insert into extension_universitaria (id_ua, codigo, nombre)values
+(1,"00","Campus Central"),
+(2,"00","CUNOC"),
+(3,"00","CUNOR"),
+(4,"00","CUNORI"),
+(5,"00","CUNOROC"),
+(6,"00","CUNSUR"),
+(7,"00","CUNSUROC"),
+(8,"00","CUNSURORI"),
+(8,"08","Mataquescuintla"),
+(9,"00","CUSAM"),
+(10,"00","Puerto Barrios"),
+(11,"00","CUNSARO"),
+(11,"05","Chiquimulilla"),
+(11,"08","Nueva Santa Rosa"),
+(12,"00","JUSAC"),
+(13,"00","CUNDECH"),
+(14,"00","CUNBAV"),
+(15,"00","CUN Progreso"),
+(16,"00","CUNTOTO"),
+(17,"00","Santa Cruz El Quiché"),
+(17,"10","Pachalún"),
+(17,"12","Joyaba"),
+(17,"11","Ixcán"),
+(18,"00","CUNZAC"),
+(19,"00","Sololá"),
+(19,"05","San Juan la Laguna"),
+(20,"00","CUNSAC");
+
+insert into carrera (id_eu, codigo, nombre)values
+(1,"01","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(2,"01","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(3,"13","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(4,"14","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(5,"09","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(6,"11","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(7,"17","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(8,"10","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(9,"10","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(10,"09","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(11,"06","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(12,"05","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(13,"05","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(14,"05","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(15,"02","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(16,"02","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(17,"03","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(18,"04","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(19,"06","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(20,"03","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(21,"03","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(22,"03","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(23,"03","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(24,"05","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(25,"01","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(26,"01","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado"),
+(27,"05","Lic. en Ciencias Jurídicas y Sociales, Abogacia y Notariado");
+
+
+insert into administrador(nombre_completo, usuario, contrasena, permiso_usuarios, permiso_equivalencias, permiso_expedientes) 
+values ("Valeska Ruiz", "VRuiz", "123", true, true, true );
+
