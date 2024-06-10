@@ -161,6 +161,7 @@ export class LoginComponent implements OnInit {
     console.log(estudiante)
     this.estudianteService.auth(estudiante)
     .subscribe((res)=>{
+      console.log(res)
       if(res.status == 1){
 
         this.estudiante.nombre=res.datos.nombre

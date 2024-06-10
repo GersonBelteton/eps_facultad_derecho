@@ -42,11 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "status" => (string)$response->STATUS,
         "msg" => (string)$response->MSG,
         "datos"=>[
-            "nombre"=>$response->DATOS->NOMBRES." ".$response->DATOS->APELLIDOS,
+            "nombre"=>iconv('utf-8', 'latin1', $response->DATOS->NOMBRES)." ".iconv('utf-8', 'latin1', $response->DATOS->APELLIDOS),
             "cui_pasaporte"=>(string)$response->DATOS->CUI_PASAPORTE,
             "carnet" => (string)$response->DATOS->CARNET
         ]
-    ],JSON_PRETTY_PRINT);
+    ],JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
 
 
 

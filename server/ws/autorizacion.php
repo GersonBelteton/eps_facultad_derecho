@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$json) {
         exit("No hay datos");
     }
-        $sentencia = $pdo->prepare("insert into autorizacion (tipo, descripcion, punto_a, acta_a, inciso_a, punto_ia, acta_ia, inciso_ia, fecha_a, fecha_ia, id_unidad ) values (\"Reglamentación\", \"descripcion\", ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        $sentencia = $pdo->prepare("insert into autorizacion (tipo, descripcion, punto_a, acta_a, inciso_a, punto_ia, acta_ia, inciso_ia, fecha_a, fecha_ia, id_unidad ) values (\"\", \"descripcion\", ?, ?, ?, ?, ?, ?, ?, ?, ?);");
     $resultado = $sentencia->execute([$json->punto_a, $json->acta_a, $json->inciso_a, $json->punto_ia, $json->acta_ia, $json->inciso_ia, $json->fecha_a, $json->fecha_ia, $json->id_unidad]);
     echo json_encode([
         "resultado" => $resultado,

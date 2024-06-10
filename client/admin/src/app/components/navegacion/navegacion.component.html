@@ -37,7 +37,7 @@
                 <ul class="navbar-nav fs-5 justify-content-end">
 
                     <li class="nav-item p-3 py-md-1">
-                        <a [routerLink]="['/inicio']" class="nav-link">
+                        <a [routerLink]="['/inicio']" class="nav-link" data-bs-dismiss="offcanvas">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-house-fill" viewBox="0 0 16 16">
                                 <path
@@ -61,15 +61,17 @@
                             Configuración
                         </a>
                         <ul class="dropdown-menu">
-                            <li *ngIf="admin.permiso_usuarios == 1" class="nav-item p-3 py-md-1"><a class=" nav-link" routerLink="/configuracion-usuario">Usuarios</a></li>
+                            <li *ngIf="admin.permiso_usuarios == 1" class="nav-item p-3 py-md-1">
+                                <a class=" nav-link" routerLink="/configuracion-usuario" data-bs-dismiss="offcanvas">Usuarios</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li *ngIf="admin.permiso_equivalencias == 1" class="nav-item p-3 py-md-1"><a class=" nav-link" routerLink="/configuracion-unidades">Equivalencias</a></li>
+                            <li *ngIf="admin.permiso_equivalencias == 1" class="nav-item p-3 py-md-1">
+                                <a class=" nav-link" routerLink="/configuracion-unidades" data-bs-dismiss="offcanvas">Equivalencias</a></li>
                         </ul>
                     </li>
                     <li class="nav-item p-3 py-md-1">
-                        <a (click)="logOut()" routerLink='' class="nav-link">
+                        <a (click)="logOut()" routerLink='' class="nav-link" data-bs-dismiss="offcanvas">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
