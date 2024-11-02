@@ -6,7 +6,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { UntypedFormBuilder } from '@angular/forms';
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
-
+import { timeout } from 'rxjs/operators';
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 @Component({
@@ -149,7 +149,7 @@ export class ProcesoActivoComponent implements OnInit {
       id_solicitud: this.idSolicitud,
       cohorte: data.cohorte
     }
-    
+
     this.solicitudService.updateCohorteSolicitud(body)
       .subscribe((res) => {
         console.log(res)
@@ -165,7 +165,7 @@ export class ProcesoActivoComponent implements OnInit {
 
 
     //const data = this.dataFormReporte.value;
-    console.log(this.carreraActual.unidad_id + " " +cohorte)
+    console.log(this.carreraActual.unidad_id + " " + cohorte)
     this.equivalenciaService.getAutorizacion(this.carreraActual.unidad_id, cohorte)
       .subscribe((res) => {
         console.log(res)
@@ -193,7 +193,7 @@ export class ProcesoActivoComponent implements OnInit {
           console.log("marcar regularizacion")
           this.handleChangeRegularizacion()
         } else if (res.msg == "REGULARIZACION") {
-          if(!this.isCheckedRegu){}
+          if (!this.isCheckedRegu) { }
           this.isCheckedRegu = true;
           this.isCheckedReguGR = true;
           this.tipoAutorizacionSeleccionada = "regularizada"
@@ -219,7 +219,7 @@ export class ProcesoActivoComponent implements OnInit {
       status = "DPP"
     } else {
       res = "Aprobado",
-      status = "TJD"
+        status = "TJD"
     }
     let body = {
       id_solicitud: this.idSolicitud,
@@ -359,7 +359,8 @@ export class ProcesoActivoComponent implements OnInit {
     this.solicitudService.createPrevio(previo)
       .subscribe((res) => {
         console.log(res)
-        this.getPrevios()
+        //setTimeout(()=>{ this.getPrevios() }, 7000)
+        this.getPrevios() 
 
         this.dataForm.patchValue(
           { previo: '' }
@@ -436,8 +437,8 @@ export class ProcesoActivoComponent implements OnInit {
           }
         )
 
-        if(this.solicitud.solicitud[0].cohorte > 0){
-          console.log("validar aut"+this.solicitud.solicitud[0].cohorte)
+        if (this.solicitud.solicitud[0].cohorte > 0) {
+          console.log("validar aut" + this.solicitud.solicitud[0].cohorte)
           this.validarAutorizacion(this.solicitud.solicitud[0].cohorte)
         }
       },

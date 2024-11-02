@@ -15,6 +15,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == 'GET') {
 
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     if (empty($_GET['id_carrera']) || empty($_GET['id_asignatura'])) {
         
         exit('no hay datos de suficientes');

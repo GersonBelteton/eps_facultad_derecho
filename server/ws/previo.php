@@ -22,7 +22,9 @@ if ($method == 'GET') {
 
 
     header("Access-Control-Allow-Origin: *");
-
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    
     if (!empty($_GET['id_solicitud'])) {
 
         $id_solicitud = $_GET['id_solicitud'];

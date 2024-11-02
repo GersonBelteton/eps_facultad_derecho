@@ -23,6 +23,8 @@ if ($method == 'GET') {
     //header("Access-Control-Allow-Origin: http://localhost:4201");
 
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
     if (!empty($_GET['registro_academico'])) {
 
         $registro = $_GET['registro_academico'];

@@ -1,7 +1,7 @@
 create database if not exists epsProyect;
 
 use epsProyect; 
-
+SHOW VARIABLES LIKE 'autocommit';
 create table estudiante(
 	nombre varchar(100),
     registro_academico varchar(10) primary key,

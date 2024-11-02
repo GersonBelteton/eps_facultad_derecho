@@ -31,6 +31,14 @@ export class EstudianteService {
     )
   }
 
+  verificapin(data:any):Observable<any>{
+    let url = `${environment.basePath}wsryepin.php`;
+    return this.http.post(url, data)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
   getEstudiante(registro_academico:any):Observable<any>{
     let url = `${environment.basePath}estudiante.php?registro_academico=${registro_academico}`;
     return this.http.get(url)

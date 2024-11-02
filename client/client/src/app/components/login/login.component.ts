@@ -89,8 +89,8 @@ export class LoginComponent implements OnInit {
     }
 
     console.debug(`Token [${this.token}] generated`);
-
-    this.getEstudiante()
+    this.verificarPIN()
+    //this.getEstudiante()
     //this.goInicio();
   }
 
@@ -146,6 +146,39 @@ export class LoginComponent implements OnInit {
       )
   }
 
+  verificarPIN(){
+    const data = this.dataForm.value;
+
+    let carnet_pin = {
+
+      registro_academico: data.registro_academico,
+      pin: data.pin,
+    }
+
+    console.log(carnet_pin)
+    this.estudianteService.verificapin(carnet_pin)
+    .subscribe((res)=>{
+      console.log(res)
+      if(res.status == 1){
+  
+        this.getEstudiante()
+      }else if(res.status == 2){
+        alert("El registro académico no existe")
+      }else if(res.status == 3){
+        alert("El PIN es incorrecto")
+      }else{
+        this.active_spinner = false
+        alert(res.msg)
+      }
+
+    },
+    (error)=>{
+      this.active_spinner = false
+      alert('no se pudo validar la información')
+      console.error(error)
+      
+    })
+  }
 
   getEstudiante(){
     const data = this.dataForm.value;
@@ -195,6 +228,11 @@ export class LoginComponent implements OnInit {
     unidad_academica:"",
     extensiones_universitarias:"",
     carrera:""
+  }
+
+  verificapin : any = {
+    registro_academico:"",
+    pin:""
   }
 
 

@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // }
 
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 
     if(!empty($_GET['id_carrera'])){
 

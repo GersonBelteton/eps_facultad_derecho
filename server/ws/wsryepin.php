@@ -5,9 +5,6 @@ header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 header("Allow: *");
 
-include 'conexion.php';
-
-$pdo = new conexion();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -20,64 +17,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-    $unidad = $json->unidad_academica;
-    $extension = $json->extension_universitaria;
-    $carrera = $json->carrera;
+    $pin = $json->pin;
     $carnet = $json->registro_academico;
 
-    date_default_timezone_set('America/Mexico_City');
-    $año = date('Y');
-    $ciclo = $año;
-    $ciclo = intval($ciclo);
 
-    do{
-        $response = consulta_RYE($unidad, $extension, $carrera, $carnet, $ciclo);
-        $ciclo = $ciclo -1;
-    }while($response->STATUS == 2 && $ciclo > 2000);
-    
+    $response = consulta_RYE($carnet, $pin);
 
 
     header("HTTP/1.1 200 OK");
     echo json_encode([
         "status" => (string)$response->STATUS,
         "msg" => (string)$response->MSG,
-        "datos"=>[
-            "nombre"=>iconv('utf-8', 'latin1', $response->DATOS->NOMBRES)." ".iconv('utf-8', 'latin1', $response->DATOS->APELLIDOS),
-            "cui_pasaporte"=>(string)$response->DATOS->CUI_PASAPORTE,
-            "carnet" => (string)$response->DATOS->CARNET
-        ]
     ],JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
 
 
 
 }
 
-function consulta_RYE($unidad, $extension, $carrera, $carnet, $ciclo){
+function consulta_RYE($carnet, $pin){
 
     $location = "https://registro.usac.edu.gt/WS/verificadatosRyEWebService1.php?wsdl";
     $request = "<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:nus=\"http://rye.usac.edu.gt/nusoap\">
     <soapenv:Header/>
         <soapenv:Body>
-            <nus:VerificaNuevos soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">
-                <xml_RegistraDatos xsi:type=\"xsd:string\">
+            <nus:VerificaPIN soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">
+                <xml_verificaPIN xsi:type=\"xsd:string\">
                   <![CDATA[
-                  <VERIFICAR_INSCRITO>
-                         <DEPENDENCIA>UA04</DEPENDENCIA>
-                         <UNIDAD_ACADEMICA>".$unidad."</UNIDAD_ACADEMICA>
-                         <EXTENSION>".$extension."</EXTENSION>
-                         <CARRERA>".$carrera."</CARRERA>
-                         <LOGIN>S1s04D3r3ch0</LOGIN>
-                         <PWD>a1021a89f5ead5615f16a5dcad38b38c91f5a197</PWD>
-                         <CARNET>".$carnet."</CARNET>
-                         <CICLO>".$ciclo."</CICLO>
-                     </VERIFICAR_INSCRITO>
+                  	<VERIFICAR_PIN>
+			            <DEPENDENCIA>UA04</DEPENDENCIA>
+			            <LOGIN>S1s04D3r3ch0</LOGIN>
+			            <PWD>a1021a89f5ead5615f16a5dcad38b38c91f5a197</PWD>
+			            <CARNET>".$carnet."</CARNET>
+			            <PIN>".$pin."</PIN>
+		            </VERIFICAR_PIN>
                   ]]>
-             </xml_RegistraDatos>
-          </nus:VerificaNuevos>
+             </xml_verificaPIN>
+          </nus:VerificaPIN>
         </soapenv:Body>
     </soapenv:Envelope>";
     
-    $action = "VerificaNuevos";
+    $action = "VerificaPIN";
     $headers = [
         'Method: POST',
         'Connection: Keep-Alive',
@@ -116,9 +95,9 @@ function consulta_RYE($unidad, $extension, $carrera, $carnet, $ciclo){
     //print_r($response);
     //print("<br>_____________________________________________________________________<br>");
     
-    $resp_inscrito = $response->Body->VerificaNuevosResponse->return->RESP_VERIFICAR_INSCRITO;
+    $resp_verificar_pin = $response->Body->VerificaPINResponse->return->RESP_VERIFICAR_PIN;
 
-    return $resp_inscrito;
+    return $resp_verificar_pin;
 }
 
 
